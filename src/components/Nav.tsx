@@ -6,9 +6,6 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import PeopleIcon from "@mui/icons-material/People";
@@ -34,18 +31,6 @@ function Nav() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? "Logout" : "Login"}
-        />
-      </FormGroup>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -53,11 +38,18 @@ function Nav() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 40 }}
+            sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>
-
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+            paddingRight={50}
+          >
+            Pet Post
+          </Typography>
           {auth && (
             <div>
               <IconButton
