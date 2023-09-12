@@ -38,6 +38,7 @@ function Nav() {
             edge="start"
             color="inherit"
             aria-label="menu"
+            onClick={handleMenu}
             sx={{ mr: 2 }}
           >
             <MenuIcon />
@@ -57,7 +58,6 @@ function Nav() {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
                 color="inherit"
               >
                 <CameraAltIcon />
@@ -67,7 +67,6 @@ function Nav() {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
                 color="inherit"
               >
                 <PlayCircleIcon />
@@ -77,7 +76,6 @@ function Nav() {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
                 color="inherit"
               >
                 <MessageIcon />
@@ -87,7 +85,6 @@ function Nav() {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
                 color="inherit"
               >
                 <PeopleIcon />
@@ -98,7 +95,6 @@ function Nav() {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
                 color="inherit"
               >
                 <AccountCircle />
