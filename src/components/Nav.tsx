@@ -115,7 +115,10 @@ function Nav() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Messages</MenuItem>
+                <MenuItem onClick={handleClose}>Photos</MenuItem>
+                <MenuItem onClick={handleClose}>Videos</MenuItem>
+                <MenuItem onClick={handleClose}>Friends</MenuItem>
               </Menu>
             </div>
           )}
