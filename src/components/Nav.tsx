@@ -127,7 +127,14 @@ function Nav() {
                 <MenuItem onClick={handleClose}>Videos</MenuItem>
                 <MenuItem onClick={handleClose}>Friends</MenuItem>
               </Menu>
-              <h4>{page}</h4>
+              <Typography
+                variant="h6"
+                component="div"
+                paddingRight={10}
+                textAlign={"right"}
+              >
+                {page}
+              </Typography>
             </div>
           )}
         </Toolbar>
