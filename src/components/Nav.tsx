@@ -12,10 +12,12 @@ import PeopleIcon from "@mui/icons-material/People";
 import MessageIcon from "@mui/icons-material/Message";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import { useState } from "react";
 
 function Nav() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [page, setPage] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAuth(event.target.checked);
@@ -59,6 +61,7 @@ function Nav() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
+                onClick={() => setPage("Photos")}
               >
                 <CameraAltIcon />
               </IconButton>
@@ -68,6 +71,7 @@ function Nav() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
+                onClick={() => setPage("Videos")}
               >
                 <PlayCircleIcon />
               </IconButton>
@@ -77,6 +81,7 @@ function Nav() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
+                onClick={() => setPage("Messages")}
               >
                 <MessageIcon />
               </IconButton>
@@ -86,6 +91,7 @@ function Nav() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
+                onClick={() => setPage("Friends")}
               >
                 <PeopleIcon />
               </IconButton>
@@ -96,6 +102,7 @@ function Nav() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
+                onClick={() => setPage("Profile")}
               >
                 <AccountCircle />
               </IconButton>
@@ -120,6 +127,7 @@ function Nav() {
                 <MenuItem onClick={handleClose}>Videos</MenuItem>
                 <MenuItem onClick={handleClose}>Friends</MenuItem>
               </Menu>
+              <h4>{page}</h4>
             </div>
           )}
         </Toolbar>
