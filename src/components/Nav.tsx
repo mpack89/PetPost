@@ -5,10 +5,15 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { Message, People, PlayCircle, CameraAlt } from "@mui/icons-material";
+import {
+  Message,
+  People,
+  PlayCircle,
+  CameraAlt,
+  AccountCircle,
+} from "@mui/icons-material";
 import { useState } from "react";
 
 function Nav() {
