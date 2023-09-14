@@ -8,20 +8,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import PeopleIcon from "@mui/icons-material/People";
-import MessageIcon from "@mui/icons-material/Message";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import { Message, People, PlayCircle, CameraAlt } from "@mui/icons-material";
 import { useState } from "react";
 
 function Nav() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [page, setPage] = useState("");
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -63,7 +56,7 @@ function Nav() {
                 color="inherit"
                 onClick={() => setPage("Photos")}
               >
-                <CameraAltIcon />
+                <CameraAlt />
               </IconButton>
               <IconButton
                 size="large"
@@ -73,7 +66,7 @@ function Nav() {
                 color="inherit"
                 onClick={() => setPage("Videos")}
               >
-                <PlayCircleIcon />
+                <PlayCircle />
               </IconButton>
               <IconButton
                 size="large"
@@ -83,7 +76,7 @@ function Nav() {
                 color="inherit"
                 onClick={() => setPage("Messages")}
               >
-                <MessageIcon />
+                <Message />
               </IconButton>
               <IconButton
                 size="large"
@@ -93,7 +86,7 @@ function Nav() {
                 color="inherit"
                 onClick={() => setPage("Friends")}
               >
-                <PeopleIcon />
+                <People />
               </IconButton>
 
               <IconButton
@@ -127,18 +120,18 @@ function Nav() {
                 <MenuItem onClick={handleClose}>Videos</MenuItem>
                 <MenuItem onClick={handleClose}>Friends</MenuItem>
               </Menu>
-              <Typography
-                variant="h6"
-                component="div"
-                paddingRight={10}
-                textAlign={"right"}
-              >
-                {page}
-              </Typography>
             </div>
           )}
         </Toolbar>
       </AppBar>
+      <Typography
+        variant="h6"
+        component="div"
+        paddingRight={10}
+        textAlign={"center"}
+      >
+        {page}
+      </Typography>
     </Box>
   );
 }
