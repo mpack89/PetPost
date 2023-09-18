@@ -7,6 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import Friend from "./Friend";
+import Messages from "./Messages";
+import Photo from "./Photo";
+import Profile from "./Profile";
+import Video from "./Video";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import {
   Message,
   People,
@@ -104,27 +110,37 @@ function Nav() {
               >
                 <AccountCircle />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Messages</MenuItem>
-                <MenuItem onClick={handleClose}>Photos</MenuItem>
-                <MenuItem onClick={handleClose}>Videos</MenuItem>
-                <MenuItem onClick={handleClose}>Friends</MenuItem>
-              </Menu>
+              <BrowserRouter>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <NavLink to="/Profile">
+                    <MenuItem>Profile</MenuItem>
+                  </NavLink>
+                  <NavLink to="/Messages">
+                    <MenuItem>Messages</MenuItem>
+                  </NavLink>
+                  <MenuItem onClick={handleClose}>Photos</MenuItem>
+                  <MenuItem onClick={handleClose}>Videos</MenuItem>
+                  <MenuItem onClick={handleClose}>Friends</MenuItem>
+                </Menu>
+                <Routes>
+                  <Route path="/Profile" element={<Profile />} />
+                  <Route path="/Messages" element={<Messages />} />
+                </Routes>
+              </BrowserRouter>
             </div>
           )}
         </Toolbar>
