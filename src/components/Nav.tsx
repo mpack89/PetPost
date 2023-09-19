@@ -187,6 +187,7 @@ function Nav() {
                     <MenuItem>Friends</MenuItem>
                   </NavLink>
                 </Menu>
+
                 <Routes>
                   <Route path="/Homes" element={<Homes />} />
                   <Route path="/Profile" element={<Profile />} />
