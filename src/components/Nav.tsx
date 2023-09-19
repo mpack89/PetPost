@@ -16,12 +16,10 @@ import {
   AccountCircle,
   Home,
 } from "@mui/icons-material";
-import { useState } from "react";
 
 function Nav() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [page, setPage] = useState("");
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -55,68 +53,72 @@ function Nav() {
           </Typography>
           {auth && (
             <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-                onClick={() => setPage("Photos")}
-              >
-                <CameraAlt />
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-                onClick={() => setPage("Videos")}
-              >
-                <PlayCircle />
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-                onClick={() => setPage("Messages")}
-              >
-                <Message />
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-                onClick={() => setPage("Friends")}
-              >
-                <People />
-              </IconButton>
-
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-                onClick={() => setPage("Profile")}
-              >
-                <AccountCircle />
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-                onClick={() => setPage("Home")}
-              >
-                <Home />
-              </IconButton>
-
+              <NavLink to="/Photo">
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <CameraAlt />
+                </IconButton>
+              </NavLink>
+              <NavLink to="/Video">
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <PlayCircle />
+                </IconButton>
+              </NavLink>
+              <NavLink to="/Messages">
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <Message />
+                </IconButton>
+              </NavLink>
+              <NavLink to="/Friend">
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <People />
+                </IconButton>
+              </NavLink>
+              <NavLink to="/Profile">
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </NavLink>
+              <NavLink to="/Homes">
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <Home />
+                </IconButton>
+              </NavLink>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
