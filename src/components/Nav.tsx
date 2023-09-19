@@ -126,19 +126,53 @@ function Nav() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <NavLink to="/Profile">
+                  <NavLink
+                    to="/Profile"
+                    style={({ isActive }) => ({
+                      color: isActive ? "grey" : "black",
+                    })}
+                  >
                     <MenuItem>Profile</MenuItem>
                   </NavLink>
-                  <NavLink to="/Messages">
+                  <NavLink
+                    to="/Messages"
+                    style={({ isActive }) => ({
+                      color: isActive ? "grey" : "black",
+                    })}
+                  >
                     <MenuItem>Messages</MenuItem>
                   </NavLink>
-                  <MenuItem onClick={handleClose}>Photos</MenuItem>
-                  <MenuItem onClick={handleClose}>Videos</MenuItem>
-                  <MenuItem onClick={handleClose}>Friends</MenuItem>
+                  <NavLink
+                    to="/Photo"
+                    style={({ isActive }) => ({
+                      color: isActive ? "grey" : "black",
+                    })}
+                  >
+                    <MenuItem>Photos</MenuItem>
+                  </NavLink>
+                  <NavLink
+                    to="/Video"
+                    style={({ isActive }) => ({
+                      color: isActive ? "grey" : "black",
+                    })}
+                  >
+                    <MenuItem>Videos</MenuItem>
+                  </NavLink>
+                  <NavLink
+                    to="/Friend"
+                    style={({ isActive }) => ({
+                      color: isActive ? "grey" : "black",
+                    })}
+                  >
+                    <MenuItem>Friends</MenuItem>
+                  </NavLink>
                 </Menu>
                 <Routes>
                   <Route path="/Profile" element={<Profile />} />
                   <Route path="/Messages" element={<Messages />} />
+                  <Route path="/Photo" element={<Photo />} />
+                  <Route path="/Video" element={<Video />} />
+                  <Route path="/Friend" element={<Friend />} />
                 </Routes>
               </BrowserRouter>
             </div>
