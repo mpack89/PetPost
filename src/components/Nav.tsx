@@ -12,6 +12,7 @@ import Messages from "./Messages";
 import Photo from "./Photo";
 import Profile from "./Profile";
 import Video from "./Video";
+import Homes from "./Homes";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import {
   Message,
@@ -19,6 +20,7 @@ import {
   PlayCircle,
   CameraAlt,
   AccountCircle,
+  Home,
 } from "@mui/icons-material";
 import { useState } from "react";
 
@@ -110,6 +112,16 @@ function Nav() {
               >
                 <AccountCircle />
               </IconButton>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                onClick={() => setPage("Home")}
+              >
+                <Home />
+              </IconButton>
               <BrowserRouter>
                 <Menu
                   id="menu-appbar"
@@ -126,6 +138,14 @@ function Nav() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
+                  <NavLink
+                    to="/Homes"
+                    style={({ isActive }) => ({
+                      color: isActive ? "grey" : "black",
+                    })}
+                  >
+                    <MenuItem>Home</MenuItem>
+                  </NavLink>
                   <NavLink
                     to="/Profile"
                     style={({ isActive }) => ({
@@ -168,6 +188,7 @@ function Nav() {
                   </NavLink>
                 </Menu>
                 <Routes>
+                  <Route path="/Homes" element={<Homes />} />
                   <Route path="/Profile" element={<Profile />} />
                   <Route path="/Messages" element={<Messages />} />
                   <Route path="/Photo" element={<Photo />} />
