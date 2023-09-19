@@ -7,13 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import Friend from "./Friend";
-import Messages from "./Messages";
-import Photo from "./Photo";
-import Profile from "./Profile";
-import Video from "./Video";
-import Homes from "./Homes";
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   Message,
   People,
@@ -122,81 +116,71 @@ function Nav() {
               >
                 <Home />
               </IconButton>
-              <BrowserRouter>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <NavLink
-                    to="/Homes"
-                    style={({ isActive }) => ({
-                      color: isActive ? "grey" : "black",
-                    })}
-                  >
-                    <MenuItem>Home</MenuItem>
-                  </NavLink>
-                  <NavLink
-                    to="/Profile"
-                    style={({ isActive }) => ({
-                      color: isActive ? "grey" : "black",
-                    })}
-                  >
-                    <MenuItem>Profile</MenuItem>
-                  </NavLink>
-                  <NavLink
-                    to="/Messages"
-                    style={({ isActive }) => ({
-                      color: isActive ? "grey" : "black",
-                    })}
-                  >
-                    <MenuItem>Messages</MenuItem>
-                  </NavLink>
-                  <NavLink
-                    to="/Photo"
-                    style={({ isActive }) => ({
-                      color: isActive ? "grey" : "black",
-                    })}
-                  >
-                    <MenuItem>Photos</MenuItem>
-                  </NavLink>
-                  <NavLink
-                    to="/Video"
-                    style={({ isActive }) => ({
-                      color: isActive ? "grey" : "black",
-                    })}
-                  >
-                    <MenuItem>Videos</MenuItem>
-                  </NavLink>
-                  <NavLink
-                    to="/Friend"
-                    style={({ isActive }) => ({
-                      color: isActive ? "grey" : "black",
-                    })}
-                  >
-                    <MenuItem>Friends</MenuItem>
-                  </NavLink>
-                </Menu>
 
-                <Routes>
-                  <Route path="/Homes" element={<Homes />} />
-                  <Route path="/Profile" element={<Profile />} />
-                  <Route path="/Messages" element={<Messages />} />
-                  <Route path="/Photo" element={<Photo />} />
-                  <Route path="/Video" element={<Video />} />
-                  <Route path="/Friend" element={<Friend />} />
-                </Routes>
-              </BrowserRouter>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <NavLink
+                  to="/Homes"
+                  style={({ isActive }) => ({
+                    color: isActive ? "grey" : "black",
+                  })}
+                >
+                  <MenuItem>Home</MenuItem>
+                </NavLink>
+                <NavLink
+                  to="/Profile"
+                  style={({ isActive }) => ({
+                    color: isActive ? "grey" : "black",
+                  })}
+                >
+                  <MenuItem>Profile</MenuItem>
+                </NavLink>
+                <NavLink
+                  to="/Messages"
+                  style={({ isActive }) => ({
+                    color: isActive ? "grey" : "black",
+                  })}
+                >
+                  <MenuItem>Messages</MenuItem>
+                </NavLink>
+                <NavLink
+                  to="/Photo"
+                  style={({ isActive }) => ({
+                    color: isActive ? "grey" : "black",
+                  })}
+                >
+                  <MenuItem>Photos</MenuItem>
+                </NavLink>
+                <NavLink
+                  to="/Video"
+                  style={({ isActive }) => ({
+                    color: isActive ? "grey" : "black",
+                  })}
+                >
+                  <MenuItem>Videos</MenuItem>
+                </NavLink>
+                <NavLink
+                  to="/Friend"
+                  style={({ isActive }) => ({
+                    color: isActive ? "grey" : "black",
+                  })}
+                >
+                  <MenuItem>Friends</MenuItem>
+                </NavLink>
+              </Menu>
             </div>
           )}
         </Toolbar>
