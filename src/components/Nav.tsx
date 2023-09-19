@@ -16,10 +16,12 @@ import {
   AccountCircle,
   Home,
 } from "@mui/icons-material";
+import { useState } from "react";
 
 function Nav() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [page, setPage] = useState("");
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
