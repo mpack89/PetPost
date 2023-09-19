@@ -138,7 +138,7 @@ function Nav() {
                     color: isActive ? "grey" : "black",
                   })}
                 >
-                  <MenuItem>Home</MenuItem>
+                  <MenuItem onClick={handleClose}>Home</MenuItem>
                 </NavLink>
                 <NavLink
                   to="/Profile"
@@ -146,7 +146,7 @@ function Nav() {
                     color: isActive ? "grey" : "black",
                   })}
                 >
-                  <MenuItem>Profile</MenuItem>
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
                 </NavLink>
                 <NavLink
                   to="/Messages"
@@ -154,7 +154,7 @@ function Nav() {
                     color: isActive ? "grey" : "black",
                   })}
                 >
-                  <MenuItem>Messages</MenuItem>
+                  <MenuItem onClick={handleClose}>Messages</MenuItem>
                 </NavLink>
                 <NavLink
                   to="/Photo"
@@ -162,7 +162,7 @@ function Nav() {
                     color: isActive ? "grey" : "black",
                   })}
                 >
-                  <MenuItem>Photos</MenuItem>
+                  <MenuItem onClick={handleClose}>Photos</MenuItem>
                 </NavLink>
                 <NavLink
                   to="/Video"
@@ -170,7 +170,7 @@ function Nav() {
                     color: isActive ? "grey" : "black",
                   })}
                 >
-                  <MenuItem>Videos</MenuItem>
+                  <MenuItem onClick={handleClose}>Videos</MenuItem>
                 </NavLink>
                 <NavLink
                   to="/Friend"
@@ -178,7 +178,7 @@ function Nav() {
                     color: isActive ? "grey" : "black",
                   })}
                 >
-                  <MenuItem>Friends</MenuItem>
+                  <MenuItem onClick={handleClose}>Friends</MenuItem>
                 </NavLink>
               </Menu>
             </div>
