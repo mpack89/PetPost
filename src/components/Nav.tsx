@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import {
   Message,
   People,
@@ -55,17 +55,18 @@ function Nav() {
           </Typography>
           {auth && (
             <div>
-              <NavLink to="/Photo">
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  <CameraAlt />
-                </IconButton>
-              </NavLink>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                component={NavLink}
+                to="/Photo"
+              >
+                <CameraAlt />
+              </IconButton>
+
               <NavLink to="/Video">
                 <IconButton
                   size="large"
@@ -110,7 +111,7 @@ function Nav() {
                   <AccountCircle />
                 </IconButton>
               </NavLink>
-              <NavLink to="/Homes">
+              <NavLink to="/Home">
                 <IconButton
                   size="large"
                   aria-label="account of current user"

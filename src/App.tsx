@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Homes from "./components/Homes";
+import Home from "./components/Home";
 import Nav from "./components/Nav";
 import Friend from "./components/Friend";
 import Messages from "./components/Messages";
@@ -12,7 +12,7 @@ function App() {
     <div>
       <Nav />
       <Routes>
-        <Route path="/Homes" element={<Homes />} />
+        <Route path="/Home" element={<Home />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Messages" element={<Messages />} />
         <Route path="/Photo" element={<Photo />} />
