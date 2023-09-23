@@ -67,61 +67,66 @@ function Nav() {
                 <CameraAlt />
               </IconButton>
 
-              <NavLink to="/Video">
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  <PlayCircle />
-                </IconButton>
-              </NavLink>
-              <NavLink to="/Messages">
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  <Message />
-                </IconButton>
-              </NavLink>
-              <NavLink to="/Friend">
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  <People />
-                </IconButton>
-              </NavLink>
-              <NavLink to="/Profile">
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-              </NavLink>
-              <NavLink to="/Home">
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  <Home />
-                </IconButton>
-              </NavLink>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                component={NavLink}
+                to="/Video"
+              >
+                <PlayCircle />
+              </IconButton>
+
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                component={NavLink}
+                to="/Messages"
+              >
+                <Message />
+              </IconButton>
+
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                component={NavLink}
+                to="/Friend"
+              >
+                <People />
+              </IconButton>
+
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                component={NavLink}
+                to="/Profile"
+              >
+                <AccountCircle />
+              </IconButton>
+
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                component={NavLink}
+                to="/Home"
+              >
+                <Home />
+              </IconButton>
+
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
