@@ -54,14 +54,14 @@ export default function BasicTabs() {
           src="src/images/mikke.jpg"
           sx={{ width: 122, height: 122 }}
         />
-        <h4>Mike Pack</h4>
+        <Typography textAlign={"center"}>Mike Pack</Typography>
       </Stack>
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
             onChange={handleChange}
-            aria-label="basic tabs example"
+            aria-label="navigation tab"
           >
             <Tab label="Posts" {...a11yProps(0)} />
             <Tab label="About" {...a11yProps(1)} />

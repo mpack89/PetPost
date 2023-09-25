@@ -41,16 +41,11 @@ function Nav() {
             color="inherit"
             aria-label="menu"
             onClick={handleMenu}
-            sx={{ mr: 2 }}
+            sx={{ mr: 0 }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1 }}
-            paddingRight={50}
-          >
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Pet Post
           </Typography>
           {auth && (
