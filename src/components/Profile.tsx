@@ -47,45 +47,54 @@ export default function BasicTabs() {
   };
 
   return (
-    <Stack direction="column" spacing={2}>
+    <div
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "30%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
       <Stack direction="column" spacing={2}>
-        <Avatar
-          alt="Mike Pack"
-          src="src/images/mikke.jpg"
-          sx={{ width: 122, height: 122 }}
-        />
-        <Typography textAlign={"center"}>Mike Pack</Typography>
-      </Stack>
-      <Box sx={{ width: "100%" }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="navigation tab"
-          >
-            <Tab label="Posts" {...a11yProps(0)} />
-            <Tab label="About" {...a11yProps(1)} />
-            <Tab label="Friends" {...a11yProps(2)} />
-            <Tab label="Photos" {...a11yProps(3)} />
-            <Tab label="Videos" {...a11yProps(4)} />
-          </Tabs>
+        <Stack direction="row" spacing={4}>
+          <Avatar
+            alt="Mike Pack"
+            src="src/images/mikke.jpg"
+            sx={{ width: 122, height: 122, alignContent: "center" }}
+          />
+          <Typography textAlign={"center"}>Mike Pack</Typography>
+        </Stack>
+        <Box sx={{ width: "100%" }}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="navigation tab"
+            >
+              <Tab label="Posts" {...a11yProps(0)} />
+              <Tab label="About" {...a11yProps(1)} />
+              <Tab label="Friends" {...a11yProps(2)} />
+              <Tab label="Photos" {...a11yProps(3)} />
+              <Tab label="Videos" {...a11yProps(4)} />
+            </Tabs>
+          </Box>
+          <CustomTabPanel value={value} index={0}>
+            Posts
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={1}>
+            About
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={2}>
+            Friends
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={3}>
+            Photos
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={4}>
+            Videos
+          </CustomTabPanel>
         </Box>
-        <CustomTabPanel value={value} index={0}>
-          Posts
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={1}>
-          About
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={2}>
-          Friends
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={3}>
-          Photos
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={4}>
-          Videos
-        </CustomTabPanel>
-      </Box>
-    </Stack>
+      </Stack>
+    </div>
   );
 }

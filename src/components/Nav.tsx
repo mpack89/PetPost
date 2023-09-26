@@ -32,7 +32,7 @@ function Nav() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, padding: 6 }}>
       <AppBar position="fixed">
         <Toolbar>
           <IconButton
@@ -138,7 +138,7 @@ function Nav() {
                 onClose={handleClose}
               >
                 <NavLink
-                  to="/Homes"
+                  to="/Home"
                   style={({ isActive }) => ({
                     color: isActive ? "grey" : "black",
                   })}
