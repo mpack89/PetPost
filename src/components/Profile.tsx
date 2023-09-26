@@ -88,7 +88,7 @@ export default function BasicTabs() {
             Friends
           </CustomTabPanel>
           <CustomTabPanel value={value} index={3}>
-            Photos
+            Photo
           </CustomTabPanel>
           <CustomTabPanel value={value} index={4}>
             Videos
