@@ -6,8 +6,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
-import ProfilePhotos from "./ProfilePhotos";
+import { Button } from "@mui/material";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -65,36 +64,53 @@ export default function BasicTabs() {
             src="src/images/mikke.jpg"
             sx={{ width: 122, height: 122, alignContent: "center" }}
           />
-          <Typography textAlign={"center"}>Mike Pack</Typography>
+          <Stack direction="column" spacing={2}>
+            <Typography textAlign={"center"}>Mike Pack</Typography>
+            <Typography textAlign={"center"}>
+              Posts Followers Following
+            </Typography>
+          </Stack>
+
+          <Button
+            variant="outlined"
+            sx={{
+              borderRadius: 2,
+              background: "lightGrey",
+              borderColor: "black",
+              color: "black",
+              padding: 2,
+              textTransform: "none",
+              maxHeight: 2,
+            }}
+          >
+            Edit Profile
+          </Button>
         </Stack>
         <Box sx={{ width: "100%" }}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+            }}
+          >
             <Tabs
               value={value}
               onChange={handleChange}
               aria-label="navigation tab"
             >
               <Tab label="Posts" {...a11yProps(0)} />
-              <Tab label="About" {...a11yProps(1)} />
-              <Tab label="Friends" {...a11yProps(2)} />
-              <Link to="/Profile-Photos">
-                <Tab label="Photos" {...a11yProps(3)} />
-              </Link>
-              <Tab label="Videos" {...a11yProps(4)} />
+              <Tab label="Liked" {...a11yProps(1)} />
+              <Tab label="Tagged" {...a11yProps(2)} />
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
             Posts
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            Abouts
+            Liked
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
-            Friends
-          </CustomTabPanel>
-
-          <CustomTabPanel value={value} index={4}>
-            Videos
+            Tagged
           </CustomTabPanel>
         </Box>
       </Stack>
