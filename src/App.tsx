@@ -4,7 +4,7 @@ import Nav from "./components/Nav";
 import Friend from "./components/Friend";
 import Messages from "./components/Messages";
 import Photo from "./components/Photo";
-import Profile from "./components/Profile";
+import Profile from "./components/Profilepage/Profile";
 import Video from "./components/Video";
 
 function App() {
