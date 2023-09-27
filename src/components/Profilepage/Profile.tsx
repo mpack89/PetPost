@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import { FormatBold } from "@mui/icons-material";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -59,13 +60,15 @@ export default function BasicTabs() {
     >
       <Stack direction="column" spacing={2}>
         <Stack direction="row" spacing={4}>
-          <Avatar
-            alt="Mike Pack"
-            src="src/images/mikke.jpg"
-            sx={{ width: 122, height: 122, alignContent: "center" }}
-          />
-          <Stack direction="column" spacing={2}>
+          <Stack direction="column" spacing={4}>
+            <Avatar
+              alt="Mike Pack"
+              src="src/images/casey.jpg"
+              sx={{ width: 122, height: 122, alignContent: "center" }}
+            />
             <Typography textAlign={"center"}>Casey</Typography>
+          </Stack>
+          <Stack direction="column" spacing={2}>
             <Button
               variant="outlined"
               sx={{
@@ -94,12 +97,13 @@ export default function BasicTabs() {
             >
               Settings
             </Button>
-            <Typography textAlign={"center"}>
-              Posts Followers Following
-            </Typography>
+
             <Typography textAlign={"center"}>Owner: Mike Pack</Typography>
             <Typography textAlign={"center"}>
               NL resident. Love the Outdoors
+            </Typography>
+            <Typography textAlign={"center"}>
+              Posts Followers Following
             </Typography>
           </Stack>
         </Stack>
