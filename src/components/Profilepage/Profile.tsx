@@ -65,26 +65,43 @@ export default function BasicTabs() {
             sx={{ width: 122, height: 122, alignContent: "center" }}
           />
           <Stack direction="column" spacing={2}>
-            <Typography textAlign={"center"}>Mike Pack</Typography>
+            <Typography textAlign={"center"}>Casey</Typography>
+            <Button
+              variant="outlined"
+              sx={{
+                borderRadius: 2,
+                background: "lightGrey",
+                borderColor: "black",
+                color: "black",
+                padding: 2,
+                textTransform: "none",
+                maxHeight: 2,
+              }}
+            >
+              Edit Profile
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{
+                borderRadius: 2,
+                background: "lightGrey",
+                borderColor: "black",
+                color: "black",
+                padding: 2,
+                textTransform: "none",
+                maxHeight: 2,
+              }}
+            >
+              Settings
+            </Button>
             <Typography textAlign={"center"}>
               Posts Followers Following
             </Typography>
+            <Typography textAlign={"center"}>Owner: Mike Pack</Typography>
+            <Typography textAlign={"center"}>
+              NL resident. Love the Outdoors
+            </Typography>
           </Stack>
-
-          <Button
-            variant="outlined"
-            sx={{
-              borderRadius: 2,
-              background: "lightGrey",
-              borderColor: "black",
-              color: "black",
-              padding: 2,
-              textTransform: "none",
-              maxHeight: 2,
-            }}
-          >
-            Edit Profile
-          </Button>
         </Stack>
         <Box sx={{ width: "100%" }}>
           <Box
