@@ -14,7 +14,7 @@ function App() {
       <Grid>
         <Nav />
       </Grid>
-      <Grid container>
+      <Grid>
         <Routes>
           <Route path="/Home" element={<Home />} />
           <Route path="/Profile" element={<Profile />} />
