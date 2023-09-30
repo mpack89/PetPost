@@ -9,6 +9,13 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { FormatBold } from "@mui/icons-material";
 import ProfilePhotos from "./ProfilePhotos";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material";
+import EditForm from "./EditForm";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -54,93 +61,113 @@ export default function BasicTabs() {
     setValue(newValue);
   };
 
-  return (
-    <Stack
-      sx={{
-        position: "absolute",
-        left: "50%",
-        top: "60%",
-        transform: "translate(-50%, -50%)",
-      }}
-      alignItems={"center"}
-      direction="column"
-      spacing={2}
-    >
-      <Stack direction="row" spacing={4}>
-        <Stack direction="column" spacing={4}>
-          <Avatar
-            alt="Mike Pack"
-            src="src/images/casey.jpg"
-            sx={{ width: 122, height: 122, alignContent: "center" }}
-          />
-          <Typography textAlign={"center"}>Casey</Typography>
-        </Stack>
-        <Stack direction="column" spacing={2}>
-          <Button
-            variant="outlined"
-            sx={{
-              borderRadius: 2,
-              background: "lightGrey",
-              borderColor: "black",
-              color: "black",
-              padding: 2,
-              textTransform: "none",
-              maxHeight: 2,
-            }}
-          >
-            Edit Profile
-          </Button>
-          <Button
-            variant="outlined"
-            sx={{
-              borderRadius: 2,
-              background: "lightGrey",
-              borderColor: "black",
-              color: "black",
-              padding: 2,
-              textTransform: "none",
-              maxHeight: 2,
-            }}
-          >
-            Settings
-          </Button>
+  const [isEditing, setisEditing] = React.useState(false);
 
-          <Typography textAlign={"center"}>Owner: Mike Pack</Typography>
-          <Typography textAlign={"center"}>
-            NL resident. Love the Outdoors
-          </Typography>
-          <Typography textAlign={"center"}>
-            Posts Followers Following
-          </Typography>
+  const handleClickOpen = () => {
+    setisEditing(true);
+  };
+
+  const handleClose = () => {
+    setisEditing(false);
+  };
+  return (
+    <div>
+      <Stack
+        sx={{
+          position: "absolute",
+          left: "50%",
+          top: "60%",
+          transform: "translate(-50%, -50%)",
+        }}
+        alignItems={"center"}
+        direction="column"
+        spacing={2}
+      >
+        <Stack direction="row" spacing={4}>
+          <Stack direction="column" spacing={4}>
+            <Avatar
+              alt="Mike Pack"
+              src="src/images/casey.jpg"
+              sx={{ width: 122, height: 122, alignContent: "center" }}
+            />
+            <Typography textAlign={"center"}>Casey</Typography>
+          </Stack>
+          <Stack direction="column" spacing={2}>
+            <Button
+              onClick={handleClickOpen}
+              variant="outlined"
+              sx={{
+                borderRadius: 2,
+                background: "lightGrey",
+                borderColor: "black",
+                color: "black",
+                padding: 2,
+                textTransform: "none",
+                maxHeight: 2,
+              }}
+            >
+              Edit Profile
+            </Button>
+            <Dialog open={isEditing}>
+              <DialogContent>{EditForm()}</DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleClose}>Subscribe</Button>
+              </DialogActions>
+            </Dialog>
+
+            <Button
+              variant="outlined"
+              sx={{
+                borderRadius: 2,
+                background: "lightGrey",
+                borderColor: "black",
+                color: "black",
+                padding: 2,
+                textTransform: "none",
+                maxHeight: 2,
+              }}
+            >
+              Settings
+            </Button>
+
+            <Typography textAlign={"center"}>Owner: Mike Pack</Typography>
+            <Typography textAlign={"center"}>
+              NL resident. Love the Outdoors
+            </Typography>
+            <Typography textAlign={"center"}>
+              Posts Followers Following
+            </Typography>
+          </Stack>
         </Stack>
-      </Stack>
-      <Box sx={{ width: "100%" }}>
-        <Box
-          sx={{
-            borderBottom: 1,
-            borderColor: "divider",
-          }}
-        >
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="navigation tab"
+        <Box sx={{ width: "100%" }}>
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+            }}
           >
-            <Tab label="Posts" {...a11yProps(0)} />
-            <Tab label="Liked" {...a11yProps(1)} />
-            <Tab label="Tagged" {...a11yProps(2)} />
-          </Tabs>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="navigation tab"
+            >
+              <Tab label="Posts" {...a11yProps(0)} />
+              <Tab label="Liked" {...a11yProps(1)} />
+              <Tab label="Tagged" {...a11yProps(2)} />
+            </Tabs>
+          </Box>
+          <CustomTabPanel value={value} index={0}>
+            {ProfilePhotos()}
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={1}>
+            Liked
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={2}>
+            Tagged
+          </CustomTabPanel>
         </Box>
-        <CustomTabPanel value={value} index={0}>
-          {ProfilePhotos()}
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={1}>
-          Liked
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={2}>
-          Tagged
-        </CustomTabPanel>
-      </Box>
-    </Stack>
+      </Stack>
+    </div>
   );
 }
