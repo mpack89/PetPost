@@ -112,7 +112,7 @@ export default function BasicTabs() {
               <DialogContent>{EditForm()}</DialogContent>
               <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Subscribe</Button>
+                <Button onClick={handleClose}>Save</Button>
               </DialogActions>
             </Dialog>
 
