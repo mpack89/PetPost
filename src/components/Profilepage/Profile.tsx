@@ -16,6 +16,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material";
 import EditForm from "./EditForm";
+import { FormEvent } from "react";
+import ProfileForm from "./ProfileForm";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -49,6 +51,12 @@ function a11yProps(index: number) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
+const Form = () => {
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    console.log("Sumbmitted");
+  };
+};
 
 let profileData = {
   name: "Casey",
@@ -109,11 +117,7 @@ export default function BasicTabs() {
               Edit Profile
             </Button>
             <Dialog open={isEditing}>
-              <DialogContent>{EditForm()}</DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Save</Button>
-              </DialogActions>
+              <DialogContent>{ProfileForm()}</DialogContent>
             </Dialog>
 
             <Button
