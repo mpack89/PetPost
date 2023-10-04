@@ -51,17 +51,7 @@ function a11yProps(index: number) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-const Form = () => {
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log("Sumbmitted");
-  };
-};
 
-let profileData = {
-  name: "Casey",
-  owner: "Mike",
-};
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
 
@@ -75,9 +65,6 @@ export default function BasicTabs() {
     setisEditing(true);
   };
 
-  const handleClose = () => {
-    setisEditing(false);
-  };
   return (
     <div>
       <Stack

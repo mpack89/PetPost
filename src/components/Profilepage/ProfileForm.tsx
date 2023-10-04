@@ -1,36 +1,81 @@
+import { Formik, Field, Form, FormikHelpers } from "formik";
 import React from "react";
+import { Grid, Typography } from "@mui/material";
+import "./ProfileForm.css";
+
+interface Values {
+  petName: string;
+  ownerName: string;
+  bio: string;
+  links: string;
+}
 
 const ProfileForm = () => {
   return (
-    <form>
-      <div className="mb-3">
-        <label htmlFor="pet-name" className="form-label">
-          Pet
-        </label>
-        <input id="pet" type="text" className="form-control" />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="owner-name" className="form-label">
-          Owner
-        </label>
-        <input id="owner" type="text" className="form-control" />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="bio" className="form-label">
-          Bio
-        </label>
-        <input id="bio" type="text" className="form-control" />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="links" className="form-label">
-          Links
-        </label>
-        <input id="links" type="text" className="form-control" />
-      </div>
-      <button className="btn btn-primary" type="submit">
-        Submit
-      </button>
-    </form>
+    <div>
+      <Typography
+        sx={{
+          textAlign: "center",
+          margin: 4,
+          fontFamily: "serif",
+          fontStyle: "bold",
+          fontSize: 24,
+        }}
+      >
+        Edit Profile
+      </Typography>
+      <Formik
+        initialValues={{
+          petName: "",
+          ownerName: "",
+          bio: "",
+          links: "",
+        }}
+        onSubmit={(
+          values: Values,
+          { setSubmitting }: FormikHelpers<Values>
+        ) => {
+          setTimeout(() => {
+            localStorage.setItem("form", JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 500);
+        }}
+      >
+        <Form>
+          <Grid container direction={"column"} columnSpacing={4} rowSpacing={4}>
+            <Grid item xs={4}>
+              <label id="label" htmlFor="petName">
+                Pet
+              </label>
+              <Field id="petName" name="petName" placeholder="" />
+            </Grid>
+            <Grid item xs={4}>
+              <label id="label" htmlFor="ownerName">
+                Owner
+              </label>
+              <Field id="ownerName" name="ownerName" placeholder="" />
+            </Grid>
+            <Grid item xs={4}>
+              <label id="label" htmlFor="bio">
+                Bio
+              </label>
+              <Field id="bio" name="bio" placeholder="" />
+            </Grid>
+            <Grid item xs={4}>
+              <label id="label" htmlFor="links">
+                Links
+              </label>
+              <Field id="links" name="links" placeholder="" />
+            </Grid>
+            <Grid item xs={4} alignSelf={"center"}>
+              <button id="submitbutton" type="submit">
+                Submit
+              </button>
+            </Grid>
+          </Grid>
+        </Form>
+      </Formik>
+    </div>
   );
 };
 

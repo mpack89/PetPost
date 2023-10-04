@@ -1,0 +1,18 @@
+label {
+  padding: 12px;
+}
+
+#submitbutton {
+  align-content: center;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: black;
+}
+
+#links,
+#bio,
+#ownerName,
+#petName {
+  border-radius: 6px;
+  border-width: 2px;
+}
