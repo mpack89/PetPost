@@ -10,6 +10,7 @@ import ProfilePhotos from "./ProfilePhotos";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import ProfileForm from "./ProfileForm";
+import DialogActions from "@mui/material/DialogActions";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -56,6 +57,9 @@ export default function BasicTabs() {
   const handleClickOpen = () => {
     setisEditing(true);
   };
+  const handleClose = () => {
+    setisEditing(false);
+  };
 
   return (
     <div>
@@ -96,6 +100,9 @@ export default function BasicTabs() {
               Edit Profile
             </Button>
             <Dialog open={isEditing}>
+              <DialogActions>
+                <Button onClick={handleClose}>X</Button>
+              </DialogActions>
               <DialogContent>{ProfileForm()}</DialogContent>
             </Dialog>
 

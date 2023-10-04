@@ -20,6 +20,7 @@ const ProfileForm = () => {
           fontFamily: "serif",
           fontStyle: "bold",
           fontSize: 24,
+          marginTop: 0,
         }}
       >
         Edit Profile
