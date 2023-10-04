@@ -5,18 +5,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { FormatBold } from "@mui/icons-material";
 import ProfilePhotos from "./ProfilePhotos";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import TextField from "@mui/material";
-import EditForm from "./EditForm";
-import { FormEvent } from "react";
 import ProfileForm from "./ProfileForm";
 
 interface TabPanelProps {
