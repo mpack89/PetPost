@@ -11,6 +11,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import ProfileForm from "./ProfileForm";
 import DialogActions from "@mui/material/DialogActions";
+import IconButton from "@mui/material/IconButton";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -30,7 +34,12 @@ function CustomTabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box
+          sx={{
+            p: 2,
+            height: 500,
+          }}
+        >
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -74,16 +83,45 @@ export default function BasicTabs() {
         direction="column"
         spacing={2}
       >
-        <Stack direction="row" spacing={4}>
+        <Stack direction="row" spacing={6}>
           <Stack direction="column" spacing={4}>
             <Avatar
               alt="Mike Pack"
               src="src/images/casey.jpg"
-              sx={{ width: 122, height: 122, alignContent: "center" }}
+              sx={{ width: 140, height: 140, alignContent: "center" }}
             />
-            <Typography textAlign={"center"}>Casey</Typography>
+
+            <Stack direction="row" spacing={1}>
+              <IconButton
+                size="large"
+                aria-label="link to facebook"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+              >
+                <FacebookIcon />
+              </IconButton>
+              <IconButton
+                size="large"
+                aria-label="link to twitter"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+              >
+                <TwitterIcon />
+              </IconButton>
+              <IconButton
+                size="large"
+                aria-label="link to instagram"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+              >
+                <InstagramIcon />
+              </IconButton>
+            </Stack>
           </Stack>
-          <Stack direction="column" spacing={2}>
+          <Stack direction="column" spacing={1}>
             <Button
               onClick={handleClickOpen}
               variant="outlined"
@@ -120,7 +158,7 @@ export default function BasicTabs() {
             >
               Settings
             </Button>
-
+            <Typography textAlign={"center"}>Pet:Casey</Typography>
             <Typography textAlign={"center"}>Owner: Mike Pack</Typography>
             <Typography textAlign={"center"}>
               NL resident. Love the Outdoors
@@ -130,7 +168,11 @@ export default function BasicTabs() {
             </Typography>
           </Stack>
         </Stack>
-        <Box sx={{ width: "100%" }}>
+        <Box
+          sx={{
+            width: "100%",
+          }}
+        >
           <Box
             sx={{
               borderBottom: 1,
@@ -141,6 +183,7 @@ export default function BasicTabs() {
               value={value}
               onChange={handleChange}
               aria-label="navigation tab"
+              centered
             >
               <Tab label="Posts" {...a11yProps(0)} />
               <Tab label="Liked" {...a11yProps(1)} />

@@ -40,6 +40,9 @@ const ProfileForm = () => {
             localStorage.setItem("form", JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 500);
+          const userData = JSON.parse(localStorage.getItem("form"));
+
+          console.log(userData);
         }}
       >
         <Form>
