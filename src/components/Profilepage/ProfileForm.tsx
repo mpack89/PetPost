@@ -2,6 +2,7 @@ import { Formik, Field, Form, FormikHelpers } from "formik";
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./ProfileForm.css";
+import { useState } from "react";
 
 interface Values {
   petName: string;
@@ -10,7 +11,9 @@ interface Values {
   links: string;
 }
 
-const ProfileForm = () => {
+const ProfileForm = (props: any, propfunction: any) => {
+  const [profileInfo, setprofileInfo] = useState(props);
+
   return (
     <div>
       <Typography
@@ -26,23 +29,14 @@ const ProfileForm = () => {
         Edit Profile
       </Typography>
       <Formik
-        initialValues={{
-          petName: "",
-          ownerName: "",
-          bio: "",
-          links: "",
-        }}
+        initialValues={profileInfo}
         onSubmit={(
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          setTimeout(() => {
-            localStorage.setItem("form", JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
-          const userData = JSON.parse(localStorage.getItem("form"));
+          propfunction([values]);
 
-          console.log(userData);
+          setSubmitting(false);
         }}
       >
         <Form>
@@ -51,19 +45,24 @@ const ProfileForm = () => {
               <label id="label" htmlFor="petName">
                 Pet
               </label>
-              <Field id="petName" name="petName" placeholder="" />
+              <Field id="pet" name="pet" />
             </Grid>
             <Grid item xs={4}>
               <label id="label" htmlFor="ownerName">
                 Owner
               </label>
-              <Field id="ownerName" name="ownerName" placeholder="" />
+              <Field id="owner" name="owner" placeholder="" type="text" />
             </Grid>
             <Grid item xs={4}>
               <label id="label" htmlFor="bio">
                 Bio
               </label>
-              <Field id="bio" name="bio" placeholder="" />
+              <Field
+                id="bio"
+                name="bio"
+                placeholder=""
+                value={profileInfo.bio}
+              />
             </Grid>
             <Grid item xs={4}>
               <label id="label" htmlFor="links">

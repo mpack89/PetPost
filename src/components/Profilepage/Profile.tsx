@@ -15,7 +15,8 @@ import IconButton from "@mui/material/IconButton";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-
+import data from "./data.json";
+import { useState } from "react";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -70,6 +71,7 @@ export default function BasicTabs() {
     setisEditing(false);
   };
 
+  const [info, setInfo] = useState(data.profile);
   return (
     <div>
       <Stack
@@ -141,7 +143,9 @@ export default function BasicTabs() {
               <DialogActions>
                 <Button onClick={handleClose}>X</Button>
               </DialogActions>
-              <DialogContent>{ProfileForm()}</DialogContent>
+              <DialogContent>
+                {ProfileForm(data.profile[0], setInfo)}
+              </DialogContent>
             </Dialog>
 
             <Button
@@ -158,11 +162,15 @@ export default function BasicTabs() {
             >
               Settings
             </Button>
-            <Typography textAlign={"center"}>Pet:Casey</Typography>
-            <Typography textAlign={"center"}>Owner: Mike Pack</Typography>
-            <Typography textAlign={"center"}>
-              NL resident. Love the Outdoors
-            </Typography>
+
+            {info.map((info) => (
+              <>
+                <Typography textAlign={"center"}>Pet:{info.pet}</Typography>
+                <Typography textAlign={"center"}>Owner:{info.owner}</Typography>
+                <Typography textAlign={"center"}>Bio:{info.bio}</Typography>
+              </>
+            ))}
+
             <Typography textAlign={"center"}>
               Posts Followers Following
             </Typography>
