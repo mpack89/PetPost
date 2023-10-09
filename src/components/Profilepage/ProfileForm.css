@@ -11,8 +11,8 @@ label {
 
 #links,
 #bio,
-#ownerName,
-#petName {
+#owner,
+#pet {
   border-radius: 6px;
   border-width: 2px;
 }

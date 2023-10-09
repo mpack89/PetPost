@@ -12,7 +12,7 @@ interface Values {
 }
 
 const ProfileForm = (props: any, propfunction: any) => {
-  const [profileInfo, setprofileInfo] = useState(props);
+  const profileInfo = props;
 
   return (
     <div>
@@ -57,12 +57,7 @@ const ProfileForm = (props: any, propfunction: any) => {
               <label id="label" htmlFor="bio">
                 Bio
               </label>
-              <Field
-                id="bio"
-                name="bio"
-                placeholder=""
-                value={profileInfo.bio}
-              />
+              <Field id="bio" name="bio" placeholder="" type="text" />
             </Grid>
             <Grid item xs={4}>
               <label id="label" htmlFor="links">
