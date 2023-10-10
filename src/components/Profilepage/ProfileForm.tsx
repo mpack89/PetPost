@@ -2,7 +2,6 @@ import { Formik, Field, Form, FormikHelpers } from "formik";
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./ProfileForm.css";
-import { useState } from "react";
 
 interface Values {
   petName: string;
