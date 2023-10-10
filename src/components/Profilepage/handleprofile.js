@@ -1,4 +1,3 @@
-import { Switch } from "@mui/material";
 import React from "react";
 import { connect } from "react-redux";
 
@@ -20,7 +19,10 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case BUY_CAKE:
       return {
+        ...state,
         pet: state.pet,
+        owner: state.owner,
+        bio: state.bio,
       };
     default:
       return state;
