@@ -1,5 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
+import redux from "redux";
+import { legacy_createStore } from "redux";
 
 const UPDATE_PROFILE = "UPDATE_PROFILE";
 
@@ -17,7 +18,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case BUY_CAKE:
+    case UPDATE_PROFILE:
       return {
         ...state,
         pet: state.pet,
@@ -28,3 +29,5 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
+
+const store = legacy_createStore(reducer);
