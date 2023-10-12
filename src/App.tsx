@@ -7,8 +7,14 @@ import Photo from "./components/Photo";
 import Profile from "./components/Profilepage/Profile";
 import Video from "./components/Video";
 import { Grid } from "@mui/material";
+import { useEffect } from "react";
+import data from "./components/Profilepage/data.json";
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem("USER_PROFILE", JSON.stringify(data.profile));
+  }, []);
+
   return (
     <div>
       <Grid>

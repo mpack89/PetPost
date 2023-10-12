@@ -1,16 +1,18 @@
 import { Formik, Field, Form, FormikHelpers } from "formik";
+import { useEffect } from "react";
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./ProfileForm.css";
+import { setMyProfile } from "../../API/setter";
 
 interface Values {
-  petName: string;
-  ownerName: string;
+  pet: string;
+  owner: string;
   bio: string;
-  links: string;
+  links?: string;
 }
 
-const ProfileForm = (props: any, propfunction: any) => {
+const ProfileForm = (props: any, propfunction?: any) => {
   const profileInfo = props;
 
   return (
@@ -33,8 +35,7 @@ const ProfileForm = (props: any, propfunction: any) => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          propfunction([values]);
-
+          setMyProfile(values);
           setSubmitting(false);
         }}
       >
