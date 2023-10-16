@@ -12,7 +12,7 @@ import data from "./components/Profilepage/data.json";
 
 function App() {
   useEffect(() => {
-    localStorage.setItem("USER_PROFILE", JSON.stringify(data.profile));
+    localStorage.setItem("UPDATE_PROFILE", JSON.stringify(data.profile));
   }, []);
 
   return (

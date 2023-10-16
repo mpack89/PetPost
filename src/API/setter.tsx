@@ -1,3 +1,3 @@
 export const setMyProfile: any = (data: any) => {
-  localStorage.setItem("USER_PROFILE", JSON.stringify(data));
+  localStorage.setItem("UPDATE_PROFILE", JSON.stringify(data));
 };
