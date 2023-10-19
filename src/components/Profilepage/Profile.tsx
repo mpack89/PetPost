@@ -145,7 +145,9 @@ export default function BasicTabs() {
               <DialogActions>
                 <Button onClick={handleClose}>X</Button>
               </DialogActions>
-              <DialogContent>{ProfileForm(info)}</DialogContent>
+              <DialogContent>
+                <ProfileForm profile={info} setIsEditing={setisEditing} />
+              </DialogContent>
             </Dialog>
 
             <Button

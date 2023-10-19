@@ -4,17 +4,16 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./ProfileForm.css";
 import { setMyProfile } from "../../API/setter";
+import { Profile } from "../../API/profileAPI";
 
 interface Values {
-  pet: string;
-  owner: string;
-  bio: string;
-  links?: string;
+  profile: Profile;
+  setIsEditing: any;
 }
 
-const ProfileForm = (props: any, propfunction?: any) => {
-  const profileInfo = props;
-
+const ProfileForm = (props: any) => {
+  const { profile, setIsEditing } = props;
+  const itemData = profile;
   return (
     <div>
       <Typography
@@ -30,13 +29,14 @@ const ProfileForm = (props: any, propfunction?: any) => {
         Edit Profile
       </Typography>
       <Formik
-        initialValues={profileInfo}
+        initialValues={itemData}
         onSubmit={(
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
           setMyProfile(values);
           setSubmitting(false);
+          setIsEditing(false);
         }}
       >
         <Form>
