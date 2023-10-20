@@ -1,9 +1,8 @@
 import { Formik, Field, Form, FormikHelpers } from "formik";
-import { useEffect } from "react";
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./ProfileForm.css";
-import { setMyProfile } from "../../API/setter";
+import { setMyProfile } from "../../API/profileAPI";
 import { Profile } from "../../API/profileAPI";
 
 interface Values {

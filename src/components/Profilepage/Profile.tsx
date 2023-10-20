@@ -15,9 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import data from "./data.json";
-import { useState, useEffect } from "react";
-import { getMyProfile } from "../../API/getter";
+import { getMyProfile } from "../../API/profileAPI";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
