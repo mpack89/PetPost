@@ -11,8 +11,10 @@ import { useEffect } from "react";
 import data from "./components/Profilepage/data.json";
 
 function App() {
+  const localStorageData = localStorage.getItem("UPDATE_PROFILE");
   useEffect(() => {
-    localStorage.setItem("UPDATE_PROFILE", JSON.stringify(data.profile));
+    if (!localStorageData)
+      localStorage.setItem("UPDATE_PROFILE", JSON.stringify(data.profile));
   }, []);
 
   return (
