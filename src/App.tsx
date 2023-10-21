@@ -3,7 +3,7 @@ import Home from "./components/Home";
 import Nav from "./components/Nav";
 import Friend from "./components/Friend";
 import Messages from "./components/Messages";
-import Photo from "./components/Photo";
+import Photo from "./components/Photopage/Photo";
 import Profile from "./components/Profilepage/Profile";
 import Video from "./components/Video";
 import { Grid } from "@mui/material";

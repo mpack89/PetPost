@@ -13,9 +13,9 @@ export default function WovenImageList() {
       }}
     >
       <ImageList
-        sx={{ width: 500, height: 450 }}
+        sx={{ width: 1200, height: 800, marginTop: 25 }}
         variant="woven"
-        cols={3}
+        cols={4}
         gap={8}
       >
         {itemData.map((item) => (
