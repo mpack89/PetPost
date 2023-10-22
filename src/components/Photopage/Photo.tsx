@@ -26,7 +26,6 @@ export default function WovenImageList() {
             <img
               srcSet={`${image.url}?w=161&fit=crop&auto=format&dpr=2 2x`}
               src={`${image.url}?w=161&fit=crop&auto=format`}
-              loading="lazy"
             />
           </ImageListItem>
         ))}
