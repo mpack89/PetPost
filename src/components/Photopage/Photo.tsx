@@ -23,10 +23,7 @@ export default function WovenImageList() {
       >
         {image.map((image) => (
           <ImageListItem key={image.url}>
-            <img
-              srcSet={`${image.url}?w=161&fit=crop&auto=format&dpr=2 2x`}
-              src={`${image.url}?w=161&fit=crop&auto=format`}
-            />
+            <img src={image.url} />
           </ImageListItem>
         ))}
       </ImageList>
