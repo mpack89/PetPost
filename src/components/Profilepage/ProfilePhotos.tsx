@@ -1,10 +1,9 @@
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import data from "./profilephotodata.json";
-import { useState } from "react";
 
 export default function ProfilePhotos() {
-  const [image, setImage] = useState(data.userprofilephotos);
+  const image = data.userprofilephotos;
 
   return (
     <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>

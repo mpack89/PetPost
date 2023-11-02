@@ -2,10 +2,9 @@ import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import data from "./photodata.json";
-import { useState } from "react";
 
 export default function WovenImageList() {
-  const [image, setImage] = useState(data.explorephotos);
+  const image = data.explorephotos;
   return (
     <div
       style={{
