@@ -16,40 +16,38 @@ const ImageWithDialog = ({ imageSrc, initialComments = [] }) => {
     setIsDialogOpen(false);
   };
 
-  const handleCommentChange = (event) => {
-    setNewComment(event.target.value);
-  };
-
   const addComment = () => {
-    setComments((initialComments) => [...prevComments, newComment]);
-    setNewComment("");
+    if (newComment.trim() !== "") {
+      setComments([...comments, newComment]);
+      setNewComment("");
+    }
   };
 
   return (
     <div>
       <img
         src={imageSrc}
-        alt={altText}
         onClick={handleDialogOpen}
         style={{ cursor: "pointer" }}
       />
 
       <Dialog open={isDialogOpen} onClose={handleDialogClose}>
         <DialogContent>
-          <img src={imageSrc} alt={altText} style={{ maxWidth: "100%" }} />
+          <img src={imageSrc} style={{ maxWidth: "100%" }} />
 
           <div>
-            {comments.map((comment, index) => (
-              <div key={index}>{comment}</div>
-            ))}
+            <ul>
+              {comments.map((comment, index) => (
+                <li key={index}>{comment}</li>
+              ))}
+            </ul>
           </div>
 
           <TextField
-            label="Add a Comment"
-            variant="outlined"
-            fullWidth
+            type="text"
+            placeholder="Add a comment..."
             value={newComment}
-            onChange={handleCommentChange}
+            onChange={(e) => setNewComment(e.target.value)}
           />
 
           <Button variant="contained" color="primary" onClick={addComment}>
