@@ -1,10 +1,10 @@
 import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import data from "./photodata.json";
+import data from "../../components/photodata.json";
 
 export default function WovenImageList() {
-  const image = data.explorephotos;
+  const image = data.photos;
   return (
     <div
       style={{

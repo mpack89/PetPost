@@ -1,9 +1,9 @@
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import data from "./profilephotodata.json";
+import data from "../../components/photodata.json";
 
 export default function ProfilePhotos() {
-  const image = data.userprofilephotos;
+  const image = data.photos;
 
   return (
     <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
