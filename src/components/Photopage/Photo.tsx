@@ -2,10 +2,25 @@ import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import data from "../../components/photodata.json";
+import { useState } from "react";
+import ImageDialog from "../ImageDialog";
 
 export default function WovenImageList() {
   const image = data.photos;
   const imagesToRender = image.filter((image) => image.page === "photo");
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+
+    setDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
 
   return (
     <div
@@ -23,11 +38,20 @@ export default function WovenImageList() {
         gap={8}
       >
         {imagesToRender.map((image) => (
-          <ImageListItem key={image.id}>
+          <ImageListItem
+            onClick={() => handleImageClick(image.url)}
+            key={image.id}
+          >
             <img src={image.url} />
           </ImageListItem>
         ))}
       </ImageList>
+
+      <ImageDialog
+        open={dialogOpen}
+        onClose={handleCloseDialog}
+        image={selectedImage}
+      />
     </div>
   );
 }
