@@ -5,7 +5,16 @@ import Typography from "@mui/material/Typography";
 
 const ImageDialog = ({ open, onClose, image }) => {
   return (
-    <Dialog open={open} onClose={onClose} sx={{ width: 1000, height: 1000 }}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      sx={{
+        width: 1000,
+        height: 1000,
+        position: "absolute",
+        left: "23.5%",
+      }}
+    >
       <DialogContent>
         <img
           src={image}
