@@ -5,6 +5,8 @@ import data from "../../components/photodata.json";
 
 export default function WovenImageList() {
   const image = data.photos;
+  const imagesToRender = image.filter((image) => image.page === "photo");
+
   return (
     <div
       style={{
@@ -20,8 +22,8 @@ export default function WovenImageList() {
         cols={4}
         gap={8}
       >
-        {image.map((image) => (
-          <ImageListItem key={image.url}>
+        {imagesToRender.map((image) => (
+          <ImageListItem key={image.id}>
             <img src={image.url} />
           </ImageListItem>
         ))}
