@@ -3,7 +3,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
 
-const ImageDialog = ({ open, onClose, image }) => {
+const ImageDialog = ({ open, onClose, image, comment }) => {
   return (
     <Dialog
       open={open}
@@ -21,7 +21,7 @@ const ImageDialog = ({ open, onClose, image }) => {
           alt="Selected Image"
           style={{ width: "100%", height: "auto" }}
         />
-        <Typography></Typography>
+        <Typography>{comment}</Typography>
       </DialogContent>
     </Dialog>
   );

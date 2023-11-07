@@ -36,6 +36,7 @@ export default function ProfilePhotos() {
         open={dialogOpen}
         onClose={handleCloseDialog}
         image={selectedImage}
+        comment={}
       />
     </div>
   );
