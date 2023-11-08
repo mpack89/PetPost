@@ -10,20 +10,19 @@ export default function WovenImageList() {
   const image = data.photos;
   const imagesToRender = image.filter((image) => image.page === "photo");
   const comments = commentData;
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
-  const [selectedComment, setSelectedComment] = useState("");
-  const getCommentForImage = image.map((image) => {
-    const comment = comments.find((c) => c.id === image.id);
-    return {
-      ...image,
-      comment: comment ? comment.comment : "No comment available",
-    };
-  });
 
-  const handleImageClick = (image, comment) => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const getCommentForImage = (selectedImageId) => {
+    const imageWithComment = image.find((img) => img.id === selectedImageId);
+    if (imageWithComment) {
+      const comment = comments.find((c) => c.id === imageWithComment.id);
+      return comment ? comment.comment : "No comment available";
+    }
+  };
+
+  const handleImageClick = (image) => {
     setSelectedImage(image);
-    setSelectedComment(comment);
     setDialogOpen(true);
   };
 
@@ -48,7 +47,7 @@ export default function WovenImageList() {
       >
         {imagesToRender.map((image) => (
           <ImageListItem
-            onClick={() => handleImageClick(image.url, comments)}
+            onClick={() => handleImageClick(image.url)}
             key={image.id}
           >
             <img src={image.url} />
@@ -60,7 +59,7 @@ export default function WovenImageList() {
         open={dialogOpen}
         onClose={handleCloseDialog}
         image={selectedImage}
-        comment={selectedComment}
+        comment={getCommentForImage}
       />
     </div>
   );
