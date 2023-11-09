@@ -4,22 +4,19 @@ import ImageListItem from "@mui/material/ImageListItem";
 import data from "../../components/photodata.json";
 import { useState } from "react";
 import ImageDialog from "../ImageDialog";
-import commentData from "../commentsAPI.json";
 
 export default function WovenImageList() {
   const image = data.photos;
   const imagesToRender = image.filter((image) => image.page === "photo");
-  const comments = commentData;
-
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const getCommentForImage = (selectedImageId) => {
-    const imageWithComment = image.find((img) => img.id === selectedImageId);
-    if (imageWithComment) {
-      const comment = comments.find((c) => c.id === imageWithComment.id);
-      return comment ? comment.comment : "No comment available";
-    }
-  };
+  // const getCommentForImage = (selectedImageId) => {
+  //   const imageWithComment = image.find((img) => img.id === selectedImageId);
+  //   if (imageWithComment) {
+  //     const comment = comments.find((c) => c.id === imageWithComment.id);
+  //     return comment ? comment.comment : "No comment available";
+  //   }
+  // };
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -58,8 +55,8 @@ export default function WovenImageList() {
       <ImageDialog
         open={dialogOpen}
         onClose={handleCloseDialog}
-        image={selectedImage}
-        comment={getCommentForImage}
+        imageSrc={selectedImage}
+        // comment={getCommentForImage}
       />
     </div>
   );

@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
+import { useState, useEffect } from "react";
+import { getMyCommentsByImage } from "../API/commentsAPI";
 
-const ImageDialog = ({ open, onClose, image, comment }) => {
+const ImageDialog = ({ open, onClose, imageSrc }) => {
+  const [comments, setComments] = useState(null);
+
+  useEffect(() => {
+    let data = getMyCommentsByImage();
+    setComments(data);
+  }, []);
+
   return (
     <Dialog
       open={open}
@@ -17,11 +26,11 @@ const ImageDialog = ({ open, onClose, image, comment }) => {
     >
       <DialogContent>
         <img
-          src={image}
+          src={imageSrc}
           alt="Selected Image"
           style={{ width: "100%", height: "auto" }}
         />
-        <Typography>{comment}</Typography>
+        <Typography>{comments}</Typography>
       </DialogContent>
     </Dialog>
   );
