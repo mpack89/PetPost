@@ -9,8 +9,14 @@ const ImageDialog = ({ open, onClose, imageSrc }) => {
   const [comments, setComments] = useState(null);
 
   useEffect(() => {
-    let data = getMyCommentsByImage();
-    setComments(data);
+    const fetchData = async () => {
+      try {
+        const data = await getMyCommentsByImage();
+        setComments(data.comment_text);
+      } catch (error) {}
+    };
+
+    fetchData();
   }, []);
 
   return (
