@@ -14,12 +14,13 @@ interface imageDialogProps {
 const ImageDialog = (props: imageDialogProps) => {
   const { imageSrc, open, onClose } = props;
   const [commentsToShow, setCommentsToShow] = useState(null);
-
+  const [username, setUsername] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getMyCommentsByImage();
         setCommentsToShow(data.comment_text);
+        setUsername(data.user_name);
       } catch (error) {}
     };
 
@@ -44,6 +45,7 @@ const ImageDialog = (props: imageDialogProps) => {
           style={{ width: "100%", height: "auto" }}
         />
         <Typography>{commentsToShow}</Typography>
+        <Typography>{username}</Typography>
       </DialogContent>
     </Dialog>
   );
