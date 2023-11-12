@@ -5,14 +5,21 @@ import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import { getMyCommentsByImage } from "../API/commentsAPI";
 
-const ImageDialog = ({ open, onClose, imageSrc }) => {
-  const [comments, setComments] = useState(null);
+interface imageDialogProps {
+  imageSrc: string;
+  open: any;
+  onClose: any;
+}
+
+const ImageDialog = (props: imageDialogProps) => {
+  const { imageSrc, open, onClose } = props;
+  const [commentsToShow, setCommentsToShow] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getMyCommentsByImage();
-        setComments(data.comment_text);
+        setCommentsToShow(data.comment_text);
       } catch (error) {}
     };
 
@@ -36,7 +43,7 @@ const ImageDialog = ({ open, onClose, imageSrc }) => {
           alt="Selected Image"
           style={{ width: "100%", height: "auto" }}
         />
-        <Typography>{comments}</Typography>
+        <Typography>{commentsToShow}</Typography>
       </DialogContent>
     </Dialog>
   );
