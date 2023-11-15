@@ -1,9 +1,12 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import { getMyCommentsByImage } from "../API/commentsAPI";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import { Grid, Paper, Typography } from "@mui/material";
 
 interface imageDialogProps {
   imageSrc: string;
@@ -32,26 +35,30 @@ const ImageDialog = (props: imageDialogProps) => {
   }, []);
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      sx={{
-        width: 1000,
-        height: 1000,
-        position: "absolute",
-        left: "23.5%",
-      }}
-    >
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
       <DialogContent>
-        <img
-          src={imageSrc}
-          alt="Selected Image"
-          style={{ width: "100%", height: "auto" }}
-        />
-        <Typography>{commentsToShow}</Typography>
-        <Typography>{username}</Typography>
-        <Typography>{date}</Typography>
-        <Typography>{likes}</Typography>
+        <Grid container spacing={2} style={{ maxWidth: "lg" }}>
+          <Grid item xs={8} md={6}>
+            <img
+              src={imageSrc}
+              alt="Selected Image"
+              style={{ width: "100%", height: "100%" }}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper style={{ padding: "2px" }}>
+              <List sx={{ width: "100%", maxWidth: 600 }}>
+                <ListItem>
+                  <ListItemText
+                    sx={{ display: "inline-block" }}
+                    primary={username}
+                    secondary={<Typography>{commentsToShow}</Typography>}
+                  />
+                </ListItem>
+              </List>
+            </Paper>
+          </Grid>
+        </Grid>
       </DialogContent>
     </Dialog>
   );
