@@ -46,17 +46,70 @@ const ImageDialog = (props: imageDialogProps) => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Paper style={{ padding: "2px" }}>
-              <List sx={{ width: "100%", maxWidth: 600 }}>
-                <ListItem>
-                  <ListItemText
-                    sx={{ display: "inline-block" }}
-                    primary={username}
-                    secondary={<Typography>{commentsToShow}</Typography>}
-                  />
-                </ListItem>
-              </List>
-            </Paper>
+            <List sx={{ width: "100%", maxWidth: 600 }}>
+              <ListItem>
+                <ListItemText
+                  style={{ display: "flex", alignItems: "center" }}
+                  primary={
+                    <Typography
+                      marginRight={6}
+                      variant="body1"
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "14px",
+                        color: "black",
+                      }}
+                    >
+                      {username}
+                    </Typography>
+                  }
+                  secondary={
+                    <Typography
+                      style={{
+                        fontWeight: "lighter",
+                        fontSize: "14px",
+                        color: "black",
+                      }}
+                    >
+                      {commentsToShow}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderSpacing: 2,
+                  }}
+                  primary={
+                    <Typography
+                      marginRight={6}
+                      variant="body1"
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "14px",
+                        color: "black",
+                      }}
+                    >
+                      {username}
+                    </Typography>
+                  }
+                  secondary={
+                    <Typography
+                      style={{
+                        fontWeight: "lighter",
+                        fontSize: "14px",
+                        color: "black",
+                      }}
+                    >
+                      {commentsToShow}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+            </List>
           </Grid>
         </Grid>
       </DialogContent>
