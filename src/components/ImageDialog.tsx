@@ -51,6 +51,7 @@ const ImageDialog = (props: imageDialogProps) => {
         <Typography>{commentsToShow}</Typography>
         <Typography>{username}</Typography>
         <Typography>{date}</Typography>
+        <Typography>{likes}</Typography>
       </DialogContent>
     </Dialog>
   );
