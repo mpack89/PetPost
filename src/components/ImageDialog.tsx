@@ -64,15 +64,42 @@ const ImageDialog = (props: imageDialogProps) => {
                     </Typography>
                   }
                   secondary={
-                    <Typography
-                      style={{
-                        fontWeight: "lighter",
-                        fontSize: "14px",
-                        color: "black",
-                      }}
-                    >
-                      {commentsToShow}
-                    </Typography>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <Typography
+                        style={{
+                          fontWeight: "lighter",
+                          fontSize: "14px",
+                          color: "black",
+                        }}
+                      >
+                        {commentsToShow}
+                      </Typography>
+                      <div
+                        style={{
+                          display: "flex",
+                        }}
+                      >
+                        <Typography
+                          style={{
+                            fontWeight: "lighter",
+                            fontSize: "12px",
+                            color: "grey",
+                            marginRight: 12,
+                          }}
+                        >
+                          {date}
+                        </Typography>
+                        <Typography
+                          style={{
+                            fontWeight: "bold",
+                            fontSize: "12px",
+                            color: "grey",
+                          }}
+                        >
+                          {likes} Likes
+                        </Typography>
+                      </div>
+                    </div>
                   }
                 />
               </ListItem>
@@ -97,15 +124,42 @@ const ImageDialog = (props: imageDialogProps) => {
                     </Typography>
                   }
                   secondary={
-                    <Typography
-                      style={{
-                        fontWeight: "lighter",
-                        fontSize: "14px",
-                        color: "black",
-                      }}
-                    >
-                      {commentsToShow}
-                    </Typography>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <Typography
+                        style={{
+                          fontWeight: "lighter",
+                          fontSize: "14px",
+                          color: "black",
+                        }}
+                      >
+                        {commentsToShow}
+                      </Typography>
+                      <div
+                        style={{
+                          display: "flex",
+                        }}
+                      >
+                        <Typography
+                          style={{
+                            fontWeight: "lighter",
+                            fontSize: "12px",
+                            color: "grey",
+                            marginRight: 12,
+                          }}
+                        >
+                          {date}
+                        </Typography>
+                        <Typography
+                          style={{
+                            fontWeight: "bold",
+                            fontSize: "12px",
+                            color: "grey",
+                          }}
+                        >
+                          {likes} Likes
+                        </Typography>
+                      </div>
+                    </div>
                   }
                 />
               </ListItem>
