@@ -6,7 +6,9 @@ import { getMyCommentsByImage } from "../API/commentsAPI";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface imageDialogProps {
   imageSrc: string;
@@ -36,6 +38,21 @@ const ImageDialog = (props: imageDialogProps) => {
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
+      <IconButton
+        edge="end"
+        color="inherit"
+        onClick={onClose}
+        aria-label="close"
+        sx={{
+          position: "absolute",
+          top: "8px",
+          right: "22px",
+          zIndex: 1,
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+
       <DialogContent>
         <Grid container spacing={2} style={{ maxWidth: "lg" }}>
           <Grid item xs={8} md={6}>
