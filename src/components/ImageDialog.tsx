@@ -19,18 +19,19 @@ interface imageDialogProps {
 
 const ImageDialog = (props: imageDialogProps) => {
   const { imageSrc, open, onClose } = props;
-  const [commentsToShow, setCommentsToShow] = useState(null);
-  const [username, setUsername] = useState(null);
-  const [date, setDate] = useState(null);
-  const [likes, setLikes] = useState(null);
+  const [commentsToShow, setCommentsToShow] = useState("null");
+  const [username, setUsername] = useState("null");
+  const [date, setDate] = useState("null");
+  const [likes, setLikes] = useState("null");
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getMyCommentsByImage();
-        setCommentsToShow(data.comment_text);
-        setUsername(data.user_name);
-        setDate(data.comment_date);
-        setLikes(data.likes);
+        console.log("thisone", data);
+        // setCommentsToShow(data.comment_text);
+        // setUsername(data.user_name);
+        // setDate(data.comment_date);
+        // setLikes(data.likes);
       } catch (error) {}
     };
 

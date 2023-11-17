@@ -12,8 +12,8 @@ export const getMyCommentsByImage = async () => {
     );
 
     const data = await response.json();
-    console.log(data);
-    return data[0];
+
+    return data;
   } catch (error) {
     console.error(error);
   }
