@@ -19,19 +19,23 @@ interface imageDialogProps {
 
 const ImageDialog = (props: imageDialogProps) => {
   const { imageSrc, open, onClose } = props;
-  const [commentsToShow, setCommentsToShow] = useState("null");
-  const [username, setUsername] = useState("null");
-  const [date, setDate] = useState("null");
-  const [likes, setLikes] = useState("null");
+  const [itemArray, setItemArray] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getMyCommentsByImage();
-        console.log("thisone", data);
-        // setCommentsToShow(data.comment_text);
-        // setUsername(data.user_name);
-        // setDate(data.comment_date);
-        // setLikes(data.likes);
+        const response = await getMyCommentsByImage();
+        const fourUsers = response.slice(0, 4);
+        const itemData = fourUsers.map((user) => {
+          return [
+            user.user_name,
+            user.comment_text,
+            user.comment_date,
+            user.likes,
+          ];
+        });
+
+        setItemArray(itemData);
       } catch (error) {}
     };
 
@@ -66,146 +70,78 @@ const ImageDialog = (props: imageDialogProps) => {
           </Grid>
           <Grid item xs={12} md={6}>
             <List sx={{ width: "100%", maxWidth: 600 }}>
-              <Paper
-                style={{
-                  margin: "20px",
-                  width: "80%",
-                  maxWidth: "none",
-                  backgroundColor: "#E6E6E3",
-                  borderRadius: "6px",
-                }}
-              >
-                <ListItem>
-                  <ListItemText
-                    style={{ display: "flex", alignItems: "center" }}
-                    primary={
-                      <Typography
-                        marginRight={6}
-                        variant="body1"
-                        style={{
-                          fontWeight: "bold",
-                          fontSize: "14px",
-                          color: "black",
-                        }}
-                      >
-                        {username}
-                      </Typography>
-                    }
-                    secondary={
-                      <div style={{ display: "flex", flexDirection: "column" }}>
+              {itemArray.map((item) => (
+                <Paper
+                  style={{
+                    margin: "20px",
+                    width: "80%",
+                    maxWidth: "none",
+                    backgroundColor: "#E6E6E3",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <ListItem>
+                    <ListItemText
+                      style={{ display: "flex", alignItems: "center" }}
+                      primary={
                         <Typography
+                          marginRight={6}
+                          variant="body1"
                           style={{
-                            fontWeight: "lighter",
+                            fontWeight: "bold",
                             fontSize: "14px",
                             color: "black",
                           }}
                         >
-                          {commentsToShow}
+                          {item[0]}
                         </Typography>
+                      }
+                      secondary={
                         <div
-                          style={{
-                            display: "flex",
-                          }}
+                          style={{ display: "flex", flexDirection: "column" }}
                         >
                           <Typography
                             style={{
                               fontWeight: "lighter",
-                              fontSize: "12px",
-                              color: "grey",
-                              marginRight: 12,
-                              marginTop: 10,
+                              fontSize: "14px",
+                              color: "black",
                             }}
                           >
-                            {date}
+                            {item[1]}
                           </Typography>
-                          <Typography
+                          <div
                             style={{
-                              fontWeight: "bold",
-                              fontSize: "12px",
-                              color: "grey",
-                              marginTop: 10,
+                              display: "flex",
                             }}
                           >
-                            {likes} Likes
-                          </Typography>
+                            <Typography
+                              style={{
+                                fontWeight: "lighter",
+                                fontSize: "12px",
+                                color: "grey",
+                                marginRight: 12,
+                                marginTop: 10,
+                              }}
+                            >
+                              {item[2]}
+                            </Typography>
+                            <Typography
+                              style={{
+                                fontWeight: "bold",
+                                fontSize: "12px",
+                                color: "grey",
+                                marginTop: 10,
+                              }}
+                            >
+                              {item[3]} Likes
+                            </Typography>
+                          </div>
                         </div>
-                      </div>
-                    }
-                  />
-                </ListItem>
-              </Paper>
-              <Paper
-                style={{
-                  margin: "20px",
-                  width: "80%",
-                  maxWidth: "none",
-                  backgroundColor: "#E6E6E3",
-                  borderRadius: "6px",
-                }}
-              >
-                <ListItem>
-                  <ListItemText
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      borderSpacing: 2,
-                    }}
-                    primary={
-                      <Typography
-                        marginRight={6}
-                        variant="body1"
-                        style={{
-                          fontWeight: "bold",
-                          fontSize: "14px",
-                          color: "black",
-                        }}
-                      >
-                        {username}
-                      </Typography>
-                    }
-                    secondary={
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <Typography
-                          style={{
-                            fontWeight: "lighter",
-                            fontSize: "14px",
-                            color: "black",
-                          }}
-                        >
-                          {commentsToShow}
-                        </Typography>
-                        <div
-                          style={{
-                            display: "flex",
-                          }}
-                        >
-                          <Typography
-                            style={{
-                              fontWeight: "lighter",
-                              fontSize: "12px",
-                              color: "grey",
-                              marginRight: 12,
-                              marginTop: 10,
-                            }}
-                          >
-                            {date}
-                          </Typography>
-                          <Typography
-                            style={{
-                              fontWeight: "bold",
-                              fontSize: "12px",
-                              color: "grey",
-                              marginTop: 10,
-                            }}
-                          >
-                            {likes} Likes
-                          </Typography>
-                        </div>
-                      </div>
-                    }
-                  />
-                </ListItem>
-              </Paper>
+                      }
+                    />
+                  </ListItem>
+                </Paper>
+              ))}
             </List>
           </Grid>
         </Grid>
