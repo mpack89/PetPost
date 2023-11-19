@@ -10,13 +10,6 @@ export default function WovenImageList() {
   const imagesToRender = image.filter((image) => image.page === "photo");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  // const getCommentForImage = (selectedImageId) => {
-  //   const imageWithComment = image.find((img) => img.id === selectedImageId);
-  //   if (imageWithComment) {
-  //     const comment = comments.find((c) => c.id === imageWithComment.id);
-  //     return comment ? comment.comment : "No comment available";
-  //   }
-  // };
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -56,7 +49,6 @@ export default function WovenImageList() {
         open={dialogOpen}
         onClose={handleCloseDialog}
         imageSrc={selectedImage}
-        // comment={getCommentForImage}
       />
     </div>
   );

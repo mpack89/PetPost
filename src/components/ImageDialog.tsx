@@ -1,46 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { useState, useEffect } from "react";
-import { getMyCommentsByImage } from "../API/commentsAPI";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import { Grid, Typography } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
+import { Grid, IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
-import Paper from "@mui/material/Paper";
+import useCommentsData from "./useCommentsData";
+import CommentItem from "./CommentsItem";
 
-interface imageDialogProps {
+interface ImageDialogProps {
   imageSrc: string;
   open: any;
   onClose: any;
 }
 
-const ImageDialog = (props: imageDialogProps) => {
-  const { imageSrc, open, onClose } = props;
-  const [itemArray, setItemArray] = useState([]);
+const ImageDialog: React.FC<ImageDialogProps> = ({
+  imageSrc,
+  open,
+  onClose,
+}) => {
+  const { comments, loading, error } = useCommentsData();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getMyCommentsByImage();
-        const fourUsers = response.slice(0, 4);
-        const itemData = fourUsers.map((user) => {
-          return [
-            user.user_name,
-            user.comment_text,
-            user.comment_date,
-            user.likes,
-          ];
-        });
-
-        setItemArray(itemData);
-      } catch (error) {}
-    };
-
-    fetchData();
-  }, []);
+  useEffect(() => {}, [loading, error]);
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
@@ -70,77 +50,8 @@ const ImageDialog = (props: imageDialogProps) => {
           </Grid>
           <Grid item xs={12} md={6}>
             <List sx={{ width: "100%", maxWidth: 600 }}>
-              {itemArray.map((item) => (
-                <Paper
-                  style={{
-                    margin: "20px",
-                    width: "80%",
-                    maxWidth: "none",
-                    backgroundColor: "#E6E6E3",
-                    borderRadius: "6px",
-                  }}
-                >
-                  <ListItem>
-                    <ListItemText
-                      style={{ display: "flex", alignItems: "center" }}
-                      primary={
-                        <Typography
-                          marginRight={6}
-                          variant="body1"
-                          style={{
-                            fontWeight: "bold",
-                            fontSize: "14px",
-                            color: "black",
-                          }}
-                        >
-                          {item[0]}
-                        </Typography>
-                      }
-                      secondary={
-                        <div
-                          style={{ display: "flex", flexDirection: "column" }}
-                        >
-                          <Typography
-                            style={{
-                              fontWeight: "lighter",
-                              fontSize: "14px",
-                              color: "black",
-                            }}
-                          >
-                            {item[1]}
-                          </Typography>
-                          <div
-                            style={{
-                              display: "flex",
-                            }}
-                          >
-                            <Typography
-                              style={{
-                                fontWeight: "lighter",
-                                fontSize: "12px",
-                                color: "grey",
-                                marginRight: 12,
-                                marginTop: 10,
-                              }}
-                            >
-                              {item[2]}
-                            </Typography>
-                            <Typography
-                              style={{
-                                fontWeight: "bold",
-                                fontSize: "12px",
-                                color: "grey",
-                                marginTop: 10,
-                              }}
-                            >
-                              {item[3]} Likes
-                            </Typography>
-                          </div>
-                        </div>
-                      }
-                    />
-                  </ListItem>
-                </Paper>
+              {comments.map((comment, index) => (
+                <CommentItem key={index} {...comment} />
               ))}
             </List>
           </Grid>
