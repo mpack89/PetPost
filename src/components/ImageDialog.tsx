@@ -6,6 +6,7 @@ import { Grid, IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
 import useCommentsData from "./useCommentsData";
 import CommentItem from "./CommentsItem";
+import AddCommentForm from "./AddCommentForm";
 
 interface ImageDialogProps {
   imageSrc: string;
@@ -54,6 +55,9 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
                 <CommentItem key={index} {...comment} />
               ))}
             </List>
+            <Grid item xs={4} md={12}>
+              <AddCommentForm onAddComment={null} />
+            </Grid>
           </Grid>
         </Grid>
       </DialogContent>

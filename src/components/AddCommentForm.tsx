@@ -18,28 +18,32 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ onAddComment }) => {
   };
 
   return (
-    <Grid container spacing={2} alignItems="center">
-      <Grid item xs={4}>
+    <Grid
+      container
+      spacing={2}
+      alignItems="center"
+      justifyContent={"space-between"}
+    >
+      <Grid item xs={9}>
         <TextField
-          label="Your Name"
+          label="Add a comment..."
           variant="outlined"
-          fullWidth
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <TextField
-          label="Your Comment"
-          variant="outlined"
-          fullWidth
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
+          fullWidth
+          sx={{
+            marginLeft: "20px",
+          }}
         />
       </Grid>
       <Grid item xs={2}>
-        <Button variant="contained" color="primary" onClick={handleAddComment}>
-          Add Comment
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAddComment}
+          size="small"
+        >
+          Post
         </Button>
       </Grid>
     </Grid>
