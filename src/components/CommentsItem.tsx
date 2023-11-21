@@ -22,7 +22,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
       margin: "20px",
       width: "80%",
       maxWidth: "none",
-      backgroundColor: "#E6E6E3",
+      backgroundColor: "#f0f8ff",
       borderRadius: "6px",
     }}
   >
