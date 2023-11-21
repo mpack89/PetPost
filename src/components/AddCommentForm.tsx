@@ -24,7 +24,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ onAddComment }) => {
       alignItems="center"
       justifyContent={"space-between"}
     >
-      <Grid item xs={9}>
+      <Grid item xs={9.7}>
         <TextField
           label="Add a comment..."
           variant="outlined"
