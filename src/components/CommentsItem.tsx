@@ -2,8 +2,7 @@ import React from "react";
 import Paper from "@mui/material/Paper";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { IconButton } from "@mui/material";
+import LikeButton from "./LikeButton";
 
 interface CommentItemProps {
   user_name: string;
@@ -80,9 +79,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
           >
             Reply
           </Typography>
-          <IconButton style={{ marginLeft: "auto" }}>
-            <FavoriteBorderIcon fontSize="small" />
-          </IconButton>
+          <LikeButton onClick={() => console.log("clicked")} />
         </div>
       </div>
     </ListItem>
