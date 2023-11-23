@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
@@ -20,6 +20,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   onClose,
 }) => {
   const { comments, loading, error } = useCommentsData();
+  const [_comments, setComments] = useState(comments);
 
   useEffect(() => {}, [loading, error]);
 

@@ -79,7 +79,10 @@ const CommentItem: React.FC<CommentItemProps> = ({
           >
             Reply
           </Typography>
-          <LikeButton onClick={() => console.log("clicked")} />
+          <LikeButton
+            onClick={() => console.log("clicked")}
+            likesCount={likes}
+          />
         </div>
       </div>
     </ListItem>

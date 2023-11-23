@@ -4,12 +4,14 @@ import { useState } from "react";
 import React from "react";
 
 interface Props {
-  onClick: () => void;
+  onClick: any;
+  likesCount: number;
 }
-const LikeButton = ({ onClick }: Props) => {
+const LikeButton = ({ onClick, likesCount }: Props) => {
   const [status, setStatus] = useState(true);
   const toggle = () => {
     setStatus(!status);
+    status ? likesCount++ : likesCount--;
     onClick();
   };
   if (status)
