@@ -31,7 +31,7 @@ export default function WovenImageList() {
     >
       <ImageList
         sx={{ width: 1200, height: 800, marginTop: 25 }}
-        variant="woven"
+        variant="standard"
         cols={4}
         gap={8}
       >
