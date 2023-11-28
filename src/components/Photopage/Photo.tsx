@@ -4,6 +4,9 @@ import ImageListItem from "@mui/material/ImageListItem";
 import data from "../../components/photodata.json";
 import { useState } from "react";
 import ImageDialog from "../ImageDialog";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
+import LikeButton from "../LikeButton";
+import { Typography } from "@mui/material";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -41,6 +44,12 @@ export default function WovenImageList() {
             key={image.id}
           >
             <img src={image.url} />
+            <ImageListItemBar
+              sx={{ width: 20, height: 20, marginTop: 2 }}
+              title=""
+              subtitle=""
+              position="below"
+            />
           </ImageListItem>
         ))}
       </ImageList>
