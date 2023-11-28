@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useCommentsData = () => {
+const getCommentsData = () => {
   const getMyCommentsByImage = async () => {
     try {
       const response = await fetch(
@@ -45,4 +45,4 @@ const useCommentsData = () => {
   return { comments, loading, error };
 };
 
-export default useCommentsData;
+export default getCommentsData;

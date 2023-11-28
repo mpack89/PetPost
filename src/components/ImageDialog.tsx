@@ -4,7 +4,7 @@ import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
 import { Grid, IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
-import useCommentsData from "./useCommentsData";
+import getCommentsData from "./getCommentsData";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 
@@ -19,7 +19,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   open,
   onClose,
 }) => {
-  const { comments, loading, error } = useCommentsData();
+  const { comments, loading, error } = getCommentsData();
   const [_comments, setComments] = useState(comments);
 
   useEffect(() => {}, [loading, error]);
