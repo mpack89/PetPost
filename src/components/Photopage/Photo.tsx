@@ -7,6 +7,7 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import LikeButton from "../LikeButton";
 import { IconButton, Typography } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -58,6 +59,9 @@ export default function WovenImageList() {
                   </div>
                   <div style={{ marginLeft: 10 }}>
                     <ChatBubbleOutlineIcon fontSize="small" />
+                  </div>
+                  <div style={{ marginLeft: 10 }}>
+                    <ShareOutlinedIcon fontSize="small" />
                   </div>
                 </div>
               }
