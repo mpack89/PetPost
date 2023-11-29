@@ -5,7 +5,8 @@ import { useState } from "react";
 import ImageDialog from "../ImageDialog";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import LikeButton from "../LikeButton";
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -44,10 +45,23 @@ export default function WovenImageList() {
           >
             <img src={image.url} />
             <ImageListItemBar
-              sx={{ width: 20, height: 20, marginTop: 2 }}
+              sx={{ width: 16, height: 16, margin: 1 }}
               title=""
               subtitle=""
               position="below"
+              actionIcon={
+                <div
+                  style={{ display: "flex", flexDirection: "row", padding: 2 }}
+                >
+                  <div style={{ marginRight: 0 }}>
+                    <LikeButton onClick={console.log("")} likesCount={null} />
+                  </div>
+                  <div style={{ marginLeft: 10 }}>
+                    <ChatBubbleOutlineIcon fontSize="small" />
+                  </div>
+                </div>
+              }
+              actionPosition="left"
             />
           </ImageListItem>
         ))}
