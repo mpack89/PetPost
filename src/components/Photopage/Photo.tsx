@@ -40,7 +40,12 @@ export default function WovenImageList() {
             onClick={() => handleImageClick(image.url)}
             key={image.id}
           >
-            <img src={image.url} />
+            <img
+              src={image.url}
+              style={{
+                borderRadius: 4,
+              }}
+            />
             <CustomImageListItemBar />
           </ImageListItem>
         ))}
