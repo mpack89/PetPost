@@ -8,6 +8,7 @@ import LikeButton from "../LikeButton";
 import { IconButton, Typography } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+import CustomImageListItemBar from "../../CustomItemBar";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -45,28 +46,7 @@ export default function WovenImageList() {
             key={image.id}
           >
             <img src={image.url} />
-            <ImageListItemBar
-              sx={{ width: 16, height: 16, margin: 1 }}
-              title=""
-              subtitle=""
-              position="below"
-              actionIcon={
-                <div
-                  style={{ display: "flex", flexDirection: "row", padding: 2 }}
-                >
-                  <div style={{ marginRight: 0 }}>
-                    <LikeButton onClick={console.log("")} likesCount={null} />
-                  </div>
-                  <div style={{ marginLeft: 10 }}>
-                    <ChatBubbleOutlineIcon fontSize="small" />
-                  </div>
-                  <div style={{ marginLeft: 10 }}>
-                    <ShareOutlinedIcon fontSize="small" />
-                  </div>
-                </div>
-              }
-              actionPosition="left"
-            />
+            <CustomImageListItemBar />
           </ImageListItem>
         ))}
       </ImageList>
