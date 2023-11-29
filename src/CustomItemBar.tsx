@@ -12,13 +12,13 @@ const CustomImageListItemBar = () => {
       position="below"
       actionIcon={
         <div style={{ display: "flex", flexDirection: "row", padding: 2 }}>
-          <div style={{ marginRight: 0 }}>
+          <div style={{ marginRight: 0 }} title="Like">
             <LikeButton onClick={null} likesCount={null} />
           </div>
-          <div style={{ marginLeft: 10 }}>
+          <div style={{ marginLeft: 10 }} title="Comment">
             <ChatBubbleOutlineIcon fontSize="small" />
           </div>
-          <div style={{ marginLeft: 10 }}>
+          <div style={{ marginLeft: 10 }} title="Share">
             <ShareOutlinedIcon fontSize="small" />
           </div>
         </div>
