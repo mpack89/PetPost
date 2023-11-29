@@ -3,11 +3,6 @@ import ImageListItem from "@mui/material/ImageListItem";
 import data from "../../components/photodata.json";
 import { useState } from "react";
 import ImageDialog from "../ImageDialog";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import LikeButton from "../LikeButton";
-import { IconButton, Typography } from "@mui/material";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import CustomImageListItemBar from "../../CustomItemBar";
 
 export default function WovenImageList() {
