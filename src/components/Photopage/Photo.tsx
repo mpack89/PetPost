@@ -36,15 +36,14 @@ export default function WovenImageList() {
         gap={8}
       >
         {imagesToRender.map((image) => (
-          <ImageListItem
-            onClick={() => handleImageClick(image.url)}
-            key={image.id}
-          >
+          <ImageListItem>
             <img
               src={image.url}
               style={{
                 borderRadius: 4,
               }}
+              onClick={() => handleImageClick(image.url)}
+              key={image.id}
             />
             <CustomImageListItemBar />
           </ImageListItem>
