@@ -42,10 +42,10 @@ export default function WovenImageList() {
               style={{
                 borderRadius: 4,
               }}
-              onClick={() => handleImageClick(image.url)}
-              key={image.id}
             />
-            <CustomImageListItemBar />
+            <CustomImageListItemBar
+              onCommentClick={() => handleImageClick(image.url)}
+            />
           </ImageListItem>
         ))}
       </ImageList>

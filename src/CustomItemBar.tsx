@@ -3,7 +3,7 @@ import LikeButton from "./components/LikeButton";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 
-const CustomImageListItemBar = () => {
+const CustomImageListItemBar = ({ onCommentClick }) => {
   return (
     <ImageListItemBar
       sx={{ width: 16, height: 16, margin: 1 }}
@@ -16,7 +16,7 @@ const CustomImageListItemBar = () => {
             <LikeButton onClick={null} likesCount={null} />
           </div>
           <div style={{ marginLeft: 10 }} title="Comment">
-            <ChatBubbleOutlineIcon fontSize="small" />
+            <ChatBubbleOutlineIcon onClick={onCommentClick} fontSize="small" />
           </div>
           <div style={{ marginLeft: 10 }} title="Share">
             <ShareOutlinedIcon fontSize="small" />
