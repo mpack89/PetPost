@@ -5,6 +5,7 @@ import { useState } from "react";
 import ImageDialog from "../ImageDialog";
 import CustomImageListItemBarNav from "../../CustomItemBarNav";
 import UserTitleBar from "../UserTitleBar";
+import ImageHeader from "../ImageHeader";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -34,10 +35,11 @@ export default function WovenImageList() {
         sx={{ width: 1200, height: 800, marginTop: 25 }}
         variant="standard"
         cols={4}
-        gap={8}
+        gap={16}
       >
         {imagesToRender.map((image) => (
-          <ImageListItem>
+          <ImageListItem sx={{ borderBottom: 1 }}>
+            <ImageHeader user={image.user} avatar={image.avatar} />
             <img
               src={image.url}
               style={{

@@ -11,7 +11,13 @@ const CustomImageListItemBarNav = ({ onCommentClick }) => {
       subtitle=""
       position="below"
       actionIcon={
-        <div style={{ display: "flex", flexDirection: "row", padding: 2 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            padding: 2,
+          }}
+        >
           <div style={{ marginRight: 0 }} title="Like">
             <LikeButton onClick={null} likesCount={null} />
           </div>
