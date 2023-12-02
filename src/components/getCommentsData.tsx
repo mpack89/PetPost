@@ -23,7 +23,7 @@ const getCommentsData = () => {
   };
 
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -34,15 +34,13 @@ const getCommentsData = () => {
         setComments(fourComments);
       } catch (error) {
         setError(error);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  return { comments, loading, error };
+  return { comments, error };
 };
 
 export default getCommentsData;

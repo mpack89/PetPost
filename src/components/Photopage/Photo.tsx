@@ -4,6 +4,7 @@ import data from "../../components/photodata.json";
 import { useState } from "react";
 import ImageDialog from "../ImageDialog";
 import CustomImageListItemBarNav from "../../CustomItemBarNav";
+import UserTitleBar from "../UserTitleBar";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -43,6 +44,7 @@ export default function WovenImageList() {
                 borderRadius: 4,
               }}
             />
+
             <CustomImageListItemBarNav
               onCommentClick={() => handleImageClick(image.url)}
             />

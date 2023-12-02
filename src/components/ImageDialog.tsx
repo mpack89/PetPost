@@ -19,10 +19,10 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   open,
   onClose,
 }) => {
-  const { comments, loading, error } = getCommentsData();
+  const { comments, error } = getCommentsData();
   const [_comments, setComments] = useState(comments);
 
-  useEffect(() => {}, [loading, error]);
+  useEffect(() => {}, [error]);
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
