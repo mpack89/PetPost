@@ -3,7 +3,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import data from "../../components/photodata.json";
 import { useState } from "react";
 import ImageDialog from "../ImageDialog";
-import CustomImageListItemBar from "../../CustomItemBar";
+import CustomImageListItemBarNav from "../../CustomItemBarNav";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -43,7 +43,7 @@ export default function WovenImageList() {
                 borderRadius: 4,
               }}
             />
-            <CustomImageListItemBar
+            <CustomImageListItemBarNav
               onCommentClick={() => handleImageClick(image.url)}
             />
           </ImageListItem>
