@@ -4,8 +4,13 @@ import data from "../../components/photodata.json";
 import { useState } from "react";
 import ImageDialog from "../ImageDialog";
 import CustomImageListItemBarNav from "../../CustomItemBarNav";
-import UserTitleBar from "../UserTitleBar";
 import ImageHeader from "../ImageHeader";
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
 
 export default function WovenImageList() {
   const image = data.photos;
