@@ -37,24 +37,24 @@ export default function WovenImageList() {
       }}
     >
       <ImageList
-        sx={{ width: 1200, height: 800, marginTop: 25 }}
+        sx={{ width: 1400, height: 800, marginTop: 25 }}
         variant="standard"
-        cols={4}
+        cols={3}
         gap={16}
       >
         {imagesToRender.map((image) => (
-          <ImageListItem sx={{ borderBottom: 1 }}>
-            <ImageHeader user={image.user} avatar={image.avatar} />
-            <img
-              src={image.url}
-              style={{
-                borderRadius: 4,
-              }}
-            />
-
-            <CustomImageListItemBarNav
-              onCommentClick={() => handleImageClick(image.url)}
-            />
+          <ImageListItem sx={{}}>
+            <Card sx={{ width: 400, height: 600, margin: 2 }}>
+              <ImageHeader user={image.user} avatar={image.avatar} />
+              <img
+                src={image.url}
+                style={{
+                  borderRadius: 4,
+                  width: 400,
+                  height: 500,
+                }}
+              />
+            </Card>
           </ImageListItem>
         ))}
       </ImageList>
