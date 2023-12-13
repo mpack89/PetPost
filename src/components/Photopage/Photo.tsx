@@ -11,6 +11,10 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
+import { Avatar, IconButton } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShareIcon from "@mui/icons-material/Share";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -44,8 +48,13 @@ export default function WovenImageList() {
       >
         {imagesToRender.map((image) => (
           <ImageListItem sx={{}}>
-            <Card sx={{ width: 400, height: 600, margin: 2 }}>
-              <ImageHeader user={image.user} avatar={image.avatar} />
+            <Card sx={{ width: 400, height: 630, margin: 2 }}>
+              <CardHeader
+                avatar={<Avatar>{image.avatar}</Avatar>}
+                title={image.user}
+                subheader=""
+              />
+
               <img
                 src={image.url}
                 style={{
@@ -54,6 +63,17 @@ export default function WovenImageList() {
                   height: 500,
                 }}
               />
+              <CardActions disableSpacing>
+                <IconButton aria-label="add to favorites">
+                  <FavoriteIcon />
+                </IconButton>
+                <IconButton aria-label="share">
+                  <ShareIcon />
+                </IconButton>
+                <IconButton>
+                  <ChatBubbleOutlineIcon />
+                </IconButton>
+              </CardActions>
             </Card>
           </ImageListItem>
         ))}
