@@ -14,6 +14,7 @@ import { Avatar, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import LikeButton from "../LikeButton";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -71,7 +72,7 @@ export default function WovenImageList() {
               />
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
+                  <LikeButton onClick={null} likesCount={null} />
                 </IconButton>
                 <IconButton aria-label="share">
                   <ShareIcon />

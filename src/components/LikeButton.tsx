@@ -17,14 +17,14 @@ const LikeButton = ({ onClick, likesCount }: Props) => {
     return (
       <FavoriteBorderIcon
         style={{ marginLeft: "auto" }}
-        fontSize="small"
+        fontSize="medium"
         onClick={toggle}
       />
     );
   return (
     <FavoriteIcon
       style={{ marginLeft: "auto" }}
-      fontSize="small"
+      fontSize="medium"
       sx={{ color: "#fc0fc0" }}
       onClick={toggle}
     />
