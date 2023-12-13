@@ -3,7 +3,6 @@ import ImageListItem from "@mui/material/ImageListItem";
 import data from "../../components/photodata.json";
 import { useState } from "react";
 import ImageDialog from "../ImageDialog";
-import CustomImageListItemBarNav from "../../CustomItemBarNav";
 import ImageHeader from "../ImageHeader";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
@@ -47,8 +46,15 @@ export default function WovenImageList() {
         gap={16}
       >
         {imagesToRender.map((image) => (
-          <ImageListItem sx={{}}>
-            <Card sx={{ width: 400, height: 630, margin: 2 }}>
+          <ImageListItem>
+            <Card
+              sx={{
+                width: 400,
+                height: 630,
+                margin: 2,
+                color: "black",
+              }}
+            >
               <CardHeader
                 avatar={<Avatar>{image.avatar}</Avatar>}
                 title={image.user}
@@ -70,7 +76,7 @@ export default function WovenImageList() {
                 <IconButton aria-label="share">
                   <ShareIcon />
                 </IconButton>
-                <IconButton>
+                <IconButton onClick={() => handleImageClick(image.url)}>
                   <ChatBubbleOutlineIcon />
                 </IconButton>
               </CardActions>
