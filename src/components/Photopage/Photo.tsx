@@ -3,15 +3,13 @@ import ImageListItem from "@mui/material/ImageListItem";
 import data from "../../components/photodata.json";
 import { useState } from "react";
 import ImageDialog from "../ImageDialog";
-import ImageHeader from "../ImageHeader";
-import { styled } from "@mui/material/styles";
+
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
+
 import CardActions from "@mui/material/CardActions";
 import { Avatar, IconButton } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+
 import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import LikeButton from "../LikeButton";
