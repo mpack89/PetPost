@@ -69,13 +69,16 @@ export default function WovenImageList() {
                 }}
               />
               <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
+                <IconButton aria-label="like" title="Like">
                   <LikeButton onClick={null} likesCount={null} />
                 </IconButton>
-                <IconButton aria-label="share">
+                <IconButton aria-label="Share" title="Share">
                   <ShareIcon />
                 </IconButton>
-                <IconButton onClick={() => handleImageClick(image.url)}>
+                <IconButton
+                  title="Comment"
+                  onClick={() => handleImageClick(image.url)}
+                >
                   <ChatBubbleOutlineIcon />
                 </IconButton>
               </CardActions>
