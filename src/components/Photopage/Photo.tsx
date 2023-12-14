@@ -3,16 +3,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import data from "../../components/photodata.json";
 import { useState } from "react";
 import ImageDialog from "../ImageDialog";
-
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-
-import CardActions from "@mui/material/CardActions";
-import { Avatar, IconButton } from "@mui/material";
-
-import ShareIcon from "@mui/icons-material/Share";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import LikeButton from "../LikeButton";
+import CardComponent from "../../CardComponent";
 
 export default function WovenImageList() {
   const image = data.photos;
@@ -45,44 +36,8 @@ export default function WovenImageList() {
         gap={16}
       >
         {imagesToRender.map((image) => (
-          <ImageListItem>
-            <Card
-              sx={{
-                width: 400,
-                height: 630,
-                margin: 2,
-                color: "black",
-              }}
-            >
-              <CardHeader
-                avatar={<Avatar>{image.avatar}</Avatar>}
-                title={image.user}
-                subheader=""
-              />
-
-              <img
-                src={image.url}
-                style={{
-                  borderRadius: 4,
-                  width: 400,
-                  height: 500,
-                }}
-              />
-              <CardActions disableSpacing>
-                <IconButton aria-label="like" title="Like">
-                  <LikeButton onClick={null} likesCount={null} />
-                </IconButton>
-                <IconButton aria-label="Share" title="Share">
-                  <ShareIcon />
-                </IconButton>
-                <IconButton
-                  title="Comment"
-                  onClick={() => handleImageClick(image.url)}
-                >
-                  <ChatBubbleOutlineIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
+          <ImageListItem key={image.id}>
+            <CardComponent image={image} onImageClick={handleImageClick} />
           </ImageListItem>
         ))}
       </ImageList>
