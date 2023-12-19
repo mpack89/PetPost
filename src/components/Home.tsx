@@ -8,7 +8,6 @@ import ImageDialog from "./ImageDialog";
 
 const Home = () => {
   const image = data.photos;
-  const imagesToRender = image.filter((image) => image.page === "photo");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -32,12 +31,12 @@ const Home = () => {
       }}
     >
       <ImageList
-        sx={{ width: 460, height: 1000, marginTop: 28, overflow: "hidden" }}
+        sx={{ width: 460, height: 1000, marginTop: 28 }}
         variant="standard"
         cols={1}
         gap={10}
       >
-        {imagesToRender.map((image) => (
+        {image.map((image) => (
           <ImageListItem key={image.id}>
             <CardComponent image={image} onImageClick={handleImageClick} />
           </ImageListItem>
