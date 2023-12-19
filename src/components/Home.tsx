@@ -5,6 +5,7 @@ import { useState } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageDialog from "./ImageDialog";
+import Stack from "@mui/material/Stack";
 
 const Home = () => {
   const image = data.photos;
@@ -26,12 +27,13 @@ const Home = () => {
       style={{
         position: "absolute",
         left: "50%",
-        top: "30%",
+        top: "50%",
         transform: "translate(-50%, -50%)",
+        overflowY: "auto",
       }}
     >
       <ImageList
-        sx={{ width: 1800, height: 1000, marginTop: 25 }}
+        sx={{ width: 460, height: 1000, marginTop: 28 }}
         variant="standard"
         cols={1}
         gap={10}
