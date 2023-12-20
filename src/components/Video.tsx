@@ -14,9 +14,10 @@ export function Video(autoplay: false) {
         top: "50%",
         transform: "translate(-50%, -50%)",
         overflowY: "auto",
+        width: 800,
       }}
     >
-      <Carousel autoPlay={false}>
+      <Carousel autoPlay={false} navButtonsAlwaysVisible={true}>
         {images.map((image, i) => (
           <Item key={i} image={image} />
         ))}
@@ -27,9 +28,15 @@ export function Video(autoplay: false) {
 
 export function Item({ image }) {
   return (
-    <Paper sx={{ width: 400, height: 630, margin: 2, color: "black" }}>
+    <Paper
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <img
-        style={{ width: "100%", height: "80%" }}
+        style={{ width: 600, height: 600 }}
         src={image.url}
         alt={image.name}
       />
