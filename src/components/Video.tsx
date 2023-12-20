@@ -46,8 +46,6 @@ export function Item({ image }) {
       />
       <h2>{image.user}</h2>
       <p>{image.description}</p>
-
-      <Button></Button>
     </Paper>
   );
 }
