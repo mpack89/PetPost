@@ -17,7 +17,11 @@ export function Video(autoplay: false) {
         width: 800,
       }}
     >
-      <Carousel autoPlay={false} navButtonsAlwaysVisible={true}>
+      <Carousel
+        autoPlay={false}
+        navButtonsAlwaysVisible={true}
+        animation="slide"
+      >
         {images.map((image, i) => (
           <Item key={i} image={image} />
         ))}
