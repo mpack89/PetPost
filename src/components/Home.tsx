@@ -1,4 +1,3 @@
-import * as React from "react";
 import CardComponent from "../CardComponent";
 import data from "./photodata.json";
 import { useState } from "react";
