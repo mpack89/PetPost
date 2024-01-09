@@ -3,6 +3,7 @@ import { Paper } from "@mui/material";
 import data from "./photodata.json";
 import { useState } from "react";
 import VideoDialog from "../components/VideoDialog";
+import Typography from "@mui/material";
 
 export function Video(autoplay: false) {
   const images = data.photos;
