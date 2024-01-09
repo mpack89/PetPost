@@ -65,3 +65,5 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
     </Dialog>
   );
 };
+
+export default VideoDialog;
