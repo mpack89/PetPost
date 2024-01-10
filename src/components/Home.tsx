@@ -1,3 +1,4 @@
+import React from "react";
 import CardComponent from "../CardComponent";
 import data from "./photodata.json";
 import { useState } from "react";
@@ -21,6 +22,7 @@ const Home = () => {
 
   return (
     <div
+      className="scrollable-content"
       style={{
         position: "absolute",
         left: "50%",
@@ -29,18 +31,29 @@ const Home = () => {
         overflowY: "auto",
       }}
     >
-      <ImageList
-        sx={{ width: 460, height: 1000, marginTop: 28 }}
-        variant="standard"
-        cols={1}
-        gap={10}
+      <div
+        style={{
+          width: 460,
+          marginTop: 15350,
+          marginBottom: 28,
+          marginLeft: "auto",
+          marginRight: "auto",
+          overflow: "hidden",
+        }}
       >
-        {image.map((image) => (
-          <ImageListItem key={image.id}>
-            <CardComponent image={image} onImageClick={handleImageClick} />
-          </ImageListItem>
-        ))}
-      </ImageList>
+        <ImageList
+          sx={{ width: "100%", height: "auto" }}
+          variant="standard"
+          cols={1}
+          gap={10}
+        >
+          {image.map((image) => (
+            <ImageListItem key={image.id}>
+              <CardComponent image={image} onImageClick={handleImageClick} />
+            </ImageListItem>
+          ))}
+        </ImageList>
+      </div>
 
       <ImageDialog
         open={dialogOpen}
