@@ -18,6 +18,7 @@ const CardComponent = ({ image, onImageClick }) => {
       }}
     >
       <CardHeader
+        titleTypographyProps={{ fontSize: 12 }}
         avatar={<Avatar>{image.avatar}</Avatar>}
         title={image.user}
         subheader=""
