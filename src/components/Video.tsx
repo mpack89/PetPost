@@ -1,8 +1,17 @@
 import Carousel from "react-material-ui-carousel";
-import { Paper } from "@mui/material";
 import data from "./photodata.json";
 import { useState } from "react";
 import VideoDialog from "../components/VideoDialog";
+import CardHeader from "@mui/material/CardHeader";
+import CardActions from "@mui/material/CardActions";
+import Card from "@mui/material/Card";
+
+import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import LikeButton from "../components/LikeButton";
+import ShareIcon from "@mui/icons-material/Share";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import { TextField } from "@mui/material";
 
 export function Video(autoplay: false) {
   const images = data.photos;
@@ -53,22 +62,52 @@ export function Video(autoplay: false) {
 
 export function Item({ image, onImageClick }) {
   return (
-    <Paper
+    <Card
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        cursor: "pointer",
+        width: 450,
+        height: 630,
+        color: "black",
+        marginLeft: 22,
       }}
-      onClick={onImageClick}
     >
-      <img
-        style={{ width: 600, height: 600 }}
-        src={image.url}
-        alt={image.name}
+      <CardHeader
+        avatar={<Avatar>{image.avatar}</Avatar>}
+        title={image.user}
+        subheader=""
+        sx={{ marginLeft: 20 }}
       />
-      <h2>{image.user}</h2>
-      <p>{image.description}</p>
-    </Paper>
+
+      <img
+        src={image.url}
+        style={{
+          borderRadius: 4,
+          width: 450,
+          height: 500,
+        }}
+        alt={image.user}
+      />
+
+      <CardActions sx={{ alignItems: "center" }} disableSpacing>
+        <TextField
+          label="Reply to..."
+          variant="outlined"
+          size="small"
+          sx={{
+            marginLeft: 0,
+            marginRight: 0,
+          }}
+          fullWidth
+        />
+        <IconButton aria-label="add to favorites">
+          <LikeButton onClick={null} likesCount={null} />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton onClick={() => onImageClick(image)}>
+          <ChatBubbleOutlineIcon />
+        </IconButton>
+      </CardActions>
+    </Card>
   );
 }
