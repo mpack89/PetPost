@@ -25,6 +25,7 @@ const Home = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        marginLeft: 720,
       }}
     >
       <Grid container spacing={2}>
