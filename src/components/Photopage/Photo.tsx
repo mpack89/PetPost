@@ -1,13 +1,12 @@
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import data from "../../components/photodata.json";
 import { useState } from "react";
-import ImageDialog from "../ImageDialog";
+import Grid from "@mui/material/Grid";
 import CardComponent from "../../CardComponent";
+import data from "../../components/photodata.json";
+import ImageDialog from "../ImageDialog";
 
-export default function WovenImageList() {
-  const image = data.photos;
-  const imagesToRender = image.filter((image) => image.page === "photo");
+export default function WovenImageGrid() {
+  const images = data.photos;
+  const imagesToRender = images.filter((image) => image.page === "photo");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -23,24 +22,19 @@ export default function WovenImageList() {
   return (
     <div
       style={{
-        position: "absolute",
-        left: "50%",
-        top: "44%",
-        transform: "translate(-50%, -50%)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: 120,
       }}
     >
-      <ImageList
-        sx={{ width: 1400, height: 800, marginTop: 25 }}
-        variant="standard"
-        cols={3}
-        gap={16}
-      >
+      <Grid justifyContent="center" container spacing={3}>
         {imagesToRender.map((image) => (
-          <ImageListItem key={image.id}>
+          <Grid item key={image.id} xs={12} sm={6} md={4}>
             <CardComponent image={image} onImageClick={handleImageClick} />
-          </ImageListItem>
+          </Grid>
         ))}
-      </ImageList>
+      </Grid>
 
       <ImageDialog
         open={dialogOpen}
