@@ -50,13 +50,28 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
               style={{ width: "100%", height: "100%" }}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
-            <List sx={{ width: "100%", maxWidth: 600 }}>
+          <Grid
+            item
+            container
+            xs={12}
+            md={6}
+            direction="column"
+            style={{ position: "relative" }}
+          >
+            <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
               {comments.map((comment, index) => (
                 <CommentItem key={index} {...comment} />
               ))}
             </List>
-            <Grid item xs={4} md={12}>
+            <Grid
+              item
+              style={{
+                position: "absolute",
+                bottom: 0,
+                marginTop: 20,
+                width: "100%",
+              }}
+            >
               <AddCommentForm onAddComment={null} />
             </Grid>
           </Grid>
