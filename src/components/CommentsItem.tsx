@@ -9,6 +9,7 @@ interface CommentItemProps {
   comment_text: string;
   comment_date: string;
   likes: number;
+  photo_id: number;
 }
 
 const CommentItem: React.FC<CommentItemProps> = ({

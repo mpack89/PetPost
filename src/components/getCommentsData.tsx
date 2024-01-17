@@ -4,7 +4,7 @@ const getCommentsData = () => {
   const getMyCommentsByImage = async () => {
     try {
       const response = await fetch(
-        "https://my.api.mockaroo.com/comment.json?key=88249510",
+        "https://api.mockaroo.com/api/e86e5a40?count=96&key=88249510",
         {
           method: "GET",
           headers: {
@@ -30,7 +30,7 @@ const getCommentsData = () => {
     const fetchData = async () => {
       try {
         const response = await getMyCommentsByImage();
-        const fourComments = response.slice(0, 4);
+        const fourComments = response;
         setComments(fourComments);
       } catch (error) {
         setError(error);
