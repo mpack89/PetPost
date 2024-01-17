@@ -1,12 +1,11 @@
+import { useState } from "react";
 import CardComponent from "../CardComponent";
 import data from "./photodata.json";
-import { useState } from "react";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
+import Grid from "@mui/material/Grid";
 import ImageDialog from "./ImageDialog";
 
 const Home = () => {
-  const image = data.photos;
+  const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -23,36 +22,18 @@ const Home = () => {
     <div
       className="scrollable-content"
       style={{
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        overflowY: "auto",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <div
-        style={{
-          width: 460,
-          marginTop: 15350,
-          marginBottom: 28,
-          marginLeft: "auto",
-          marginRight: "auto",
-          overflow: "hidden",
-        }}
-      >
-        <ImageList
-          sx={{ width: "100%", height: "auto" }}
-          variant="standard"
-          cols={1}
-          gap={10}
-        >
-          {image.map((image) => (
-            <ImageListItem key={image.id}>
-              <CardComponent image={image} onImageClick={handleImageClick} />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      </div>
+      <Grid container spacing={2}>
+        {images.map((image) => (
+          <Grid item key={image.id} xs={12}>
+            <CardComponent image={image} onImageClick={handleImageClick} />
+          </Grid>
+        ))}
+      </Grid>
 
       <ImageDialog
         open={dialogOpen}

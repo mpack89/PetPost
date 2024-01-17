@@ -32,7 +32,7 @@ function Nav() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, padding: 6 }}>
+    <Box sx={{ flexGrow: 1, padding: 4 }}>
       <AppBar position="fixed">
         <Toolbar>
           <IconButton
