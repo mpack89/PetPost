@@ -7,11 +7,28 @@ import CloseIcon from "@mui/icons-material/Close";
 import getCommentsData from "./getCommentsData";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
+import data from "./../components/photodata.json";
 
 interface ImageDialogProps {
   imageSrc: string;
   open: any;
   onClose: any;
+}
+
+interface Comment {
+  user_name: string;
+  comment_text: string;
+  comment_date: string;
+  likes: number;
+  photo_id: number;
+}
+
+interface Photo {
+  id: number;
+  url: string;
+  page: string;
+  user: string;
+  avatar: string;
 }
 
 const ImageDialog: React.FC<ImageDialogProps> = ({
@@ -20,9 +37,17 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   onClose,
 }) => {
   const { comments, error } = getCommentsData();
-  const [_comments, setComments] = useState(comments);
+  const [filteredComments, setFilteredComments] = useState<Comment[]>([]);
 
-  useEffect(() => {}, [error]);
+  useEffect(() => {
+    const photo = data.photos.find((photo: Photo) => photo.url === imageSrc);
+
+    const commentsForImage = comments.filter(
+      (comment: Comment) => comment.photo_id === photo?.id
+    );
+
+    setFilteredComments(commentsForImage);
+  }, [imageSrc, comments, error]);
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
@@ -59,7 +84,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             style={{ position: "relative" }}
           >
             <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
-              {comments.map((comment, index) => (
+              {filteredComments.map((comment, index) => (
                 <CommentItem key={index} {...comment} />
               ))}
             </List>
