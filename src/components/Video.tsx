@@ -71,7 +71,7 @@ export function Item({ image, onImageClick }) {
       }}
     >
       <CardHeader
-        avatar={<Avatar>{image.avatar}</Avatar>}
+        avatar={<Avatar src={image.avatar} />}
         title={image.user}
         subheader=""
         sx={{ marginLeft: 20 }}
