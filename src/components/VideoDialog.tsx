@@ -7,11 +7,27 @@ import CloseIcon from "@mui/icons-material/Close";
 import getCommentsData from "./getCommentsData";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
+import data from "./photodata.json";
 
 interface VideoDialogProps {
   imageSrc: string;
   open: any;
   onClose: any;
+}
+interface Comment {
+  user_name: string;
+  comment_text: string;
+  comment_date: string;
+  likes: number;
+  photo_id: number;
+}
+
+interface Photo {
+  id: number;
+  url: string;
+  page: string;
+  user: string;
+  avatar: string;
 }
 
 const VideoDialog: React.FC<VideoDialogProps> = ({
@@ -20,9 +36,17 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
   onClose,
 }) => {
   const { comments, error } = getCommentsData();
-  const [_comments, setComments] = useState(comments);
+  const [filteredComments, setFilteredComments] = useState<Comment[]>([]);
 
-  useEffect(() => {}, [error]);
+  useEffect(() => {
+    const photo = data.photos.find((photo: Photo) => photo.url === imageSrc);
+
+    const commentsForImage = comments.filter(
+      (comment: Comment) => comment.photo_id === photo?.id
+    );
+
+    setFilteredComments(commentsForImage);
+  }, [imageSrc, comments, error]);
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
@@ -34,21 +58,28 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
         sx={{
           position: "absolute",
           top: "8px",
-          right: "40px",
+          right: "60px",
           zIndex: 1,
         }}
       >
         <CloseIcon />
       </IconButton>
 
-      <DialogContent>
+      <DialogContent style={{ height: "800px" }}>
         <Grid container spacing={2} style={{ maxWidth: "lg" }}>
           <Grid item xs={8} md={6}>
-            <img
-              src={imageSrc}
-              alt="Selected Image"
-              style={{ width: "100%", height: "100%" }}
-            />
+            <div
+              style={{
+                height: "800px",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src={imageSrc}
+                alt="Selected Image"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
           </Grid>
           <Grid
             item
@@ -56,26 +87,32 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
             xs={12}
             md={6}
             direction="column"
-            style={{ position: "relative" }}
+            style={{
+              position: "relative",
+              overflowY: "auto",
+              height: "800px",
+            }}
           >
             <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
-              {comments.map((comment, index) => (
+              {filteredComments.map((comment, index) => (
                 <CommentItem key={index} {...comment} />
               ))}
             </List>
-            <Grid
-              item
-              style={{
-                position: "absolute",
-                bottom: 0,
-                marginTop: 20,
-                width: "100%",
-              }}
-            >
-              <AddCommentForm onAddComment={null} />
-            </Grid>
           </Grid>
         </Grid>
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            right: 0,
+            width: "50%",
+            marginBottom: "16px",
+            paddingTop: "16px",
+            backgroundColor: "#ffffff",
+          }}
+        >
+          <AddCommentForm onAddComment={null} />
+        </div>
       </DialogContent>
     </Dialog>
   );
