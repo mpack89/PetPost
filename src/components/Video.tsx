@@ -68,6 +68,7 @@ export function Item({ image, onImageClick }) {
         height: 630,
         color: "black",
         marginLeft: 22,
+        position: "relative",
       }}
     >
       <CardHeader
@@ -82,12 +83,20 @@ export function Item({ image, onImageClick }) {
         style={{
           borderRadius: 4,
           width: 450,
-          height: 500,
+          height: 580,
         }}
         alt={image.user}
       />
+      <CardActions
+        sx={{
+          position: "absolute",
+          bottom: 0,
 
-      <CardActions sx={{ alignItems: "center" }} disableSpacing>
+          width: "100%",
+          backgroundColor: "transparent",
+        }}
+        disableSpacing
+      >
         <TextField
           label="Reply to..."
           variant="outlined"
@@ -95,10 +104,12 @@ export function Item({ image, onImageClick }) {
           sx={{
             marginLeft: 0,
             marginRight: 0,
+            color: "white",
+            borderColor: "white",
           }}
           fullWidth
         />
-        <IconButton aria-label="add to favorites">
+        <IconButton sx={{ color: "white" }} aria-label="add to favorites">
           <LikeButton onClick={null} likesCount={null} />
         </IconButton>
         <IconButton aria-label="share">
