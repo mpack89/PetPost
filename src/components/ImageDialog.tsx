@@ -59,7 +59,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
         sx={{
           position: "absolute",
           top: "8px",
-          right: "40px",
+          right: "60px",
           zIndex: 1,
         }}
       >
