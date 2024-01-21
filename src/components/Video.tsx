@@ -66,7 +66,6 @@ export function Item({ image, onImageClick }) {
       sx={{
         width: 450,
         height: 630,
-        color: "black",
         marginLeft: 22,
         position: "relative",
       }}
