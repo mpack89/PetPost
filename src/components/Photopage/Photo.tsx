@@ -20,17 +20,25 @@ export default function WovenImageGrid() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginLeft: 120,
-      }}
-    >
-      <Grid justifyContent="center" container spacing={3}>
+    <>
+      <Grid
+        //justifyContent="space-around"
+        container
+        spacing={2}
+        borderColor="blue"
+        padding={4}
+        //alignItems="center"
+      >
         {imagesToRender.map((image) => (
-          <Grid item key={image.id} xs={12} sm={6} md={4}>
+          <Grid
+            item
+            key={image.id}
+            xs={12}
+            sm={6}
+            md={4}
+            //justifyContent="center"
+            //alignContent="center"
+          >
             <CardComponent image={image} onImageClick={handleImageClick} />
           </Grid>
         ))}
@@ -41,6 +49,6 @@ export default function WovenImageGrid() {
         onClose={handleCloseDialog}
         imageSrc={selectedImage}
       />
-    </div>
+    </>
   );
 }
