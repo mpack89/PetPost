@@ -91,8 +91,7 @@ export function Item({ image, onImageClick }) {
         sx={{
           position: "absolute",
           bottom: 0,
-
-          width: "100%",
+          width: "96%",
           backgroundColor: "transparent",
         }}
         disableSpacing
