@@ -68,6 +68,7 @@ export function Item({ image, onImageClick }) {
         height: 630,
         color: "black",
         marginLeft: 22,
+        position: "relative",
       }}
     >
       <CardHeader
@@ -82,12 +83,22 @@ export function Item({ image, onImageClick }) {
         style={{
           borderRadius: 4,
           width: 450,
-          height: 500,
+          height: 630,
         }}
         alt={image.user}
       />
 
-      <CardActions sx={{ alignItems: "center" }} disableSpacing>
+      <CardActions
+        sx={{
+          alignItems: "center",
+          background: "transparent",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+        disableSpacing
+      >
         <TextField
           label="Reply to..."
           variant="outlined"
