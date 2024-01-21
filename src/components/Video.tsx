@@ -104,12 +104,10 @@ export function Item({ image, onImageClick }) {
           sx={{
             marginLeft: 0,
             marginRight: 0,
-            color: "white",
-            borderColor: "white",
           }}
           fullWidth
         />
-        <IconButton sx={{ color: "white" }} aria-label="add to favorites">
+        <IconButton aria-label="add to favorites">
           <LikeButton onClick={null} likesCount={null} />
         </IconButton>
         <IconButton aria-label="share">
