@@ -21,24 +21,9 @@ export default function WovenImageGrid() {
 
   return (
     <>
-      <Grid
-        //justifyContent="space-around"
-        container
-        spacing={2}
-        borderColor="blue"
-        padding={4}
-        //alignItems="center"
-      >
+      <Grid container spacing={2} justifyContent={"space-around"}>
         {imagesToRender.map((image) => (
-          <Grid
-            item
-            key={image.id}
-            xs={12}
-            sm={6}
-            md={4}
-            //justifyContent="center"
-            //alignContent="center"
-          >
+          <Grid item key={image.id}>
             <CardComponent image={image} onImageClick={handleImageClick} />
           </Grid>
         ))}
