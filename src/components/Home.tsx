@@ -19,16 +19,13 @@ const Home = () => {
   };
 
   return (
-    <div
-      className="scrollable-content"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginLeft: 720,
-      }}
-    >
-      <Grid container spacing={2}>
+    <>
+      <Grid
+        container
+        spacing={2}
+        justifyContent={"center"}
+        alignContent={"center"}
+      >
         {images.map((image) => (
           <Grid item key={image.id} xs={12}>
             <CardComponent image={image} onImageClick={handleImageClick} />
@@ -41,7 +38,7 @@ const Home = () => {
         onClose={handleCloseDialog}
         imageSrc={selectedImage}
       />
-    </div>
+    </>
   );
 };
 

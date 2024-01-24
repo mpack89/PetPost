@@ -72,6 +72,11 @@ export function Item({ image, onImageClick }) {
       }}
     >
       <CardHeader
+        titleTypographyProps={{
+          fontSize: 16,
+          fontFamily: "revert",
+          fontWeight: 500,
+        }}
         avatar={<Avatar src={image.avatar} />}
         title={image.user}
         subheader=""
