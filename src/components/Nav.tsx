@@ -81,30 +81,6 @@ function Nav() {
                 aria-haspopup="true"
                 color="inherit"
                 component={NavLink}
-                to="/Messages"
-              >
-                <Message />
-              </IconButton>
-
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-                component={NavLink}
-                to="/Friend"
-              >
-                <People />
-              </IconButton>
-
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-                component={NavLink}
                 to="/Profile"
               >
                 <AccountCircle />
