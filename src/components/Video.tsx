@@ -76,11 +76,18 @@ export function Item({ image, onImageClick }) {
           fontSize: 16,
           fontFamily: "revert",
           fontWeight: 500,
+          textAlign: "center",
         }}
         avatar={<Avatar src={image.avatar} />}
         title={image.user}
         subheader=""
-        sx={{ marginLeft: 20 }}
+        sx={{
+          backgroundColor: "#ffffff",
+          display: "grid",
+          gridTemplateColumns: "auto auto",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       />
 
       <img
