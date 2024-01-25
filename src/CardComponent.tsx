@@ -15,9 +15,6 @@ const CardComponent = ({ image, onImageClick }) => {
         height: 630,
         margin: 2,
         color: "black",
-        borderColor: "black",
-        padding: 4,
-        borderWidth: "50px",
       }}
     >
       <CardHeader
