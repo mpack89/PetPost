@@ -9,8 +9,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { NavLink } from "react-router-dom";
 import {
-  Message,
-  People,
   PlayCircle,
   CameraAlt,
   AccountCircle,
@@ -130,14 +128,6 @@ function Nav() {
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                 </NavLink>
                 <NavLink
-                  to="/Messages"
-                  style={({ isActive }) => ({
-                    color: isActive ? "grey" : "black",
-                  })}
-                >
-                  <MenuItem onClick={handleClose}>Messages</MenuItem>
-                </NavLink>
-                <NavLink
                   to="/Photo"
                   style={({ isActive }) => ({
                     color: isActive ? "grey" : "black",
@@ -152,14 +142,6 @@ function Nav() {
                   })}
                 >
                   <MenuItem onClick={handleClose}>Videos</MenuItem>
-                </NavLink>
-                <NavLink
-                  to="/Friend"
-                  style={({ isActive }) => ({
-                    color: isActive ? "grey" : "black",
-                  })}
-                >
-                  <MenuItem onClick={handleClose}>Friends</MenuItem>
                 </NavLink>
               </Menu>
             </div>
