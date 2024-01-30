@@ -33,10 +33,10 @@ const getCommentsData = () => {
     const fetchData = async () => {
       try {
         const response = await getMyCommentsByImage();
-        const fourComments = response;
-        setComments(fourComments);
+        const UserComments = response;
+        setComments(UserComments);
 
-        storeCommentsInLocalStorage(fourComments);
+        storeCommentsInLocalStorage(UserComments);
       } catch (error) {
         setError(error);
       }
