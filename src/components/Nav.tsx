@@ -10,7 +10,7 @@ import Menu from "@mui/material/Menu";
 import { NavLink } from "react-router-dom";
 import {
   PlayCircle,
-  CameraAlt,
+  ImageSearch,
   AccountCircle,
   Home,
 } from "@mui/icons-material";
@@ -57,7 +57,7 @@ function Nav() {
                 component={NavLink}
                 to="/Photo"
               >
-                <CameraAlt />
+                <ImageSearch />
               </IconButton>
 
               <IconButton
