@@ -22,8 +22,11 @@ const getCommentsData = () => {
     }
   };
 
-  const [comments, setComments] = useState([]);
+  const storeCommentsInLocalStorage = (comments) => {
+    localStorage.setItem("comments", JSON.stringify(comments));
+  };
 
+  const [comments, setComments] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -32,6 +35,8 @@ const getCommentsData = () => {
         const response = await getMyCommentsByImage();
         const fourComments = response;
         setComments(fourComments);
+
+        storeCommentsInLocalStorage(fourComments);
       } catch (error) {
         setError(error);
       }
