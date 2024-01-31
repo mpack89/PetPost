@@ -22,33 +22,30 @@ const getCommentsData = () => {
     }
   };
 
-  const [comments, setComments] = useState([]);
+  const storeCommentsInLocalStorage = (comments) => {
+    localStorage.setItem("comments", JSON.stringify(comments));
+  };
 
+  const [comments, setComments] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getMyCommentsByImage();
-<<<<<<< Updated upstream
-        const fourComments = response;
-        setComments(fourComments);
-=======
-        const updatedComments = response; // Replace with your logic to filter, update, etc.
-        setComments(updatedComments);
+        const UserComments = response;
+        setComments(UserComments);
 
-        // Update local storage whenever comments change
-        storeCommentsInLocalStorage(updatedComments);
->>>>>>> Stashed changes
+        storeCommentsInLocalStorage(UserComments);
       } catch (error) {
         setError(error);
       }
     };
 
     fetchData();
-  }, []); // Only run on mount, you can add dependencies if needed
+  }, []);
 
-  return { comments, error, updateComments: storeCommentsInLocalStorage };
+  return { comments, error };
 };
 
 export default getCommentsData;
