@@ -30,17 +30,25 @@ const getCommentsData = () => {
     const fetchData = async () => {
       try {
         const response = await getMyCommentsByImage();
+<<<<<<< Updated upstream
         const fourComments = response;
         setComments(fourComments);
+=======
+        const updatedComments = response; // Replace with your logic to filter, update, etc.
+        setComments(updatedComments);
+
+        // Update local storage whenever comments change
+        storeCommentsInLocalStorage(updatedComments);
+>>>>>>> Stashed changes
       } catch (error) {
         setError(error);
       }
     };
 
     fetchData();
-  }, []);
+  }, []); // Only run on mount, you can add dependencies if needed
 
-  return { comments, error };
+  return { comments, error, updateComments: storeCommentsInLocalStorage };
 };
 
 export default getCommentsData;

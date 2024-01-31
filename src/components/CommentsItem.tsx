@@ -9,7 +9,7 @@ interface CommentItemProps {
   comment_text: string;
   comment_date: string;
   likes: number;
-  photo_id: number;
+  comment_id: number; // Use comment_id as the unique identifier
 }
 
 const CommentItem: React.FC<CommentItemProps> = ({
@@ -17,6 +17,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
   comment_text,
   comment_date,
   likes,
+  comment_id,
 }) => (
   <Paper
     style={{
@@ -83,6 +84,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
           <LikeButton
             onClick={() => console.log("clicked")}
             likesCount={likes}
+            commentId={comment_id} // Use comment_id as the unique identifier
           />
         </div>
       </div>

@@ -21,6 +21,7 @@ interface Comment {
   comment_date: string;
   likes: number;
   photo_id: number;
+  comment_id: number;
 }
 
 interface Photo {
@@ -96,7 +97,14 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
           >
             <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
               {filteredComments.map((comment, index) => (
-                <CommentItem key={index} {...comment} />
+                <CommentItem
+                  key={index}
+                  user_name={comment.user_name}
+                  comment_text={comment.comment_text}
+                  comment_date={comment.comment_date}
+                  likes={comment.likes}
+                  comment_id={comment.comment_id}
+                />
               ))}
             </List>
           </Grid>
