@@ -14,12 +14,14 @@ interface VideoDialogProps {
   open: any;
   onClose: any;
 }
+
 interface Comment {
   user_name: string;
   comment_text: string;
   comment_date: string;
   likes: number;
   photo_id: number;
+  comment_id: number;
 }
 
 interface Photo {
@@ -47,6 +49,18 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
 
     setFilteredComments(commentsForImage);
   }, [imageSrc, comments, error]);
+
+  const handleUpdateComments = (updatedComments: Comment[]) => {
+    const currentPhoto = data.photos.find(
+      (photo: Photo) => photo.url === imageSrc
+    );
+
+    const commentsForImage = updatedComments.filter(
+      (comment: Comment) => comment.photo_id === currentPhoto?.id
+    );
+
+    setFilteredComments(commentsForImage);
+  };
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
@@ -95,7 +109,15 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
           >
             <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
               {filteredComments.map((comment, index) => (
-                <CommentItem key={index} {...comment} />
+                <CommentItem
+                  key={index}
+                  user_name={comment.user_name}
+                  comment_text={comment.comment_text}
+                  comment_date={comment.comment_date}
+                  likes={comment.likes}
+                  comment_id={comment.comment_id}
+                  updateComments={handleUpdateComments}
+                />
               ))}
             </List>
           </Grid>
