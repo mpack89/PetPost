@@ -4,12 +4,22 @@ import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 import LikeButton from "./LikeButton";
 
-interface CommentItemProps {
+interface Comment {
   user_name: string;
   comment_text: string;
   comment_date: string;
   likes: number;
   photo_id: number;
+  comment_id: number;
+}
+
+interface CommentItemProps {
+  user_name: string;
+  comment_text: string;
+  comment_date: string;
+  likes: number;
+  comment_id: number;
+  updateComments: (updatedComments: Comment[]) => void;
 }
 
 const CommentItem: React.FC<CommentItemProps> = ({
@@ -17,77 +27,80 @@ const CommentItem: React.FC<CommentItemProps> = ({
   comment_text,
   comment_date,
   likes,
-}) => (
-  <Paper
-    style={{
-      margin: "20px",
-      width: "80%",
-      maxWidth: "none",
-      backgroundColor: "#f0f8ff",
-      borderRadius: "6px",
-    }}
-  >
-    <ListItem>
-      <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-        <Typography
-          variant="body1"
-          style={{
-            fontWeight: "bold",
-            fontSize: "14px",
-            color: "black",
-            marginBottom: 4,
-          }}
+  comment_id,
+  updateComments,
+}) => {
+  return (
+    <Paper
+      style={{
+        margin: "20px",
+        width: "80%",
+        backgroundColor: "#f0f8ff",
+        borderRadius: "6px",
+      }}
+    >
+      <ListItem>
+        <div
+          style={{ display: "flex", flexDirection: "column", width: "100%" }}
         >
-          {user_name}
-        </Typography>
-        <Typography
-          style={{
-            fontWeight: "lighter",
-            fontSize: "14px",
-            color: "black",
-            marginBottom: 8,
-          }}
-        >
-          {comment_text}
-        </Typography>
-        <div style={{ display: "flex", alignItems: "center" }}>
           <Typography
-            style={{
-              fontWeight: "lighter",
-              fontSize: "12px",
-              color: "grey",
-              marginRight: 12,
-            }}
-          >
-            {comment_date}
-          </Typography>
-          <Typography
+            variant="body1"
             style={{
               fontWeight: "bold",
-              fontSize: "12px",
-              color: "grey",
-              marginRight: 12,
+              fontSize: "14px",
+              color: "black",
+              marginBottom: 4,
             }}
           >
-            {likes} Likes
+            {user_name}
           </Typography>
           <Typography
             style={{
               fontWeight: "lighter",
-              fontSize: "12px",
-              color: "grey",
+              fontSize: "14px",
+              color: "black",
+              marginBottom: 8,
             }}
           >
-            Reply
+            {comment_text}
           </Typography>
-          <LikeButton
-            onClick={() => console.log("clicked")}
-            likesCount={likes}
-          />
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              style={{
+                fontWeight: "lighter",
+                fontSize: "12px",
+                color: "grey",
+                marginRight: 12,
+              }}
+            >
+              {comment_date}
+            </Typography>
+            <Typography
+              style={{
+                fontWeight: "bold",
+                fontSize: "12px",
+                color: "grey",
+                marginRight: 12,
+              }}
+            >
+              {likes} Likes
+            </Typography>
+            <Typography
+              style={{ fontWeight: "lighter", fontSize: "12px", color: "grey" }}
+            >
+              Reply
+            </Typography>
+            <LikeButton
+              onClick={() => console.log("clicked")}
+              likesCount={likes}
+              commentId={comment_id}
+              updateComments={updateComments}
+            />
+          </div>
         </div>
-      </div>
-    </ListItem>
-  </Paper>
-);
+      </ListItem>
+    </Paper>
+  );
+};
 
 export default CommentItem;

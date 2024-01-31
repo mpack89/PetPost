@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
@@ -21,6 +21,7 @@ interface Comment {
   comment_date: string;
   likes: number;
   photo_id: number;
+  comment_id: number;
 }
 
 interface Photo {
@@ -30,7 +31,6 @@ interface Photo {
   user: string;
   avatar: string;
 }
-
 const ImageDialog: React.FC<ImageDialogProps> = ({
   imageSrc,
   open,
@@ -42,12 +42,26 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   useEffect(() => {
     const photo = data.photos.find((photo: Photo) => photo.url === imageSrc);
 
-    const commentsForImage = comments.filter(
-      (comment: Comment) => comment.photo_id === photo?.id
+    if (photo) {
+      const commentsForImage = comments.filter(
+        (comment: Comment) => comment.photo_id === photo.id
+      );
+
+      setFilteredComments(commentsForImage);
+    }
+  }, [imageSrc, comments, error]);
+
+  const handleUpdateComments = (updatedComments: Comment[]) => {
+    const currentPhoto = data.photos.find(
+      (photo: Photo) => photo.url === imageSrc
+    );
+
+    const commentsForImage = updatedComments.filter(
+      (comment: Comment) => comment.photo_id === currentPhoto?.id
     );
 
     setFilteredComments(commentsForImage);
-  }, [imageSrc, comments, error]);
+  };
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
@@ -82,6 +96,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
               />
             </div>
           </Grid>
+
           <Grid
             item
             container
@@ -96,11 +111,20 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
           >
             <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
               {filteredComments.map((comment, index) => (
-                <CommentItem key={index} {...comment} />
+                <CommentItem
+                  key={index}
+                  user_name={comment.user_name}
+                  comment_text={comment.comment_text}
+                  comment_date={comment.comment_date}
+                  likes={comment.likes}
+                  comment_id={comment.comment_id}
+                  updateComments={handleUpdateComments}
+                />
               ))}
             </List>
           </Grid>
         </Grid>
+
         <div
           style={{
             position: "absolute",
