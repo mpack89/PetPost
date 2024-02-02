@@ -162,7 +162,7 @@ export default function BasicTabs() {
 
             <>
               <Typography textAlign={"center"}>Pet:{info?.pet}</Typography>
-              <Typography textAlign={"center"}>Owner:{info?.owner}</Typography>
+              <Typography textAlign={"center"}>Human:{info?.owner}</Typography>
               <Typography textAlign={"center"}>Bio:{info?.bio}</Typography>
             </>
 
