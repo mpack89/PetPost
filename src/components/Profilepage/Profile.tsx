@@ -126,11 +126,10 @@ export default function BasicTabs() {
           <Stack direction="column" spacing={1}>
             <Button
               onClick={handleClickOpen}
-              variant="outlined"
+              variant="contained"
               sx={{
-                borderRadius: 2,
                 background: "lightGrey",
-                borderColor: "black",
+
                 color: "black",
                 padding: 2,
                 textTransform: "none",
@@ -149,11 +148,9 @@ export default function BasicTabs() {
             </Dialog>
 
             <Button
-              variant="outlined"
+              variant="contained"
               sx={{
-                borderRadius: 2,
                 background: "lightGrey",
-                borderColor: "black",
                 color: "black",
                 padding: 2,
                 textTransform: "none",
