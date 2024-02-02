@@ -8,12 +8,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { NavLink } from "react-router-dom";
-import {
-  PlayCircle,
-  ImageSearch,
-  AccountCircle,
-  Home,
-} from "@mui/icons-material";
+import ImageIcon from "@mui/icons-material/Image";
+import { PlayCircle, AccountCircle, Home } from "@mui/icons-material";
 import { useState } from "react";
 
 function Nav() {
@@ -57,7 +53,7 @@ function Nav() {
                 component={NavLink}
                 to="/Photo"
               >
-                <ImageSearch />
+                <ImageIcon />
               </IconButton>
 
               <IconButton
