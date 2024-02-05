@@ -12,7 +12,8 @@ interface Comment {
   photo_id: number;
   comment_id: number;
 }
-//hello
+//hi
+
 interface CommentItemProps {
   user_name: string;
   comment_text: string;
