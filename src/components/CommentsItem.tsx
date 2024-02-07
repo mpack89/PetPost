@@ -3,15 +3,7 @@ import Paper from "@mui/material/Paper";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 import LikeButton from "./LikeButton";
-
-interface Comment {
-  user_name: string;
-  comment_text: string;
-  comment_date: string;
-  likes: number;
-  photo_id: number;
-  comment_id: number;
-}
+import Comment from "./CommentTypes";
 
 interface CommentItemProps {
   user_name: string;

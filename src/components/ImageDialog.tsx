@@ -8,20 +8,11 @@ import getCommentsData from "./getCommentsData";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 import data from "./../components/photodata.json";
-
+import Comment from "./CommentTypes";
 interface ImageDialogProps {
   imageSrc: string;
   open: any;
   onClose: any;
-}
-
-interface Comment {
-  user_name: string;
-  comment_text: string;
-  comment_date: string;
-  likes: number;
-  photo_id: number;
-  comment_id: number;
 }
 
 interface Photo {
