@@ -9,18 +9,11 @@ import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 import data from "./photodata.json";
 import Comment from "./CommentTypes";
+import Photo from "./Phototypes";
 interface VideoDialogProps {
   imageSrc: string;
   open: any;
   onClose: any;
-}
-
-interface Photo {
-  id: number;
-  url: string;
-  page: string;
-  user: string;
-  avatar: string;
 }
 
 const VideoDialog: React.FC<VideoDialogProps> = ({
