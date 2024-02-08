@@ -8,8 +8,8 @@ import getCommentsData from "./getCommentsData";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 import data from "./../components/photodata.json";
-import Comment from "./CommentTypes";
-import Photo from "./Phototypes";
+import Comment from "../types/CommentTypes";
+import Photo from "../types/Phototypes";
 interface ImageDialogProps {
   imageSrc: string;
   open: any;

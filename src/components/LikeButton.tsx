@@ -1,7 +1,7 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
-import Comment from "./CommentTypes";
+import Comment from "../types/CommentTypes";
 
 interface Props {
   onClick: any;
