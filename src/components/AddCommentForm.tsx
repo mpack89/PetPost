@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Grid } from "@mui/material";
 
 interface AddCommentFormProps {
   onAddComment: (commentText: string) => void;
@@ -11,31 +11,39 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ onAddComment }) => {
   const handleAddComment = () => {
     if (commentText.trim() !== "") {
       onAddComment(commentText);
-      setCommentText(""); // Clear input field
+      setCommentText("");
     }
   };
-
   return (
-    <div>
-      <TextField
-        label="Add Comment"
-        multiline
-        fullWidth
-        value={commentText}
-        onChange={(e) => setCommentText(e.target.value)}
-        sx={{
-          marginLeft: "10px",
-        }}
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleAddComment}
-        style={{ marginTop: "8px" }}
-      >
-        Post
-      </Button>
-    </div>
+    <Grid
+      container
+      spacing={2}
+      alignItems="center"
+      justifyContent="space-between"
+    >
+      <Grid item xs={9.7}>
+        <TextField
+          label="Add a comment..."
+          variant="outlined"
+          value={commentText}
+          onChange={(e) => setCommentText(e.target.value)}
+          fullWidth
+          sx={{
+            marginLeft: "20px",
+          }}
+        />
+      </Grid>
+      <Grid item xs={2}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAddComment}
+          size="small"
+        >
+          Post
+        </Button>
+      </Grid>
+    </Grid>
   );
 };
 
