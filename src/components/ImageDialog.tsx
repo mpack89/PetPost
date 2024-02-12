@@ -55,19 +55,17 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
 
     if (currentPhoto) {
       const newComment: Comment = {
-        user_name: "New User", // You can replace with actual user info
+        user_name: "New User",
         comment_text: commentText,
         comment_date: new Date().toLocaleString(),
         likes: 0,
         photo_id: currentPhoto.id,
-        comment_id: comments.length + 1, // Generate unique ID
+        comment_id: comments.length + 1,
       };
 
-      // Update local storage
       const updatedComments = [...comments, newComment];
       localStorage.setItem("comments", JSON.stringify(updatedComments));
 
-      // Update state
       handleUpdateComments(updatedComments);
     }
   };
