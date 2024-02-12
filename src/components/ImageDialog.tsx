@@ -8,28 +8,12 @@ import getCommentsData from "./getCommentsData";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 import data from "./../components/photodata.json";
-
+import Comment from "../types/CommentTypes";
+import Photo from "../types/Phototypes";
 interface ImageDialogProps {
   imageSrc: string;
   open: any;
   onClose: any;
-}
-
-interface Comment {
-  user_name: string;
-  comment_text: string;
-  comment_date: string;
-  likes: number;
-  photo_id: number;
-  comment_id: number;
-}
-
-interface Photo {
-  id: number;
-  url: string;
-  page: string;
-  user: string;
-  avatar: string;
 }
 
 const ImageDialog: React.FC<ImageDialogProps> = ({
