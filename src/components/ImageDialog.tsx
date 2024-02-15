@@ -8,29 +8,14 @@ import getCommentsData from "./getCommentsData";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 import data from "./../components/photodata.json";
-
+import Comment from "../types/CommentTypes";
+import Photo from "../types/Phototypes";
 interface ImageDialogProps {
   imageSrc: string;
   open: any;
   onClose: any;
 }
 
-interface Comment {
-  user_name: string;
-  comment_text: string;
-  comment_date: string;
-  likes: number;
-  photo_id: number;
-  comment_id: number;
-}
-
-interface Photo {
-  id: number;
-  url: string;
-  page: string;
-  user: string;
-  avatar: string;
-}
 const ImageDialog: React.FC<ImageDialogProps> = ({
   imageSrc,
   open,
@@ -61,6 +46,28 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
     );
 
     setFilteredComments(commentsForImage);
+  };
+
+  const handleAddComment = (commentText: string) => {
+    const currentPhoto = data.photos.find(
+      (photo: Photo) => photo.url === imageSrc
+    );
+
+    if (currentPhoto) {
+      const newComment: Comment = {
+        user_name: "New User",
+        comment_text: commentText,
+        comment_date: new Date().toLocaleString(),
+        likes: 0,
+        photo_id: currentPhoto.id,
+        comment_id: comments.length + 1,
+      };
+
+      const updatedComments = [...comments, newComment];
+      localStorage.setItem("comments", JSON.stringify(updatedComments));
+
+      handleUpdateComments(updatedComments);
+    }
   };
 
   return (
@@ -136,7 +143,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             backgroundColor: "#ffffff",
           }}
         >
-          <AddCommentForm onAddComment={null} />
+          <AddCommentForm onAddComment={handleAddComment} />
         </div>
       </DialogContent>
     </Dialog>

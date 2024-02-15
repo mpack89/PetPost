@@ -1,15 +1,7 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
-
-interface Comment {
-  user_name: string;
-  comment_text: string;
-  comment_date: string;
-  likes: number;
-  photo_id: number;
-  comment_id: number;
-}
+import Comment from "../types/CommentTypes";
 
 interface Props {
   onClick: any;
