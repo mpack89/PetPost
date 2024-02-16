@@ -45,6 +45,13 @@ const getCommentsData = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const storedComments = JSON.parse(localStorage.getItem("comments"));
+    if (storedComments) {
+      setComments(storedComments);
+    }
+  }, []);
+
   return { comments, error };
 };
 

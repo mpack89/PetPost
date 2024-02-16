@@ -4,12 +4,13 @@ import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
 import { Grid, IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
-import getCommentsData from "./getCommentsData";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 import data from "./../components/photodata.json";
 import Comment from "../types/CommentTypes";
 import Photo from "../types/Phototypes";
+import getCommentsData from "./getCommentsData";
+
 interface ImageDialogProps {
   imageSrc: string;
   open: any;
@@ -21,8 +22,16 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   open,
   onClose,
 }) => {
-  const { comments, error } = getCommentsData();
+  const { comments: initialComments, error } = getCommentsData();
+  const [comments, setComments] = useState<Comment[]>([]);
   const [filteredComments, setFilteredComments] = useState<Comment[]>([]);
+
+  useEffect(() => {
+    if (initialComments.length > 0) {
+      setComments(initialComments);
+      setFilteredComments(initialComments);
+    }
+  }, [initialComments]);
 
   useEffect(() => {
     const photo = data.photos.find((photo: Photo) => photo.url === imageSrc);
@@ -64,9 +73,11 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
       };
 
       const updatedComments = [...comments, newComment];
-      localStorage.setItem("comments", JSON.stringify(updatedComments));
+      setComments(updatedComments);
 
       handleUpdateComments(updatedComments);
+
+      localStorage.setItem("comments", JSON.stringify(updatedComments));
     }
   };
 
