@@ -6,6 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import LikeButton from "./components/LikeButton";
 import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import Tooltip from "@mui/material/Tooltip";
 
 const CardComponent = ({ image, onImageClick }) => {
   return (
@@ -48,9 +49,11 @@ const CardComponent = ({ image, onImageClick }) => {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <IconButton onClick={() => onImageClick(image.url)}>
-          <ChatBubbleOutlineIcon />
-        </IconButton>
+        <Tooltip title={`${"2"} comments`} arrow>
+          <IconButton onClick={() => onImageClick(image.url)}>
+            <ChatBubbleOutlineIcon />
+          </IconButton>
+        </Tooltip>
       </CardActions>
     </Card>
   );
