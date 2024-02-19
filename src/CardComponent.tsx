@@ -44,7 +44,12 @@ const CardComponent = ({ image, onImageClick }) => {
 
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <LikeButton onClick={null} likesCount={null} />
+          <LikeButton
+            onClick={() => console.log("clicked")}
+            likesCount={null}
+            commentId={null}
+            updateComments={null}
+          />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
