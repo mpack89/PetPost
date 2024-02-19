@@ -43,14 +43,16 @@ const CardComponent = ({ image, onImageClick }) => {
       />
 
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <LikeButton
-            onClick={() => console.log("clicked")}
-            likesCount={null}
-            commentId={null}
-            updateComments={null}
-          />
-        </IconButton>
+        <Tooltip title={`${image.likes} likes`} arrow>
+          <IconButton aria-label="add to favorites">
+            <LikeButton
+              onClick={() => console.log("clicked")}
+              likesCount={image.likesCount}
+              commentId={null}
+              updateComments={null}
+            />
+          </IconButton>
+        </Tooltip>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
