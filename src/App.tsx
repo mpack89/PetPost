@@ -16,11 +16,7 @@ function App() {
       localStorage.setItem("UPDATE_PROFILE", JSON.stringify(data.profile));
   }, []);
 
-  const photoStorageData = localStorage.getItem("PHOTO_DATA");
-  useEffect(() => {
-    if (!photoStorageData)
-      localStorage.setItem("PHOTO_DATA", JSON.stringify(photodata.photos));
-  }, []);
+  localStorage.setItem("PHOTO_DATA", JSON.stringify(photodata.photos));
 
   return (
     <div>

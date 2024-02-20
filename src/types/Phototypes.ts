@@ -3,6 +3,7 @@ interface Photo {
     url: string;
     page: string;
     user: string;
+    likes: number;
     avatar?: string;
   }
 
