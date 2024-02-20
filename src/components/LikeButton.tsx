@@ -24,6 +24,7 @@ const LikeButton = ({
   };
 
   const handleLikeClick = () => {
+    toggle();
     const updatedLikesCount = status ? likesCount + 1 : likesCount - 1;
 
     const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
@@ -38,8 +39,6 @@ const LikeButton = ({
     localStorage.setItem("comments", JSON.stringify(updatedComments));
 
     updateComments(updatedComments);
-
-    toggle();
   };
 
   if (status) {
