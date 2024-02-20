@@ -48,8 +48,6 @@ const CardComponent = ({ image, onImageClick }) => {
             <LikeButton
               onClick={() => console.log("clicked")}
               likesCount={image.likesCount}
-              commentId={null}
-              updateComments={null}
             />
           </IconButton>
         </Tooltip>

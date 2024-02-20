@@ -4,10 +4,10 @@ import { useState } from "react";
 import Comment from "../types/CommentTypes";
 
 interface Props {
-  onClick: any;
+  onClick?: any;
   likesCount: number;
-  commentId: number;
-  updateComments: (updatedComments: Comment[]) => void;
+  commentId?: number;
+  updateComments?: (updatedComments: Comment[]) => void;
 }
 
 const LikeButton = ({
