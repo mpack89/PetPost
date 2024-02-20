@@ -9,6 +9,15 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
 
 const CardComponent = ({ image, onImageClick }) => {
+  const commentData = localStorage.getItem("comments");
+  const commentArray = JSON.parse(commentData);
+
+  const commentsForImage = commentArray.filter(
+    (comment) => comment.photo_id === image.id
+  );
+
+  const commentCount = commentsForImage.length;
+
   return (
     <Card
       sx={{
@@ -60,7 +69,7 @@ const CardComponent = ({ image, onImageClick }) => {
         >
           <ShareIcon />
         </IconButton>
-        <Tooltip title={`${"2"} comments`} arrow>
+        <Tooltip title={`${commentCount} comments`} arrow>
           <IconButton
             onClick={() => onImageClick(image.url)}
             style={{ background: "transparent", border: "none" }}
