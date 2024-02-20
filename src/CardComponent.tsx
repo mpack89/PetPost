@@ -44,18 +44,27 @@ const CardComponent = ({ image, onImageClick }) => {
 
       <CardActions disableSpacing>
         <Tooltip title={`${image.likes} likes`} arrow>
-          <IconButton aria-label="add to favorites">
+          <IconButton
+            aria-label="add to favorites"
+            style={{ background: "transparent", border: "none" }}
+          >
             <LikeButton
               onClick={() => console.log("clicked")}
               likesCount={image.likesCount}
             />
           </IconButton>
         </Tooltip>
-        <IconButton aria-label="share">
+        <IconButton
+          aria-label="share"
+          style={{ background: "transparent", border: "none" }}
+        >
           <ShareIcon />
         </IconButton>
         <Tooltip title={`${"2"} comments`} arrow>
-          <IconButton onClick={() => onImageClick(image.url)}>
+          <IconButton
+            onClick={() => onImageClick(image.url)}
+            style={{ background: "transparent", border: "none" }}
+          >
             <ChatBubbleOutlineIcon />
           </IconButton>
         </Tooltip>
