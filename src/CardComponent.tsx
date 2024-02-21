@@ -80,7 +80,6 @@ const CardComponent = ({ image, onImageClick }) => {
           <ShareIcon />
         </IconButton>
         <Tooltip
-          sx={{ display: "flex" }}
           title={`${commentCount} Comments - ${firstCommentUser}:${firstCommentText}`}
           arrow
         >
