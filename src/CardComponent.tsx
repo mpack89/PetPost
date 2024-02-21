@@ -18,6 +18,16 @@ const CardComponent = ({ image, onImageClick }) => {
 
   const commentCount = commentsForImage.length;
 
+  let firstCommentText = "";
+  if (commentCount > 0) {
+    const words = commentsForImage[0].comment_text.split(" ");
+
+    firstCommentText =
+      words.slice(0, 5).join(" ") + (words.length > 5 ? "..." : "");
+  }
+
+  const firstCommentUser =
+    commentCount > 0 ? commentsForImage[0].user_name : "";
   return (
     <Card
       sx={{
@@ -69,7 +79,11 @@ const CardComponent = ({ image, onImageClick }) => {
         >
           <ShareIcon />
         </IconButton>
-        <Tooltip title={`${commentCount} comments`} arrow>
+        <Tooltip
+          sx={{ display: "flex" }}
+          title={`${commentCount} Comments - ${firstCommentUser}:${firstCommentText}`}
+          arrow
+        >
           <IconButton
             onClick={() => onImageClick(image.url)}
             style={{ background: "transparent", border: "none" }}
