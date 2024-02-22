@@ -1,11 +1,11 @@
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import data from "../../components/photodata.json";
+import PhotoData from "../PhotoData";
 import ImageDialog from "../ImageDialog";
 import { useState } from "react";
 
 export default function ProfilePhotos() {
-  const image = data.photos;
+  const image = PhotoData();
   const imagesToRender = image.filter((image) => image.page === "profile");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");

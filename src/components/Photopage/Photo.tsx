@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import CardComponent from "../../CardComponent";
-import data from "../../components/photodata.json";
 import ImageDialog from "../ImageDialog";
+import PhotoData from "../PhotoData";
 
 export default function WovenImageGrid() {
-  const images = data.photos;
+  const images = PhotoData();
   const imagesToRender = images.filter((image) => image.page === "photo");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
