@@ -12,7 +12,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { TextField } from "@mui/material";
 
-export function Video(autoplay: false) {
+export function Video() {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
