@@ -35,6 +35,7 @@ export function Video(autoplay: false) {
         transform: "translate(-50%, -50%)",
         overflowY: "auto",
         width: 800,
+        marginTop: 36,
       }}
     >
       <Carousel
