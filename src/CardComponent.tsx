@@ -37,7 +37,7 @@ const CardComponent = ({ image, onImageClick, onImageHover }) => {
         margin: 2,
         color: "black",
         borderColor: "black",
-        padding: 4,
+        padding: 1,
         borderWidth: "50px",
       }}
     >
