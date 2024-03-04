@@ -11,7 +11,6 @@ interface Props {
 }
 
 const LikeButton = ({
-  onClick,
   likesCount,
   commentId,
   updateComments,
@@ -20,7 +19,6 @@ const LikeButton = ({
 
   const toggle = () => {
     setStatus(!status);
-    onClick();
   };
 
   const handleLikeClick = () => {
