@@ -68,11 +68,9 @@ const CardComponent = ({ image, onImageClick, onImageHover }) => {
           <IconButton
             aria-label="add to favorites"
             style={{ background: "transparent", border: "none" }}
+            onClick={() => console.log("clicked")}
           >
-            <LikeButton
-              onClick={() => console.log("clicked")}
-              likesCount={image.likesCount}
-            />
+            <LikeButton likesCount={image.likesCount} />
           </IconButton>
         </Tooltip>
         <IconButton
