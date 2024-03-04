@@ -8,7 +8,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
 
-const CardComponent = ({ image, onImageClick }) => {
+const CardComponent = ({ image, onImageClick, onImageHover }) => {
   const commentData = localStorage.getItem("comments");
   const commentArray = JSON.parse(commentData);
 
@@ -28,6 +28,7 @@ const CardComponent = ({ image, onImageClick }) => {
 
   const firstCommentUser =
     commentCount > 0 ? commentsForImage[0].user_name : "";
+
   return (
     <Card
       sx={{
@@ -59,6 +60,7 @@ const CardComponent = ({ image, onImageClick }) => {
           height: 500,
         }}
         alt={image.user}
+        onMouseEnter={() => onImageHover(image.url)} 
       />
 
       <CardActions disableSpacing>
