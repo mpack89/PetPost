@@ -140,9 +140,11 @@ export function Item({ image, onImageClick }) {
           }}
           fullWidth
         />
+        <Tooltip title={`${image.likes} likes`} arrow>
         <IconButton aria-label="add to favorites">
-          <LikeButton onClick={null} likesCount={null} />
+          <LikeButton likesCount={image.likesCount} />
         </IconButton>
+        </Tooltip>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
