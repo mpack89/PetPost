@@ -4,42 +4,65 @@ import { useState } from "react";
 import Comment from "../types/CommentTypes";
 
 interface Props {
-  onClick: any;
+  onClick?: any;
   likesCount: number;
-  commentId: number;
-  updateComments: (updatedComments: Comment[]) => void;
+  photoId?: number;
+  commentId?: number; 
+  updatePhotos?: (updatedPhotos: any[]) => void; 
+  updateComments?: (updatedComments: Comment[]) => void;
 }
 
 const LikeButton = ({
   onClick,
   likesCount,
-  commentId,
+  photoId,
+  commentId, 
+  updatePhotos, 
   updateComments,
 }: Props) => {
   const [status, setStatus] = useState(true);
 
   const toggle = () => {
     setStatus(!status);
-    onClick();
   };
 
   const handleLikeClick = () => {
-    const updatedLikesCount = status ? likesCount + 1 : likesCount - 1;
-
-    const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
-
-    const updatedComments = storedComments.map((comment: Comment) => {
-      if (comment.comment_id === commentId) {
-        return { ...comment, likes: updatedLikesCount };
-      }
-      return comment;
-    });
-
-    localStorage.setItem("comments", JSON.stringify(updatedComments));
-
-    updateComments(updatedComments);
-
     toggle();
+    const updatedLikesCount = status ? likesCount + 1 : likesCount - 1;
+    
+    if (updatePhotos && typeof updatePhotos === "function") {
+      const storedPhotos = JSON.parse(localStorage.getItem("PHOTO_DATA")) || [];
+
+      const updatedPhotos = storedPhotos.map((photo: any) => {
+        if (photo.id === photoId) {
+          return { ...photo, likes: updatedLikesCount };
+        }
+        return photo;
+      });
+
+      localStorage.setItem("PHOTO_DATA", JSON.stringify(updatedPhotos));
+
+      updatePhotos(updatedPhotos);
+    } else {
+      console.log("updatePhotos not provided or not a function");
+    }
+
+    if (updateComments && typeof updateComments === "function") {
+      const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
+
+      const updatedComments = storedComments.map((comment: Comment) => {
+        if (comment.comment_id === commentId) {
+          return { ...comment, likes: updatedLikesCount };
+        }
+        return comment;
+      });
+
+      localStorage.setItem("comments", JSON.stringify(updatedComments));
+
+      updateComments(updatedComments);
+    } else {
+      console.log("updateComments not provided or not a function");
+    }
   };
 
   if (status) {

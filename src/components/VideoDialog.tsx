@@ -4,12 +4,12 @@ import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
 import { Grid, IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
-import getCommentsData from "./getCommentsData";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 import data from "./photodata.json";
 import Comment from "../types/CommentTypes";
 import Photo from "../types/Phototypes";
+
 interface VideoDialogProps {
   imageSrc: string;
   open: any;
@@ -21,29 +21,51 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
   open,
   onClose,
 }) => {
-  const { comments, error } = getCommentsData();
+  const [comments, setComments] = useState<Comment[]>([]);
   const [filteredComments, setFilteredComments] = useState<Comment[]>([]);
 
   useEffect(() => {
-    const photo = data.photos.find((photo: Photo) => photo.url === imageSrc);
+    const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
+    setComments(storedComments);
+    filterComments(imageSrc, storedComments);
+  }, [imageSrc]);
 
-    const commentsForImage = comments.filter(
-      (comment: Comment) => comment.photo_id === photo?.id
-    );
-
-    setFilteredComments(commentsForImage);
-  }, [imageSrc, comments, error]);
-
-  const handleUpdateComments = (updatedComments: Comment[]) => {
+  const filterComments = (imageSrc: string, comments: Comment[]) => {
     const currentPhoto = data.photos.find(
       (photo: Photo) => photo.url === imageSrc
     );
 
-    const commentsForImage = updatedComments.filter(
+    const commentsForImage = comments.filter(
       (comment: Comment) => comment.photo_id === currentPhoto?.id
     );
 
     setFilteredComments(commentsForImage);
+  };
+
+  const handleUpdateComments = (updatedComments: Comment[]) => {
+    setComments(updatedComments);
+    filterComments(imageSrc, updatedComments);
+  };
+
+  const handleAddComment = (commentText: string) => {
+    const currentPhoto = data.photos.find(
+      (photo: Photo) => photo.url === imageSrc
+    );
+
+    if (currentPhoto) {
+      const newComment: Comment = {
+        user_name: "New User",
+        comment_text: commentText,
+        comment_date: new Date().toLocaleString(),
+        likes: 0,
+        photo_id: currentPhoto.id,
+        comment_id: comments.length + 1,
+      };
+
+      const updatedComments = [...comments, newComment];
+      localStorage.setItem("comments", JSON.stringify(updatedComments));
+      handleUpdateComments(updatedComments);
+    }
   };
 
   return (
@@ -66,13 +88,9 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
       <DialogContent style={{ height: "800px" }}>
         <Grid container spacing={2} style={{ maxWidth: "lg" }}>
           <Grid item xs={8} md={6}>
-            <div
-              style={{
-                height: "800px",
-                overflow: "hidden",
-              }}
-            >
-              <img
+            
+            <div style={{ width: "100%", height: "100%", backgroundColor: "#f0f0f0" }}>
+            <img
                 src={imageSrc}
                 alt="Selected Image"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -117,7 +135,7 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
             backgroundColor: "#ffffff",
           }}
         >
-          <AddCommentForm onAddComment={null} />
+          <AddCommentForm onAddComment={handleAddComment} />
         </div>
       </DialogContent>
     </Dialog>

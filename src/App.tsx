@@ -7,6 +7,7 @@ import { Video } from "./components/Video";
 import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import data from "./components/Profilepage/data.json";
+import photodata from "./components/photodata.json";
 
 function App() {
   const localStorageData = localStorage.getItem("UPDATE_PROFILE");
@@ -14,6 +15,8 @@ function App() {
     if (!localStorageData)
       localStorage.setItem("UPDATE_PROFILE", JSON.stringify(data.profile));
   }, []);
+
+  localStorage.setItem("PHOTO_DATA", JSON.stringify(photodata.photos));
 
   return (
     <div>

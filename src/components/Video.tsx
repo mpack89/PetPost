@@ -11,8 +11,9 @@ import LikeButton from "../components/LikeButton";
 import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { TextField } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
 
-export function Video(autoplay: false) {
+export function Video() {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -35,6 +36,7 @@ export function Video(autoplay: false) {
         transform: "translate(-50%, -50%)",
         overflowY: "auto",
         width: 800,
+        marginTop: 36,
       }}
     >
       <Carousel
@@ -60,6 +62,27 @@ export function Video(autoplay: false) {
 }
 
 export function Item({ image, onImageClick }) {
+  const commentData = localStorage.getItem("comments");
+  const commentArray = JSON.parse(commentData);
+
+  const commentsForImage = commentArray.filter(
+    (comment) => comment.photo_id === image.id
+  );
+
+  const commentCount = commentsForImage.length;
+
+  let firstCommentText = "";
+  if (commentCount > 0) {
+    const words = commentsForImage[0].comment_text.split(" ");
+
+    firstCommentText =
+      words.slice(0, 5).join(" ") + (words.length > 5 ? "..." : "");
+  }
+
+  const firstCommentUser =
+    commentCount > 0 ? commentsForImage[0].user_name : "";
+  
+  
   return (
     <Card
       sx={{
@@ -117,15 +140,22 @@ export function Item({ image, onImageClick }) {
           }}
           fullWidth
         />
+        <Tooltip title={`${image.likes} likes`} arrow>
         <IconButton aria-label="add to favorites">
-          <LikeButton onClick={null} likesCount={null} />
+          <LikeButton likesCount={image.likesCount} />
         </IconButton>
+        </Tooltip>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
+        <Tooltip
+          title={`${commentCount} Comments - ${firstCommentUser}:${firstCommentText}`}
+          arrow
+        >
         <IconButton onClick={() => onImageClick(image)}>
           <ChatBubbleOutlineIcon />
         </IconButton>
+        </Tooltip>
       </CardActions>
     </Card>
   );

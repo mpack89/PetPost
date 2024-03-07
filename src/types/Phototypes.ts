@@ -3,7 +3,8 @@ interface Photo {
     url: string;
     page: string;
     user: string;
-    avatar: string;
+    likes: number;
+    avatar?: string;
   }
 
   export default Photo
