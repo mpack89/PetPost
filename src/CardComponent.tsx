@@ -3,10 +3,10 @@ import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
-import LikeButton from "./components/LikeButton";
 import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
+import LikeButton from "./components/LikeButton"; 
 
 const CardComponent = ({ image, onImageClick, onImageHover }) => {
   const commentData = localStorage.getItem("comments");
@@ -60,7 +60,7 @@ const CardComponent = ({ image, onImageClick, onImageHover }) => {
           height: 500,
         }}
         alt={image.user}
-        onMouseEnter={() => onImageHover(image.url)} 
+        onMouseEnter={() => onImageHover(image.url)}
       />
 
       <CardActions disableSpacing>
@@ -68,9 +68,23 @@ const CardComponent = ({ image, onImageClick, onImageHover }) => {
           <IconButton
             aria-label="add to favorites"
             style={{ background: "transparent", border: "none" }}
-            
           >
-            <LikeButton likesCount={image.likesCount} />
+            <LikeButton
+              likesCount={image.likes}
+              photoId={image.id}
+              updatePhotos={(updatedPhotos) => {
+                localStorage.setItem(
+                  "PHOTO_DATA",
+                  JSON.stringify(updatedPhotos)
+                );
+              }}
+              updateComments={(updatedComments) => {
+                localStorage.setItem(
+                  "comments",
+                  JSON.stringify(updatedComments)
+                );
+              }}
+            />
           </IconButton>
         </Tooltip>
         <IconButton
