@@ -12,6 +12,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { TextField } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
+import "./Carousel.css";
 
 export function Video() {
   const images = data.photos;
@@ -60,7 +61,7 @@ export function Video() {
           alt=""
         />
       )}
-      <div
+      <div className="carousel-container"
         style={{
           position: "absolute",
           left: "50%",
@@ -68,7 +69,8 @@ export function Video() {
           transform: "translate(-50%, -50%)",
           overflowY: "auto",
           width: 800,
-          marginTop: 36,
+         
+          
           
         }}
       >
@@ -121,11 +123,12 @@ export function Item({ image, index, onImageClick }) {
   return (
     <Card
       sx={{
-        width: 450,
-        height: 630,
+        width: 480,
+        height: 680,
         color: "black",
         marginLeft: 22,
         position: "relative",
+        marginTop: 10,
       }}
     >
       <CardHeader
@@ -134,6 +137,7 @@ export function Item({ image, index, onImageClick }) {
           fontFamily: "revert",
           fontWeight: 500,
           textAlign: "center",
+          
         }}
         avatar={<Avatar src={image.avatar} />}
         title={image.user}
@@ -144,6 +148,8 @@ export function Item({ image, index, onImageClick }) {
           gridTemplateColumns: "auto auto",
           justifyContent: "center",
           alignItems: "center",
+          
+
         }}
       />
 
@@ -151,17 +157,18 @@ export function Item({ image, index, onImageClick }) {
         src={image.url}
         style={{
           borderRadius: 4,
-          width: 450,
-          height: 580,
+          width: 480,
+          height: 500,
         }}
         alt={image.user}
       />
       <CardActions
         sx={{
           position: "absolute",
-          bottom: 0,
+          bottom: 42,
           width: "96%",
           backgroundColor: "transparent",
+          marginTop: 0,
         }}
         disableSpacing
       >
