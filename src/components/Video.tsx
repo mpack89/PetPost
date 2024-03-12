@@ -180,9 +180,11 @@ export function Item({ image, index, onImageClick }) {
         }}
         disableSpacing
       >
-        <Typography variant="body1">
-          {currentComment ? `${currentComment.user_name}: ${currentComment.comment_text}` : ""}
-        </Typography>
+        <div style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", width: "380px" }}>
+          <Typography sx={{fontSize: 14}} variant="body1">
+            {currentComment ? `${currentComment.user_name}: ${currentComment.comment_text}` : ""}
+          </Typography>
+        </div>
         <Tooltip title={`${image.likes} likes`} arrow>
           <IconButton aria-label="add to favorites">
            
