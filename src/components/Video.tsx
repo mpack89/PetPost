@@ -16,10 +16,10 @@ import Tooltip from "@mui/material/Tooltip";
 export function Video() {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const handleImageClick = (image) => {
-    setSelectedImage(image);
+    setSelectedImageIndex(images.indexOf(image));
     setDialogOpen(true);
   };
 
@@ -28,40 +28,76 @@ export function Video() {
   };
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        overflowY: "auto",
-        width: 800,
-        marginTop: 36,
-      }}
-    >
-      <Carousel
-        autoPlay={false}
-        navButtonsAlwaysVisible={true}
-        animation="slide"
+    <div>
+      {images[selectedImageIndex - 1] && (
+        <img
+          src={images[selectedImageIndex - 1].url}
+          style={{
+            position: "fixed",
+            left: 0,
+            top: 0,
+            zIndex: -1,
+            width: "50%",
+            height: "100%",
+            objectFit:"cover",
+            borderRadius:"10px"
+          }}
+          alt=""
+        />
+      )}
+      {images[selectedImageIndex + 1] && (
+        <img
+          src={images[selectedImageIndex + 1].url}
+          style={{
+            position: "fixed",
+            right: 0,
+            top: 0,
+            zIndex: -1,
+            width: "50%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+          alt=""
+        />
+      )}
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          overflowY: "auto",
+          width: 800,
+          marginTop: 36,
+          
+        }}
       >
-        {images.map((image, i) => (
-          <Item
-            key={i}
-            image={image}
-            onImageClick={() => handleImageClick(image)}
-          />
-        ))}
-      </Carousel>
-      <VideoDialog
-        imageSrc={selectedImage?.url}
-        open={dialogOpen}
-        onClose={handleCloseDialog}
-      />
+        <Carousel
+          autoPlay={false}
+          navButtonsAlwaysVisible={true}
+          animation="slide"
+          onChange={(index) => setSelectedImageIndex(index)}
+        >
+          {images.map((image, i) => (
+            <Item
+              key={i}
+              index={i}
+              image={image}
+              onImageClick={handleImageClick}
+            />
+          ))}
+        </Carousel>
+        <VideoDialog
+          imageSrc={images[selectedImageIndex]?.url}
+          open={dialogOpen}
+          onClose={handleCloseDialog}
+        />
+      </div>
     </div>
   );
 }
 
-export function Item({ image, onImageClick }) {
+export function Item({ image, index, onImageClick }) {
   const commentData = localStorage.getItem("comments");
   const commentArray = JSON.parse(commentData);
 
@@ -81,8 +117,7 @@ export function Item({ image, onImageClick }) {
 
   const firstCommentUser =
     commentCount > 0 ? commentsForImage[0].user_name : "";
-  
-  
+
   return (
     <Card
       sx={{
@@ -141,9 +176,9 @@ export function Item({ image, onImageClick }) {
           fullWidth
         />
         <Tooltip title={`${image.likes} likes`} arrow>
-        <IconButton aria-label="add to favorites">
-          <LikeButton likesCount={image.likesCount} />
-        </IconButton>
+          <IconButton aria-label="add to favorites">
+            <LikeButton likesCount={image.likesCount} />
+          </IconButton>
         </Tooltip>
         <IconButton aria-label="share">
           <ShareIcon />
@@ -152,9 +187,9 @@ export function Item({ image, onImageClick }) {
           title={`${commentCount} Comments - ${firstCommentUser}:${firstCommentText}`}
           arrow
         >
-        <IconButton onClick={() => onImageClick(image)}>
-          <ChatBubbleOutlineIcon />
-        </IconButton>
+          <IconButton onClick={() => onImageClick(image)}>
+            <ChatBubbleOutlineIcon />
+          </IconButton>
         </Tooltip>
       </CardActions>
     </Card>
