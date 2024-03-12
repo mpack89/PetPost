@@ -80,7 +80,7 @@ export function Video() {
           navButtonsAlwaysVisible={true}
           animation="slide"
           onChange={(index) => setSelectedImageIndex(index)}
-        >
+          IndicatorIcon={false}        >
           {images.map((image, i) => (
             <Item
               key={i}
@@ -106,30 +106,32 @@ export function Item({ image, index, onImageClick }) {
   const [currentCommentIndex, setCurrentCommentIndex] = useState(0);
 
   useEffect(() => {
+    const commentsForImage = commentArray.filter(
+      (comment) => comment.photo_id === image.id
+    );
+
     const interval = setInterval(() => {
-      setCurrentCommentIndex((prevIndex) => (prevIndex + 1) % commentArray.length);
-    }, 10000); // Change comment every 10 seconds
+      setCurrentCommentIndex((prevIndex) => {
+        if (prevIndex + 1 >= commentsForImage.length) {
+          return 0; // Reset to zero if end of comments reached
+        } else {
+          return prevIndex + 1; // Increment index
+        }
+      });
+    }, 10000); 
 
     return () => clearInterval(interval);
-  }, [commentArray.length]);
+  }, [commentArray, image.id]);
 
-  const currentComment = commentArray[currentCommentIndex];
   const commentsForImage = commentArray.filter(
     (comment) => comment.photo_id === image.id
   );
 
+  const currentComment = commentsForImage[currentCommentIndex];
   const commentCount = commentsForImage.length;
 
-  let firstCommentText = "";
-  if (commentCount > 0) {
-    const words = commentsForImage[0].comment_text.split(" ");
 
-    firstCommentText =
-      words.slice(0, 5).join(" ") + (words.length > 5 ? "..." : "");
-  }
-
-  const firstCommentUser =
-    commentCount > 0 ? commentsForImage[0].user_name : "";
+ 
 
   return (
     <Card
@@ -196,7 +198,7 @@ export function Item({ image, index, onImageClick }) {
           <ShareIcon />
         </IconButton>
         <Tooltip
-          title={`Comments - ${currentComment ? `${currentComment.user_name}: ${currentComment.comment_text}` : ""}`}
+          title={`Comments - ${commentCount}`}
           arrow
         >
           <IconButton onClick={() => onImageClick(image)}>
