@@ -70,75 +70,49 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
-      <IconButton
-        edge="end"
-        color="inherit"
-        onClick={onClose}
-        aria-label="close"
-        sx={{
-          position: "absolute",
-          top: "8px",
-          right: "60px",
-          zIndex: 1,
-        }}
-      >
-        <CloseIcon />
-      </IconButton>
-
-      <DialogContent style={{ height: "800px" }}>
-        <Grid container spacing={2} style={{ maxWidth: "lg" }}>
-          <Grid item xs={8} md={6}>
-            
-            <div style={{ width: "100%", height: "100%", backgroundColor: "#f0f0f0" }}>
-            <img
-                src={imageSrc}
-                alt="Selected Image"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-          </Grid>
-          <Grid
-            item
-            container
-            xs={12}
-            md={6}
-            direction="column"
-            style={{
-              position: "relative",
-              overflowY: "auto",
-              height: "800px",
-            }}
-          >
-            <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
-              {filteredComments.map((comment, index) => (
-                <CommentItem
-                  key={index}
-                  user_name={comment.user_name}
-                  comment_text={comment.comment_text}
-                  comment_date={comment.comment_date}
-                  likes={comment.likes}
-                  comment_id={comment.comment_id}
-                  updateComments={handleUpdateComments}
-                />
-              ))}
-            </List>
-          </Grid>
-        </Grid>
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            width: "50%",
-            marginBottom: "16px",
-            paddingTop: "16px",
-            backgroundColor: "#ffffff",
-          }}
-        >
+    <IconButton
+      edge="end"
+      color="inherit"
+      onClick={onClose}
+      aria-label="close"
+      sx={{
+        position: "absolute",
+        top: "8px",
+        right: "60px",
+        zIndex: 1,
+      }}
+    >
+      <CloseIcon />
+    </IconButton>
+  
+    <DialogContent style={{ height: "800px", overflowY: "auto", display: "flex" }}>
+      <div style={{ width: "50%" }}> 
+        <img
+          src={imageSrc}
+          alt="Selected Image"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </div>
+      <div style={{ width: "50%", overflowY: "auto" }}> 
+        <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}> 
+          {filteredComments.map((comment, index) => (
+            <CommentItem
+              key={index}
+              user_name={comment.user_name}
+              comment_text={comment.comment_text}
+              comment_date={comment.comment_date}
+              likes={comment.likes}
+              comment_id={comment.comment_id}
+              updateComments={handleUpdateComments}
+            />
+          ))}
+        </List>
+        <div style={{ position: "absolute", bottom: 2, right: 0, width: "50%", background: "#ffffff" }}> 
           <AddCommentForm onAddComment={handleAddComment} />
         </div>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </DialogContent>
+  </Dialog>
   );
 };
 

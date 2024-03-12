@@ -1,6 +1,6 @@
 import Carousel from "react-material-ui-carousel";
 import data from "./photodata.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import VideoDialog from "../components/VideoDialog";
 import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
@@ -13,6 +13,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { TextField } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
+import Typography from "@mui/material/Typography";
 
 export function Video() {
   const images = data.photos;
@@ -102,7 +103,17 @@ export function Video() {
 export function Item({ image, index, onImageClick }) {
   const commentData = localStorage.getItem("comments");
   const commentArray = JSON.parse(commentData);
+  const [currentCommentIndex, setCurrentCommentIndex] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCommentIndex((prevIndex) => (prevIndex + 1) % commentArray.length);
+    }, 10000); // Change comment every 10 seconds
+
+    return () => clearInterval(interval);
+  }, [commentArray.length]);
+
+  const currentComment = commentArray[currentCommentIndex];
   const commentsForImage = commentArray.filter(
     (comment) => comment.photo_id === image.id
   );
@@ -137,7 +148,6 @@ export function Item({ image, index, onImageClick }) {
           fontFamily: "revert",
           fontWeight: 500,
           textAlign: "center",
-          
         }}
         avatar={<Avatar src={image.avatar} />}
         title={image.user}
@@ -148,8 +158,6 @@ export function Item({ image, index, onImageClick }) {
           gridTemplateColumns: "auto auto",
           justifyContent: "center",
           alignItems: "center",
-          
-
         }}
       />
 
@@ -172,18 +180,12 @@ export function Item({ image, index, onImageClick }) {
         }}
         disableSpacing
       >
-        <TextField
-          label="Reply to..."
-          variant="outlined"
-          size="small"
-          sx={{
-            marginLeft: 0,
-            marginRight: 0,
-          }}
-          fullWidth
-        />
+        <Typography variant="body1">
+          {currentComment ? `${currentComment.user_name}: ${currentComment.comment_text}` : ""}
+        </Typography>
         <Tooltip title={`${image.likes} likes`} arrow>
           <IconButton aria-label="add to favorites">
+           
             <LikeButton likesCount={image.likesCount} />
           </IconButton>
         </Tooltip>
@@ -191,7 +193,7 @@ export function Item({ image, index, onImageClick }) {
           <ShareIcon />
         </IconButton>
         <Tooltip
-          title={`${commentCount} Comments - ${firstCommentUser}:${firstCommentText}`}
+          title={`Comments - ${currentComment ? `${currentComment.user_name}: ${currentComment.comment_text}` : ""}`}
           arrow
         >
           <IconButton onClick={() => onImageClick(image)}>
