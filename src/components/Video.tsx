@@ -180,9 +180,10 @@ export function Item({ image, index, onImageClick }) {
         }}
         disableSpacing
       >
-        <div style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", width: "380px" }}>
-          <Typography sx={{fontSize: 14}} variant="body1">
-            {currentComment ? `${currentComment.user_name}: ${currentComment.comment_text}` : ""}
+        <div style={{ overflow: "hidden", textOverflow: "ellipsis", width: "380px"}}>
+        <Typography sx={{fontSize: 10}} variant="body1">
+            <span style={{ fontWeight: "bold" }}>{currentComment ? `${currentComment.user_name}: ` : ""}</span>
+            {currentComment ? currentComment.comment_text : ""}
           </Typography>
         </div>
         <Tooltip title={`${image.likes} likes`} arrow>
