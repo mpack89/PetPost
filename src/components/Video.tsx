@@ -10,7 +10,6 @@ import Avatar from "@mui/material/Avatar";
 import LikeButton from "../components/LikeButton";
 import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import { TextField } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
 import Typography from "@mui/material/Typography";
@@ -41,8 +40,8 @@ export function Video() {
             zIndex: -1,
             width: "50%",
             height: "100%",
-            objectFit:"cover",
-            borderRadius:"10px"
+            objectFit: "cover",
+            borderRadius: "10px",
           }}
           alt=""
         />
@@ -62,17 +61,15 @@ export function Video() {
           alt=""
         />
       )}
-      <div className="carousel-container"
+      <div
+        className="carousel-container"
         style={{
           position: "absolute",
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
-          overflowY: "auto",
+          overflowY: "hidden",
           width: 800,
-         
-          
-          
         }}
       >
         <Carousel
@@ -80,7 +77,8 @@ export function Video() {
           navButtonsAlwaysVisible={true}
           animation="slide"
           onChange={(index) => setSelectedImageIndex(index)}
-          IndicatorIcon={false}        >
+          IndicatorIcon={false}
+        >
           {images.map((image, i) => (
             <Item
               key={i}
@@ -113,12 +111,12 @@ export function Item({ image, index, onImageClick }) {
     const interval = setInterval(() => {
       setCurrentCommentIndex((prevIndex) => {
         if (prevIndex + 1 >= commentsForImage.length) {
-          return 0; // Reset to zero if end of comments reached
+          return 0;
         } else {
-          return prevIndex + 1; // Increment index
+          return prevIndex + 1;
         }
       });
-    }, 10000); 
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [commentArray, image.id]);
@@ -130,9 +128,6 @@ export function Item({ image, index, onImageClick }) {
   const currentComment = commentsForImage[currentCommentIndex];
   const commentCount = commentsForImage.length;
 
-
- 
-
   return (
     <Card
       sx={{
@@ -142,6 +137,7 @@ export function Item({ image, index, onImageClick }) {
         marginLeft: 22,
         position: "relative",
         marginTop: 10,
+      
       }}
     >
       <CardHeader
@@ -182,25 +178,31 @@ export function Item({ image, index, onImageClick }) {
         }}
         disableSpacing
       >
-        <div style={{ overflow: "hidden", textOverflow: "ellipsis", width: "380px"}}>
-        <Typography sx={{fontSize: 10}} variant="body1">
-            <span style={{ fontWeight: "bold" }}>{currentComment ? `${currentComment.user_name}: ` : ""}</span>
+        <div
+          style={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            width: "360px",
+            height: "30px",
+            marginBottom: 12,
+          }}
+        >
+          <Typography sx={{ fontSize: 10 }} variant="body1">
+            <span style={{ fontWeight: "bold" }}>
+              {currentComment ? `${currentComment.user_name}: ` : ""}
+            </span>
             {currentComment ? currentComment.comment_text : ""}
           </Typography>
         </div>
         <Tooltip title={`${image.likes} likes`} arrow>
           <IconButton aria-label="add to favorites">
-           
             <LikeButton likesCount={image.likesCount} />
           </IconButton>
         </Tooltip>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <Tooltip
-          title={`Comments - ${commentCount}`}
-          arrow
-        >
+        <Tooltip title={`Comments - ${commentCount}`} arrow>
           <IconButton onClick={() => onImageClick(image)}>
             <ChatBubbleOutlineIcon />
           </IconButton>
