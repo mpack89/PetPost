@@ -17,10 +17,10 @@ import Typography from "@mui/material/Typography";
 export function Video() {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(1); 
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0); 
 
   const handleImageClick = (image) => {
-    setSelectedImageIndex(images.indexOf(image) + 1); 
+    setSelectedImageIndex(images.indexOf(image)); 
     setDialogOpen(true);
   };
 
@@ -31,7 +31,7 @@ export function Video() {
   return (
     <div>
       <img
-        src={images[(selectedImageIndex + images.length - 2) % images.length].url}
+        src={images[(selectedImageIndex + images.length - 1) % images.length].url}
         style={{
           position: "fixed",
           left: 0,
@@ -45,7 +45,7 @@ export function Video() {
         alt=""
       />
       <img
-        src={images[selectedImageIndex % images.length].url}
+        src={images[(selectedImageIndex + 1) % images.length].url}
         style={{
           position: "fixed",
           right: 0,
@@ -72,8 +72,8 @@ export function Video() {
           autoPlay={false}
           navButtonsAlwaysVisible={true}
           animation="slide"
-          index={selectedImageIndex - 1} 
-          onChange={(index) => setSelectedImageIndex(index + 1)} 
+          index={selectedImageIndex} 
+          onChange={(index) => setSelectedImageIndex(index)} 
           IndicatorIcon={false}
         >
           {images.map((image, i) => (
@@ -86,7 +86,7 @@ export function Video() {
           ))}
         </Carousel>
         <VideoDialog
-          imageSrc={images[selectedImageIndex - 1]?.url}
+          imageSrc={images[selectedImageIndex]?.url}
           open={dialogOpen}
           onClose={handleCloseDialog}
         />
@@ -94,6 +94,7 @@ export function Video() {
     </div>
   );
 }
+
 
 
 
