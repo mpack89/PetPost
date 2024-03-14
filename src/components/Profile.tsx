@@ -51,8 +51,9 @@ export default function BasicTabs() {
       style={{
         position: "absolute",
         left: "50%",
-        top: "30%",
+        top: "50%",
         transform: "translate(-50%, -50%)",
+        
       }}
     >
       <Stack direction="column" spacing={2}>

@@ -1,6 +1,6 @@
 import Carousel from "react-material-ui-carousel";
 import data from "./photodata.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import VideoDialog from "../components/VideoDialog";
 import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
@@ -10,16 +10,17 @@ import Avatar from "@mui/material/Avatar";
 import LikeButton from "../components/LikeButton";
 import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import { TextField } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
+import "./Carousel.css";
+import Typography from "@mui/material/Typography";
 
 export function Video() {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0); 
 
   const handleImageClick = (image) => {
-    setSelectedImage(image);
+    setSelectedImageIndex(images.indexOf(image)); 
     setDialogOpen(true);
   };
 
@@ -28,69 +29,115 @@ export function Video() {
   };
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        overflowY: "auto",
-        width: 800,
-        marginTop: 36,
-      }}
-    >
-      <Carousel
-        autoPlay={false}
-        navButtonsAlwaysVisible={true}
-        animation="slide"
-      >
-        {images.map((image, i) => (
-          <Item
-            key={i}
-            image={image}
-            onImageClick={() => handleImageClick(image)}
-          />
-        ))}
-      </Carousel>
-      <VideoDialog
-        imageSrc={selectedImage?.url}
-        open={dialogOpen}
-        onClose={handleCloseDialog}
+    <div>
+      <img
+        src={images[(selectedImageIndex + images.length - 1) % images.length].url}
+        style={{
+          position: "fixed",
+          left: 0,
+          top: 0,
+          zIndex: -1,
+          width: "50%",
+          height: "100%",
+          objectFit: "cover",
+          borderRadius: "10px",
+        }}
+        alt=""
       />
+      <img
+        src={images[(selectedImageIndex + 1) % images.length].url}
+        style={{
+          position: "fixed",
+          right: 0,
+          top: 0,
+          zIndex: -1,
+          width: "50%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+        alt=""
+      />
+      <div
+        className="carousel-container"
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          overflowY: "hidden",
+          width: 800,
+        }}
+      >
+        <Carousel
+          autoPlay={false}
+          navButtonsAlwaysVisible={true}
+          animation="slide"
+          index={selectedImageIndex} 
+          onChange={(index) => setSelectedImageIndex(index)} 
+          IndicatorIcon={false}
+        >
+          {images.map((image, i) => (
+            <Item
+              key={i}
+              index={i}
+              image={image}
+              onImageClick={handleImageClick}
+            />
+          ))}
+        </Carousel>
+        <VideoDialog
+          imageSrc={images[selectedImageIndex]?.url}
+          open={dialogOpen}
+          onClose={handleCloseDialog}
+        />
+      </div>
     </div>
   );
 }
 
-export function Item({ image, onImageClick }) {
+
+
+
+export function Item({ image, index, onImageClick }) {
   const commentData = localStorage.getItem("comments");
   const commentArray = JSON.parse(commentData);
+  const [currentCommentIndex, setCurrentCommentIndex] = useState(0);
+
+  useEffect(() => {
+    const commentsForImage = commentArray.filter(
+      (comment) => comment.photo_id === image.id
+    );
+
+    const interval = setInterval(() => {
+      setCurrentCommentIndex((prevIndex) => {
+        if (prevIndex + 1 >= commentsForImage.length) {
+          return 0;
+        } else {
+          return prevIndex + 1;
+        }
+      });
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [commentArray, image.id]);
 
   const commentsForImage = commentArray.filter(
     (comment) => comment.photo_id === image.id
   );
 
+  const currentComment = commentsForImage[currentCommentIndex];
   const commentCount = commentsForImage.length;
 
-  let firstCommentText = "";
-  if (commentCount > 0) {
-    const words = commentsForImage[0].comment_text.split(" ");
-
-    firstCommentText =
-      words.slice(0, 5).join(" ") + (words.length > 5 ? "..." : "");
-  }
-
-  const firstCommentUser =
-    commentCount > 0 ? commentsForImage[0].user_name : "";
-  
-  
   return (
     <Card
       sx={{
-        width: 450,
-        height: 630,
+        width: 480,
+        height: 680,
         color: "black",
         marginLeft: 22,
         position: "relative",
+        marginTop: 10,
+      
       }}
     >
       <CardHeader
@@ -116,45 +163,49 @@ export function Item({ image, onImageClick }) {
         src={image.url}
         style={{
           borderRadius: 4,
-          width: 450,
-          height: 580,
+          width: 480,
+          height: 500,
         }}
         alt={image.user}
       />
       <CardActions
         sx={{
           position: "absolute",
-          bottom: 0,
+          bottom: 42,
           width: "96%",
           backgroundColor: "transparent",
+          marginTop: 0,
         }}
         disableSpacing
       >
-        <TextField
-          label="Reply to..."
-          variant="outlined"
-          size="small"
-          sx={{
-            marginLeft: 0,
-            marginRight: 0,
+        <div
+          style={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            width: "360px",
+            height: "30px",
+            marginBottom: 12,
           }}
-          fullWidth
-        />
+        >
+          <Typography sx={{ fontSize: 10 }} variant="body1">
+            <span style={{ fontWeight: "bold" }}>
+              {currentComment ? `${currentComment.user_name}: ` : ""}
+            </span>
+            {currentComment ? currentComment.comment_text : ""}
+          </Typography>
+        </div>
         <Tooltip title={`${image.likes} likes`} arrow>
-        <IconButton aria-label="add to favorites">
-          <LikeButton likesCount={image.likesCount} />
-        </IconButton>
+          <IconButton aria-label="add to favorites">
+            <LikeButton likesCount={image.likesCount} />
+          </IconButton>
         </Tooltip>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <Tooltip
-          title={`${commentCount} Comments - ${firstCommentUser}:${firstCommentText}`}
-          arrow
-        >
-        <IconButton onClick={() => onImageClick(image)}>
-          <ChatBubbleOutlineIcon />
-        </IconButton>
+        <Tooltip title={`Comments - ${commentCount}`} arrow>
+          <IconButton onClick={() => onImageClick(image)}>
+            <ChatBubbleOutlineIcon />
+          </IconButton>
         </Tooltip>
       </CardActions>
     </Card>
