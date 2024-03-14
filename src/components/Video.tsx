@@ -17,10 +17,10 @@ import Typography from "@mui/material/Typography";
 export function Video() {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(1); 
 
   const handleImageClick = (image) => {
-    setSelectedImageIndex(images.indexOf(image));
+    setSelectedImageIndex(images.indexOf(image) + 1); 
     setDialogOpen(true);
   };
 
@@ -30,37 +30,33 @@ export function Video() {
 
   return (
     <div>
-      {images[selectedImageIndex - 1] && (
-        <img
-          src={images[selectedImageIndex - 1].url}
-          style={{
-            position: "fixed",
-            left: 0,
-            top: 0,
-            zIndex: -1,
-            width: "50%",
-            height: "100%",
-            objectFit: "cover",
-            borderRadius: "10px",
-          }}
-          alt=""
-        />
-      )}
-      {images[selectedImageIndex + 1] && (
-        <img
-          src={images[selectedImageIndex + 1].url}
-          style={{
-            position: "fixed",
-            right: 0,
-            top: 0,
-            zIndex: -1,
-            width: "50%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-          alt=""
-        />
-      )}
+      <img
+        src={images[(selectedImageIndex + images.length - 2) % images.length].url}
+        style={{
+          position: "fixed",
+          left: 0,
+          top: 0,
+          zIndex: -1,
+          width: "50%",
+          height: "100%",
+          objectFit: "cover",
+          borderRadius: "10px",
+        }}
+        alt=""
+      />
+      <img
+        src={images[selectedImageIndex % images.length].url}
+        style={{
+          position: "fixed",
+          right: 0,
+          top: 0,
+          zIndex: -1,
+          width: "50%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+        alt=""
+      />
       <div
         className="carousel-container"
         style={{
@@ -76,7 +72,8 @@ export function Video() {
           autoPlay={false}
           navButtonsAlwaysVisible={true}
           animation="slide"
-          onChange={(index) => setSelectedImageIndex(index)}
+          index={selectedImageIndex - 1} 
+          onChange={(index) => setSelectedImageIndex(index + 1)} 
           IndicatorIcon={false}
         >
           {images.map((image, i) => (
@@ -89,7 +86,7 @@ export function Video() {
           ))}
         </Carousel>
         <VideoDialog
-          imageSrc={images[selectedImageIndex]?.url}
+          imageSrc={images[selectedImageIndex - 1]?.url}
           open={dialogOpen}
           onClose={handleCloseDialog}
         />
@@ -97,6 +94,8 @@ export function Video() {
     </div>
   );
 }
+
+
 
 export function Item({ image, index, onImageClick }) {
   const commentData = localStorage.getItem("comments");
