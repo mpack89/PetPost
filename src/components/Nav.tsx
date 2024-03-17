@@ -7,10 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import SettingsIcon from '@mui/icons-material/Settings';
 import { NavLink } from "react-router-dom";
 import ImageIcon from "@mui/icons-material/Image";
 import { PlayCircle, AccountCircle, Home } from "@mui/icons-material";
 import { useState } from "react";
+
 
 function Nav() {
   const [auth, setAuth] = React.useState(true);
@@ -44,6 +46,18 @@ function Nav() {
           </Typography>
           {auth && (
             <div>
+               <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                component={null}
+                to="/Settings"
+              >
+                <SettingsIcon />
+              </IconButton>
+              
               <IconButton
                 size="large"
                 aria-label="account of current user"
