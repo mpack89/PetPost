@@ -14,7 +14,7 @@ import { PlayCircle, AccountCircle, Home} from "@mui/icons-material";
 import { useState } from "react";
 import Settings from "./Settings";
 
-function Nav() {
+function Nav({setAutoPlay}) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [settingsAnchorEl, setSettingsAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -106,7 +106,7 @@ function Nav() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <Settings />
+                  <Settings setAutoplay={setAutoPlay}/>
                 </MenuItem>
               </Menu>
               <IconButton

@@ -14,7 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
 import Typography from "@mui/material/Typography";
 
-export function Video() {
+export function Video({autoplay}) {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0); 
@@ -69,7 +69,7 @@ export function Video() {
         }}
       >
         <Carousel
-          autoPlay={false}
+          autoPlay={autoplay}
           navButtonsAlwaysVisible={true}
           animation="slide"
           index={selectedImageIndex} 

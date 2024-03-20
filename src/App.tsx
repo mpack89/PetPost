@@ -8,6 +8,8 @@ import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import data from "./components/Profilepage/data.json";
 import photodata from "./components/photodata.json";
+import { useState } from "react";
+
 
 function App() {
   const localStorageData = localStorage.getItem("UPDATE_PROFILE");
@@ -17,18 +19,19 @@ function App() {
   }, []);
 
   localStorage.setItem("PHOTO_DATA", JSON.stringify(photodata.photos));
+  const [autoplay, setAutoplay] = useState(false);
 
   return (
     <div>
       <Grid>
-        <Nav />
+        <Nav setAutoPlay={setAutoplay} />
       </Grid>
       <Grid>
         <Routes>
           <Route path="/Home" element={<Home />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Photo" element={<Photo />} />
-          <Route path="/Video" element={<Video />} />
+          <Route path="/Video" element={<Video autoplay={autoplay}/>} />
         </Routes>
       </Grid>
     </div>

@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { FormGroup, FormControlLabel, Switch } from '@mui/material';
 
-function Settings() {
-  const [autoplay, setAutoplay] = useState(false);
-  const [sounds, setSounds] = useState(false);
-
-  const handleAutoplayChange = () => {
-    setAutoplay(!autoplay);
-  };
-
-  const handleSoundsChange = () => {
-    setSounds(!sounds);
-  };
+  function Settings({ setAutoplay }) {
+    const [sounds, setSounds] = useState(false);
+  
+    const handleAutoplayChange = () => {
+      setAutoplay((prevAutoplay) => !prevAutoplay);
+    };
+  
+    const handleSoundsChange = () => {
+      setSounds(!sounds);
+    };
 
   return (
     <FormGroup>
       <FormControlLabel
-        control={<Switch checked={autoplay} onChange={handleAutoplayChange} />}
+        control={<Switch onChange={handleAutoplayChange} />}
         label="Autoplay"
       />
       <FormControlLabel
