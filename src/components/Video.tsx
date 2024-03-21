@@ -93,6 +93,7 @@ export function Video({ autoplay, sounds }) {
           imageSrc={images[selectedImageIndex]?.url}
           open={dialogOpen}
           onClose={handleCloseDialog}
+          sounds={sounds}
         />
       </div>
     </div>
