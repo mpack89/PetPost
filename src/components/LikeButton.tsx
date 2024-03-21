@@ -7,8 +7,8 @@ interface Props {
   onClick?: any;
   likesCount: number;
   photoId?: number;
-  commentId?: number; 
-  updatePhotos?: (updatedPhotos: any[]) => void; 
+  commentId?: number;
+  updatePhotos?: (updatedPhotos: any[]) => void;
   updateComments?: (updatedComments: Comment[]) => void;
 }
 
@@ -16,20 +16,30 @@ const LikeButton = ({
   onClick,
   likesCount,
   photoId,
-  commentId, 
-  updatePhotos, 
+  commentId,
+  updatePhotos,
   updateComments,
 }: Props) => {
   const [status, setStatus] = useState(true);
 
+  const soundPath = "src/sounds/likesound.mp3";
+
+  const playSound = () => {
+    const audio = new Audio(soundPath);
+    audio
+      .play()
+      .catch((error) => console.error("Error playing the sound:", error));
+  };
   const toggle = () => {
     setStatus(!status);
   };
 
   const handleLikeClick = () => {
     toggle();
+    playSound();
+
     const updatedLikesCount = status ? likesCount + 1 : likesCount - 1;
-    
+
     if (updatePhotos && typeof updatePhotos === "function") {
       const storedPhotos = JSON.parse(localStorage.getItem("PHOTO_DATA")) || [];
 

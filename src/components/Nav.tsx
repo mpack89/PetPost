@@ -7,17 +7,18 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import ImageIcon from '@mui/icons-material/Image'
-import SettingsIcon from '@mui/icons-material/Settings';
+import ImageIcon from "@mui/icons-material/Image";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { NavLink } from "react-router-dom";
-import { PlayCircle, AccountCircle, Home} from "@mui/icons-material";
+import { PlayCircle, AccountCircle, Home } from "@mui/icons-material";
 import { useState } from "react";
 import Settings from "./Settings";
 
-function Nav({setAutoPlay}) {
+function Nav({ setAutoPlay }) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [settingsAnchorEl, setSettingsAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [settingsAnchorEl, setSettingsAnchorEl] =
+    React.useState<null | HTMLElement>(null);
   const [page, setPage] = useState("");
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -77,16 +78,28 @@ function Nav({setAutoPlay}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <NavLink to="/Home" style={{ textDecoration: "none", color: "inherit" }}>
+                <NavLink
+                  to="/Home"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
                   <MenuItem onClick={handleClose}>Home</MenuItem>
                 </NavLink>
-                <NavLink to="/Profile" style={{ textDecoration: "none", color: "inherit" }}>
+                <NavLink
+                  to="/Profile"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                 </NavLink>
-                <NavLink to="/Photo" style={{ textDecoration: "none", color: "inherit" }}>
+                <NavLink
+                  to="/Photo"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
                   <MenuItem onClick={handleClose}>Photos</MenuItem>
                 </NavLink>
-                <NavLink to="/Video" style={{ textDecoration: "none", color: "inherit" }}>
+                <NavLink
+                  to="/Video"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
                   <MenuItem onClick={handleClose}>Videos</MenuItem>
                 </NavLink>
               </Menu>
@@ -106,7 +119,7 @@ function Nav({setAutoPlay}) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <Settings setAutoplay={setAutoPlay}/>
+                  <Settings setAutoplay={setAutoPlay} />
                 </MenuItem>
               </Menu>
               <IconButton

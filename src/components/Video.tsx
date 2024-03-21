@@ -14,13 +14,13 @@ import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
 import Typography from "@mui/material/Typography";
 
-export function Video({autoplay}) {
+export function Video({ autoplay }) {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0); 
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const carouselInterval = 10000;
   const handleImageClick = (image) => {
-    setSelectedImageIndex(images.indexOf(image)); 
+    setSelectedImageIndex(images.indexOf(image));
     setDialogOpen(true);
   };
 
@@ -31,7 +31,9 @@ export function Video({autoplay}) {
   return (
     <div>
       <img
-        src={images[(selectedImageIndex + images.length - 1) % images.length].url}
+        src={
+          images[(selectedImageIndex + images.length - 1) % images.length].url
+        }
         style={{
           position: "fixed",
           left: 0,
@@ -72,8 +74,8 @@ export function Video({autoplay}) {
           autoPlay={autoplay}
           navButtonsAlwaysVisible={true}
           animation="slide"
-          index={selectedImageIndex} 
-          onChange={(index) => setSelectedImageIndex(index)} 
+          index={selectedImageIndex}
+          onChange={(index) => setSelectedImageIndex(index)}
           IndicatorIcon={false}
           interval={carouselInterval}
         >
@@ -95,9 +97,6 @@ export function Video({autoplay}) {
     </div>
   );
 }
-
-
-
 
 export function Item({ image, index, onImageClick }) {
   const commentData = localStorage.getItem("comments");
@@ -138,7 +137,6 @@ export function Item({ image, index, onImageClick }) {
         marginLeft: 22,
         position: "relative",
         marginTop: 10,
-      
       }}
     >
       <CardHeader
