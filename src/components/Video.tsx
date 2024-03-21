@@ -18,7 +18,7 @@ export function Video({autoplay}) {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0); 
-
+  const carouselInterval = 10000;
   const handleImageClick = (image) => {
     setSelectedImageIndex(images.indexOf(image)); 
     setDialogOpen(true);
@@ -75,6 +75,7 @@ export function Video({autoplay}) {
           index={selectedImageIndex} 
           onChange={(index) => setSelectedImageIndex(index)} 
           IndicatorIcon={false}
+          interval={carouselInterval}
         >
           {images.map((image, i) => (
             <Item
