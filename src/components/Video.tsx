@@ -14,7 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
 import Typography from "@mui/material/Typography";
 
-export function Video({ autoplay }) {
+export function Video({ autoplay, sounds }) {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -85,6 +85,7 @@ export function Video({ autoplay }) {
               index={i}
               image={image}
               onImageClick={handleImageClick}
+              sounds={sounds}
             />
           ))}
         </Carousel>
@@ -98,7 +99,7 @@ export function Video({ autoplay }) {
   );
 }
 
-export function Item({ image, index, onImageClick }) {
+export function Item({ image, index, onImageClick, sounds }) {
   const commentData = localStorage.getItem("comments");
   const commentArray = JSON.parse(commentData);
   const [currentCommentIndex, setCurrentCommentIndex] = useState(0);
@@ -195,7 +196,7 @@ export function Item({ image, index, onImageClick }) {
         </div>
         <Tooltip title={`${image.likes} likes`} arrow>
           <IconButton aria-label="add to favorites">
-            <LikeButton likesCount={image.likesCount} />
+            <LikeButton likesCount={image.likesCount} sounds={sounds} />
           </IconButton>
         </Tooltip>
         <IconButton aria-label="share">

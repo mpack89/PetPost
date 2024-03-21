@@ -10,12 +10,14 @@ interface Props {
   commentId?: number;
   updatePhotos?: (updatedPhotos: any[]) => void;
   updateComments?: (updatedComments: Comment[]) => void;
+  sounds: any;
 }
 
 const LikeButton = ({
   onClick,
   likesCount,
   photoId,
+  sounds,
   commentId,
   updatePhotos,
   updateComments,
@@ -25,11 +27,14 @@ const LikeButton = ({
   const soundPath = "src/sounds/likesound.mp3";
 
   const playSound = () => {
-    const audio = new Audio(soundPath);
-    audio
-      .play()
-      .catch((error) => console.error("Error playing the sound:", error));
+    if (sounds) {
+      const audio = new Audio(soundPath);
+      audio
+        .play()
+        .catch((error) => console.error("Error playing the sound:", error));
+    }
   };
+
   const toggle = () => {
     setStatus(!status);
   };

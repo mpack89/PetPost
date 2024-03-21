@@ -10,7 +10,6 @@ import data from "./components/Profilepage/data.json";
 import photodata from "./components/photodata.json";
 import { useState } from "react";
 
-
 function App() {
   const localStorageData = localStorage.getItem("UPDATE_PROFILE");
   useEffect(() => {
@@ -20,18 +19,22 @@ function App() {
 
   localStorage.setItem("PHOTO_DATA", JSON.stringify(photodata.photos));
   const [autoplay, setAutoplay] = useState(false);
+  const [sounds, setSounds] = useState(false);
 
   return (
     <div>
       <Grid>
-        <Nav setAutoPlay={setAutoplay} />
+        <Nav setAutoplay={setAutoplay} setSounds={setSounds} />
       </Grid>
       <Grid>
         <Routes>
           <Route path="/Home" element={<Home />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Photo" element={<Photo />} />
-          <Route path="/Video" element={<Video autoplay={autoplay}/>} />
+          <Route
+            path="/Video"
+            element={<Video autoplay={autoplay} sounds={sounds} />}
+          />
         </Routes>
       </Grid>
     </div>
