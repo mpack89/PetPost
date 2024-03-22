@@ -5,7 +5,7 @@ import ImageDialog from "../ImageDialog";
 import PhotoData from "../PhotoData";
 import "../styles.css";
 
-export default function WovenImageGrid() {
+export default function WovenImageGrid({sounds}) {
   const images = PhotoData();
   const imagesToRender = images.filter((image) => image.page === "photo");
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -35,6 +35,7 @@ export default function WovenImageGrid() {
                 image={image}
                 onImageClick={handleImageClick}
                 onImageHover={handleImageHover} 
+                sounds={sounds}
               />
             </Grid>
           ))}
@@ -45,6 +46,7 @@ export default function WovenImageGrid() {
         open={dialogOpen}
         onClose={handleCloseDialog}
         imageSrc={selectedImage}
+        sounds={sounds}
       />
     </>
   );

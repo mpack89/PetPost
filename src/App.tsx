@@ -28,9 +28,9 @@ function App() {
       </Grid>
       <Grid>
         <Routes>
-          <Route path="/Home" element={<Home />} />
+          <Route path="/Home" element={<Home sounds={sounds} />} />
           <Route path="/Profile" element={<Profile />} />
-          <Route path="/Photo" element={<Photo />} />
+          <Route path="/Photo" element={<Photo sounds={sounds} />} />
           <Route
             path="/Video"
             element={<Video autoplay={autoplay} sounds={sounds} />}

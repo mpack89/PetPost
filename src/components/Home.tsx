@@ -4,7 +4,7 @@ import data from "./photodata.json";
 import Grid from "@mui/material/Grid";
 import ImageDialog from "./ImageDialog";
 
-const Home = () => {
+const Home = ({sounds}) => {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -28,7 +28,7 @@ const Home = () => {
       >
         {images.map((image) => (
           <Grid item key={image.id} xs={12}>
-            <CardComponent image={image} onImageClick={handleImageClick} />
+            <CardComponent image={image} onImageClick={handleImageClick} onImageHover={null} sounds={sounds}  />
           </Grid>
         ))}
       </Grid>
@@ -37,6 +37,7 @@ const Home = () => {
         open={dialogOpen}
         onClose={handleCloseDialog}
         imageSrc={selectedImage}
+        sounds={sounds}
       />
     </>
   );
