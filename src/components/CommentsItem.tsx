@@ -12,6 +12,7 @@ interface CommentItemProps {
   likes: number;
   comment_id: number;
   updateComments: (updatedComments: Comment[]) => void;
+  sounds: any;
 }
 
 const CommentItem: React.FC<CommentItemProps> = ({
@@ -21,6 +22,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
   likes,
   comment_id,
   updateComments,
+  sounds,
 }) => {
   return (
     <Paper
@@ -86,6 +88,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
               likesCount={likes}
               commentId={comment_id}
               updateComments={updateComments}
+              sounds={sounds}
             />
           </div>
         </div>

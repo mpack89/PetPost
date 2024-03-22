@@ -14,13 +14,13 @@ import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
 import Typography from "@mui/material/Typography";
 
-export function Video() {
+export function Video({ autoplay, sounds }) {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0); 
-
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const carouselInterval = 10000;
   const handleImageClick = (image) => {
-    setSelectedImageIndex(images.indexOf(image)); 
+    setSelectedImageIndex(images.indexOf(image));
     setDialogOpen(true);
   };
 
@@ -31,7 +31,9 @@ export function Video() {
   return (
     <div>
       <img
-        src={images[(selectedImageIndex + images.length - 1) % images.length].url}
+        src={
+          images[(selectedImageIndex + images.length - 1) % images.length].url
+        }
         style={{
           position: "fixed",
           left: 0,
@@ -69,12 +71,13 @@ export function Video() {
         }}
       >
         <Carousel
-          autoPlay={false}
+          autoPlay={autoplay}
           navButtonsAlwaysVisible={true}
           animation="slide"
-          index={selectedImageIndex} 
-          onChange={(index) => setSelectedImageIndex(index)} 
+          index={selectedImageIndex}
+          onChange={(index) => setSelectedImageIndex(index)}
           IndicatorIcon={false}
+          interval={carouselInterval}
         >
           {images.map((image, i) => (
             <Item
@@ -82,6 +85,7 @@ export function Video() {
               index={i}
               image={image}
               onImageClick={handleImageClick}
+              sounds={sounds}
             />
           ))}
         </Carousel>
@@ -89,16 +93,14 @@ export function Video() {
           imageSrc={images[selectedImageIndex]?.url}
           open={dialogOpen}
           onClose={handleCloseDialog}
+          sounds={sounds}
         />
       </div>
     </div>
   );
 }
 
-
-
-
-export function Item({ image, index, onImageClick }) {
+export function Item({ image, index, onImageClick, sounds }) {
   const commentData = localStorage.getItem("comments");
   const commentArray = JSON.parse(commentData);
   const [currentCommentIndex, setCurrentCommentIndex] = useState(0);
@@ -137,7 +139,6 @@ export function Item({ image, index, onImageClick }) {
         marginLeft: 22,
         position: "relative",
         marginTop: 10,
-      
       }}
     >
       <CardHeader
@@ -196,7 +197,7 @@ export function Item({ image, index, onImageClick }) {
         </div>
         <Tooltip title={`${image.likes} likes`} arrow>
           <IconButton aria-label="add to favorites">
-            <LikeButton likesCount={image.likesCount} />
+            <LikeButton likesCount={image.likesCount} sounds={sounds} />
           </IconButton>
         </Tooltip>
         <IconButton aria-label="share">

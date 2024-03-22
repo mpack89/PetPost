@@ -14,12 +14,14 @@ interface VideoDialogProps {
   imageSrc: string;
   open: any;
   onClose: any;
+  sounds: any;
 }
 
 const VideoDialog: React.FC<VideoDialogProps> = ({
   imageSrc,
   open,
   onClose,
+  sounds,
 }) => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [filteredComments, setFilteredComments] = useState<Comment[]>([]);
@@ -104,6 +106,7 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
               likes={comment.likes}
               comment_id={comment.comment_id}
               updateComments={handleUpdateComments}
+              sounds={sounds}
             />
           ))}
         </List>

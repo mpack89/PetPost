@@ -8,7 +8,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
 import LikeButton from "./components/LikeButton"; 
 
-const CardComponent = ({ image, onImageClick, onImageHover }) => {
+const CardComponent = ({ image, onImageClick, onImageHover, sounds }) => {
   const commentData = localStorage.getItem("comments");
   const commentArray = JSON.parse(commentData);
 
@@ -71,6 +71,7 @@ const CardComponent = ({ image, onImageClick, onImageHover }) => {
           >
             <LikeButton
               likesCount={image.likes}
+              sounds={sounds}
               photoId={image.id}
               updatePhotos={(updatedPhotos) => {
                 localStorage.setItem(

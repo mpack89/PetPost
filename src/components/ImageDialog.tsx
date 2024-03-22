@@ -15,12 +15,14 @@ interface ImageDialogProps {
   imageSrc: string;
   open: any;
   onClose: any;
+  sounds: any;
 }
 
 const ImageDialog: React.FC<ImageDialogProps> = ({
   imageSrc,
   open,
   onClose,
+  sounds,
 }) => {
   const { comments: initialComments, error } = getCommentsData();
   const [comments, setComments] = useState<Comment[]>([]);
@@ -117,6 +119,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
               likes={comment.likes}
               comment_id={comment.comment_id}
               updateComments={handleUpdateComments}
+              sounds={sounds}
             />
           ))}
         </List>
