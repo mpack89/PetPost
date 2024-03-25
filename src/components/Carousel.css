@@ -4,3 +4,43 @@
     height: 100%;
     backdrop-filter: blur(10px); 
   }
+  .background-and-carousel .background-image {
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    width: 50%;
+    height: 100%;
+    
+  }
+  
+  .background-and-carousel .background-image.left {
+    left: 0;
+   
+  }
+  
+  .background-and-carousel .background-image.right {
+    right: 0;
+  }
+  
+  .carousel-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+   
+    width: 800px;
+  }
+  @media (max-width: 600px) {
+    .background-and-carousel .background-image {
+      display: none;
+    }
+  
+    .background-and-carousel .background-image.left {
+      display: none; 
+    }
+  
+    .carousel-container {
+      width: 100%; 
+      max-width: 100%; 
+    }
+  }

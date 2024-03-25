@@ -29,47 +29,18 @@ export function Video({ autoplay, sounds }) {
   };
 
   return (
-    <div>
+    <div className="background-and-carousel">
       <img
-        src={
-          images[(selectedImageIndex + images.length - 1) % images.length].url
-        }
-        style={{
-          position: "fixed",
-          left: 0,
-          top: 0,
-          zIndex: -1,
-          width: "50%",
-          height: "100%",
-          objectFit: "cover",
-          borderRadius: "10px",
-        }}
+        src={images[(selectedImageIndex + images.length - 1) % images.length].url}
+        className="background-image left"
         alt=""
       />
       <img
         src={images[(selectedImageIndex + 1) % images.length].url}
-        style={{
-          position: "fixed",
-          right: 0,
-          top: 0,
-          zIndex: -1,
-          width: "50%",
-          height: "100%",
-          objectFit: "cover",
-        }}
+        className="background-image right"
         alt=""
       />
-      <div
-        className="carousel-container"
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          overflowY: "hidden",
-          width: 800,
-        }}
-      >
+      <div className="carousel-container">
         <Carousel
           autoPlay={autoplay}
           navButtonsAlwaysVisible={true}
@@ -97,8 +68,7 @@ export function Video({ autoplay, sounds }) {
         />
       </div>
     </div>
-  );
-}
+);}
 
 export function Item({ image, index, onImageClick, sounds }) {
   const commentData = localStorage.getItem("comments");
@@ -136,7 +106,7 @@ export function Item({ image, index, onImageClick, sounds }) {
         width: 480,
         height: 680,
         color: "black",
-        marginLeft: 22,
+        marginLeft: 20,
         position: "relative",
         marginTop: 10,
       }}

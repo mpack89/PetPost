@@ -21,7 +21,7 @@ function Settings({ setAutoplay, setSounds }) {
       />
       <FormControlLabel
         control={<Switch checked={sounds} onChange={handleSoundsChange} />}
-        label="Sound"
+        label="Sounds"
       />
     </FormGroup>
   );
