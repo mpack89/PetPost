@@ -13,12 +13,33 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
 import Typography from "@mui/material/Typography";
+import { Grid } from "@mui/material";
+import CardComponent from "../CardComponent";
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); 
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isMobile;
+}
 
 export function Video({ autoplay, sounds }) {
   const images = data.photos;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const carouselInterval = 10000;
+  const isMobile = useIsMobile();
+
   const handleImageClick = (image) => {
     setSelectedImageIndex(images.indexOf(image));
     setDialogOpen(true);
@@ -30,45 +51,69 @@ export function Video({ autoplay, sounds }) {
 
   return (
     <div className="background-and-carousel">
-      <img
-        src={images[(selectedImageIndex + images.length - 1) % images.length].url}
-        className="background-image left"
-        alt=""
+      {isMobile ? (
+        <div className="page-container">
+          <Grid container spacing={1} justifyContent={"space-around"}>
+            {images.map((image) => (
+              <Grid item key={image.id}>
+                <CardComponent
+                  image={image}
+                  onImageClick={null}
+                  onImageHover={null}
+                  sounds={sounds}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+      ) : (
+        <>
+          <img
+            src={
+              images[(selectedImageIndex + images.length - 1) % images.length]
+                .url
+            }
+            className="background-image left"
+            alt=""
+          />
+          <img
+            src={images[(selectedImageIndex + 1) % images.length].url}
+            className="background-image right"
+            alt=""
+          />
+          <div className="carousel-container">
+            <Carousel
+              autoPlay={autoplay}
+              navButtonsAlwaysVisible={true}
+              animation="slide"
+              index={selectedImageIndex}
+              onChange={(index) => setSelectedImageIndex(index)}
+              IndicatorIcon={false}
+              interval={carouselInterval}
+            >
+              {images.map((image, i) => (
+                <Item
+                  key={i}
+                  index={i}
+                  image={image}
+                  onImageClick={handleImageClick}
+                  sounds={sounds}
+                />
+              ))}
+            </Carousel>
+          </div>
+        </>
+      )}
+
+      <VideoDialog
+        imageSrc={images[selectedImageIndex]?.url}
+        open={dialogOpen}
+        onClose={handleCloseDialog}
+        sounds={sounds}
       />
-      <img
-        src={images[(selectedImageIndex + 1) % images.length].url}
-        className="background-image right"
-        alt=""
-      />
-      <div className="carousel-container">
-        <Carousel
-          autoPlay={autoplay}
-          navButtonsAlwaysVisible={true}
-          animation="slide"
-          index={selectedImageIndex}
-          onChange={(index) => setSelectedImageIndex(index)}
-          IndicatorIcon={false}
-          interval={carouselInterval}
-        >
-          {images.map((image, i) => (
-            <Item
-              key={i}
-              index={i}
-              image={image}
-              onImageClick={handleImageClick}
-              sounds={sounds}
-            />
-          ))}
-        </Carousel>
-        <VideoDialog
-          imageSrc={images[selectedImageIndex]?.url}
-          open={dialogOpen}
-          onClose={handleCloseDialog}
-          sounds={sounds}
-        />
-      </div>
     </div>
-);}
+  );
+}
 
 export function Item({ image, index, onImageClick, sounds }) {
   const commentData = localStorage.getItem("comments");
