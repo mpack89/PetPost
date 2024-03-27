@@ -18,6 +18,24 @@ interface ImageDialogProps {
   sounds: any;
 }
 
+function useWindowSize() {
+  const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+  useEffect(() => {
+    const resizeListener = () => {
+      setSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    
+    window.addEventListener('resize', resizeListener);
+    
+    return () => {
+      window.removeEventListener('resize', resizeListener);
+    };
+  }, []);
+
+  return size;
+}
+
 const ImageDialog: React.FC<ImageDialogProps> = ({
   imageSrc,
   open,
@@ -27,6 +45,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   const { comments: initialComments, error } = getCommentsData();
   const [comments, setComments] = useState<Comment[]>([]);
   const [filteredComments, setFilteredComments] = useState<Comment[]>([]);
+  const { width } = useWindowSize(); 
 
   useEffect(() => {
     if (initialComments.length > 0) {
@@ -85,50 +104,51 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
-    <IconButton
-      edge="end"
-      color="inherit"
-      onClick={onClose}
-      aria-label="close"
-      sx={{
-        position: "absolute",
-        top: "8px",
-        right: "60px",
-        zIndex: 1,
-      }}
-    >
-      <CloseIcon />
-    </IconButton>
-  
-    <DialogContent style={{ height: "800px", overflowY: "auto", display: "flex" }}>
-      <div style={{ width: "50%" }}> 
-        <img
-          src={imageSrc}
-          alt="Selected Image"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
-      </div>
-      <div style={{ width: "50%", overflowY: "auto" }}> 
-        <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}> 
-          {filteredComments.map((comment, index) => (
-            <CommentItem
-              key={index}
-              user_name={comment.user_name}
-              comment_text={comment.comment_text}
-              comment_date={comment.comment_date}
-              likes={comment.likes}
-              comment_id={comment.comment_id}
-              updateComments={handleUpdateComments}
-              sounds={sounds}
-            />
-          ))}
-        </List>
-        <div style={{ position: "absolute", bottom: 2, right: 0, width: "50%", background: "#ffffff" }}> 
-          <AddCommentForm onAddComment={handleAddComment} />
+      <IconButton
+        edge="end"
+        color="inherit"
+        onClick={onClose}
+        aria-label="close"
+        sx={{
+          position: "absolute",
+          top: "8px",
+          right: "60px",
+          zIndex: 1,
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+      <DialogContent style={{ height: "800px", overflowY: "auto", display: "flex" }}>
+        <div style={{ width: "100%" }}>
+          <img
+            src={imageSrc}
+            alt="Selected Image"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
         </div>
-      </div>
-    </DialogContent>
-  </Dialog>
+        {width > 768 && (
+          <div style={{ width: "50%", overflowY: "auto" }}>
+            <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
+              {filteredComments.map((comment, index) => (
+                <CommentItem
+                  key={index}
+                  user_name={comment.user_name}
+                  comment_text={comment.comment_text}
+                  comment_date={comment.comment_date}
+                  likes={comment.likes}
+                  comment_id={comment.comment_id}
+                  updateComments={handleUpdateComments}
+                  sounds={sounds}
+                />
+              ))}
+            </List>
+            <div style={{ position: "absolute", bottom: 2, right: 0, width: "50%", background: "#ffffff" }}>
+              <AddCommentForm onAddComment={handleAddComment} />
+            </div>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 };
 
