@@ -119,7 +119,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
         <CloseIcon />
       </IconButton>
       <DialogContent style={{ height: "800px", overflowY: "auto", display: "flex" }}>
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "50%" }}>
           <img
             src={imageSrc}
             alt="Selected Image"
@@ -142,7 +142,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
                 />
               ))}
             </List>
-            <div style={{ position: "absolute", bottom: 2, right: 0, width: "50%", background: "#ffffff" }}>
+            <div style={{ position: "absolute", bottom: 20, right: 0, width: "50%", background: "#ffffff" }}>
               <AddCommentForm onAddComment={handleAddComment} />
             </div>
           </div>
