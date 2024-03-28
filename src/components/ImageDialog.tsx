@@ -118,36 +118,49 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
       >
         <CloseIcon />
       </IconButton>
-      <DialogContent style={{ height: "800px", overflowY: "auto", display: "flex" }}>
-        <div style={{ width: "50%" }}>
-          <img
-            src={imageSrc}
-            alt="Selected Image"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+
+      <DialogContent style={{ height: "800px", overflowY: "auto", display: 'flex', flexDirection: width < 600 ? 'column' : 'row' }}>
+  {width < 600 ? (
+    // This ensures the image takes up the full dialog on screens < 600px
+    <img
+      src={imageSrc}
+      alt="Selected Image"
+      style={{ width: "100%", height: "800px", objectFit: "cover" }}
+    />
+  ) : (
+    // For screens >= 600px, the original layout with the image and comments side by side
+    <>
+      <div style={{ width: "50%" }}>
+        <img
+          src={imageSrc}
+          alt="Selected Image"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </div>
+      <div style={{ width: "50%", overflowY: "auto", overflowX: "hidden" }}>
+        <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
+          {filteredComments.map((comment, index) => (
+            <CommentItem
+              key={index}
+              user_name={comment.user_name}
+              comment_text={comment.comment_text}
+              comment_date={comment.comment_date}
+              likes={comment.likes}
+              comment_id={comment.comment_id}
+              updateComments={handleUpdateComments}
+              sounds={sounds}
+            />
+          ))}
+        </List>
+        <div style={{ position: "absolute", bottom: 20, right: 0, width: "46%", background: "#ffffff", marginRight: 26, marginLeft: 20 }}>
+          <AddCommentForm onAddComment={handleAddComment} />
         </div>
-        {width > 767 && (
-          <div style={{ width: "50%", overflowY: "auto", overflowX: "hidden" }}>
-            <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
-              {filteredComments.map((comment, index) => (
-                <CommentItem
-                  key={index}
-                  user_name={comment.user_name}
-                  comment_text={comment.comment_text}
-                  comment_date={comment.comment_date}
-                  likes={comment.likes}
-                  comment_id={comment.comment_id}
-                  updateComments={handleUpdateComments}
-                  sounds={sounds}
-                />
-              ))}
-            </List>
-            <div style={{ position: "absolute", bottom: 20, right: 0, width: "46%", background: "#ffffff", marginRight: 26 }}>
-              <AddCommentForm onAddComment={handleAddComment} />
-            </div>
-          </div>
-        )}
-      </DialogContent>
+      </div>
+    </>
+  )}
+</DialogContent>
+
+
     </Dialog>
   );
 };
