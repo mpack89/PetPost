@@ -126,8 +126,8 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         </div>
-        {width > 768 && (
-          <div style={{ width: "50%", overflowY: "auto" }}>
+        {width > 767 && (
+          <div style={{ width: "50%", overflowY: "auto", overflowX: "hidden" }}>
             <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
               {filteredComments.map((comment, index) => (
                 <CommentItem
@@ -142,7 +142,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
                 />
               ))}
             </List>
-            <div style={{ position: "absolute", bottom: 20, right: 0, width: "50%", background: "#ffffff" }}>
+            <div style={{ position: "absolute", bottom: 20, right: 0, width: "46%", background: "#ffffff", marginRight: 26 }}>
               <AddCommentForm onAddComment={handleAddComment} />
             </div>
           </div>
