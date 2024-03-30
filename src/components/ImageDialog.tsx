@@ -4,7 +4,7 @@ import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
 import { Grid, IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
-import CommentIcon from "@mui/icons-material/Comment"; 
+import CommentIcon from "@mui/icons-material/Comment";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 import data from "./../components/photodata.json";
@@ -108,22 +108,23 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   };
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg" >
-      
-      <IconButton 
-        edge="end"
-        color="inherit"
-        onClick={onClose}
-        aria-label="close"
-        sx={{
-          position: "absolute",
-          top: 0,
-          right: 12,
-          zIndex: 1,
-        }}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
+      {!(width < 600 && showComments) && (
+        <IconButton
+          edge="end"
+          color="inherit"
+          onClick={onClose}
+          aria-label="close"
+          sx={{
+            position: "absolute",
+            top: 0,
+            right: 12,
+            zIndex: 1,
+          }}
+        >
+          <CloseIcon fontSize="small" />
+        </IconButton>
+      )}
 
       <DialogContent
         style={{
@@ -131,7 +132,6 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
           overflowY: "auto",
           display: "flex",
           flexDirection: width < 600 ? "column" : "row",
-          
         }}
       >
         {width < 600 && !showComments ? (
@@ -146,7 +146,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
                 position: "absolute",
                 zIndex: 1,
                 bottom: 20,
-                right: 20
+                right: 20,
               }}
               onClick={() => setShowComments(true)}
             >
@@ -173,12 +173,12 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             <IconButton
               style={{
                 position: "fixed",
-                top: 20,
-                right: 20,
+                top: 30,
+                right: 30,
               }}
               onClick={() => setShowComments(false)}
             >
-              <CloseIcon /> 
+              <CloseIcon fontSize="small" />
             </IconButton>
           </>
         ) : (
