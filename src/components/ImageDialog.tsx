@@ -4,6 +4,7 @@ import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
 import { Grid, IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
+import CommentIcon from "@mui/icons-material/Comment"; 
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
 import data from "./../components/photodata.json";
@@ -48,6 +49,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   const { comments: initialComments, error } = getCommentsData();
   const [comments, setComments] = useState<Comment[]>([]);
   const [filteredComments, setFilteredComments] = useState<Comment[]>([]);
+  const [showComments, setShowComments] = useState(false);
   const { width } = useWindowSize();
 
   useEffect(() => {
@@ -130,12 +132,51 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
           flexDirection: width < 600 ? "column" : "row",
         }}
       >
-        {width < 600 ? (
-          <img
-            src={imageSrc}
-            alt="Selected Image"
-            style={{ width: "100%", height: "800px", objectFit: "cover" }}
-          />
+        {width < 600 && !showComments ? (
+          <>
+            <img
+              src={imageSrc}
+              alt="Selected Image"
+              style={{ width: "100%", height: "800px", objectFit: "cover" }}
+            />
+            <IconButton
+              style={{
+                position: "absolute",
+                zIndex: 1,
+              }}
+              onClick={() => setShowComments(true)}
+            >
+              <CommentIcon />
+            </IconButton>
+          </>
+        ) : width < 600 && showComments ? (
+          <>
+            <List sx={{ width: "100%", height: "800px", overflowY: "auto" }}>
+              {filteredComments.map((comment, index) => (
+                <CommentItem
+                  key={index}
+                  user_name={comment.user_name}
+                  comment_text={comment.comment_text}
+                  comment_date={comment.comment_date}
+                  likes={comment.likes}
+                  comment_id={comment.comment_id}
+                  updateComments={handleUpdateComments}
+                  sounds={sounds}
+                />
+              ))}
+            </List>
+            <AddCommentForm onAddComment={handleAddComment} />
+            <IconButton
+              style={{
+                position: "fixed",
+                bottom: 20,
+                right: 20,
+              }}
+              onClick={() => setShowComments(false)}
+            >
+              <CloseIcon /> {/* Use CloseIcon or an appropriate icon to minimize/close the comment view */}
+            </IconButton>
+          </>
         ) : (
           <>
             <div style={{ width: "50%" }}>
