@@ -108,20 +108,21 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   };
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
-      <IconButton
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg" >
+      
+      <IconButton 
         edge="end"
         color="inherit"
         onClick={onClose}
         aria-label="close"
         sx={{
           position: "absolute",
-          top: "8px",
-          right: "60px",
+          top: 0,
+          right: 12,
           zIndex: 1,
         }}
       >
-        <CloseIcon />
+        <CloseIcon fontSize="small" />
       </IconButton>
 
       <DialogContent
@@ -130,6 +131,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
           overflowY: "auto",
           display: "flex",
           flexDirection: width < 600 ? "column" : "row",
+          
         }}
       >
         {width < 600 && !showComments ? (
@@ -143,10 +145,12 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
               style={{
                 position: "absolute",
                 zIndex: 1,
+                bottom: 20,
+                right: 20
               }}
               onClick={() => setShowComments(true)}
             >
-              <CommentIcon />
+              <CommentIcon fontSize="large" />
             </IconButton>
           </>
         ) : width < 600 && showComments ? (
@@ -169,12 +173,12 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             <IconButton
               style={{
                 position: "fixed",
-                bottom: 20,
+                top: 20,
                 right: 20,
               }}
               onClick={() => setShowComments(false)}
             >
-              <CloseIcon /> {/* Use CloseIcon or an appropriate icon to minimize/close the comment view */}
+              <CloseIcon /> 
             </IconButton>
           </>
         ) : (
