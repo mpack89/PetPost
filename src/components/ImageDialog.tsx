@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
-import { Grid, IconButton } from "@mui/material/";
+import { IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
 import CommentIcon from "@mui/icons-material/Comment";
 import CommentItem from "./CommentsItem";
