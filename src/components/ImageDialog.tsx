@@ -211,11 +211,9 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
                 style={{
                   position: "absolute",
                   bottom: 20,
-                  right: 0,
-                  width: "46%",
+                  width: "48%",
                   background: "#ffffff",
-                  marginRight: 26,
-                  marginLeft: 20,
+                  right: 24
                 }}
               >
                 <AddCommentForm onAddComment={handleAddComment} />
