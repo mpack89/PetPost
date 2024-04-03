@@ -1,5 +1,5 @@
 import Carousel from "react-material-ui-carousel";
-import data from "./photodata.json";
+import PhotoData from "./PhotoData";
 import { useState, useEffect } from "react";
 import VideoDialog from "../components/VideoDialog";
 import CardHeader from "@mui/material/CardHeader";
@@ -34,7 +34,7 @@ function useIsMobile() {
 }
 
 export function Video({ autoplay, sounds }) {
-  const images = data.photos;
+  const images = PhotoData();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const carouselInterval = 10000;
@@ -212,7 +212,22 @@ export function Item({ image, index, onImageClick, sounds }) {
         </div>
         <Tooltip title={`${image.likes} likes`} arrow>
           <IconButton aria-label="add to favorites">
-            <LikeButton likesCount={image.likesCount} sounds={sounds} />
+            <LikeButton
+              likesCount={image.likes}
+              sounds={sounds}
+              photoId={image.id}
+              updatePhotos={(updatedPhotos) => {
+                localStorage.setItem(
+                  "PHOTO_DATA",
+                  JSON.stringify(updatedPhotos)
+                );
+              }}
+              updateComments={(updatedComments) => {
+                localStorage.setItem(
+                  "comments",
+                  JSON.stringify(updatedComments)
+                );
+              }} />
           </IconButton>
         </Tooltip>
         <IconButton aria-label="share">
