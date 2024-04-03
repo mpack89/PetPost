@@ -25,7 +25,7 @@ function useIsMobile() {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); 
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -37,8 +37,14 @@ export function Video({ autoplay, sounds }) {
   const images = PhotoData();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
   const carouselInterval = 10000;
   const isMobile = useIsMobile();
+
+  const handleImageClickMobile = (image) => {
+    setSelectedImage(image);
+    setDialogOpen(true);
+  };
 
   const handleImageClick = (image) => {
     setSelectedImageIndex(images.indexOf(image));
@@ -58,7 +64,7 @@ export function Video({ autoplay, sounds }) {
               <Grid item key={image.id}>
                 <CardComponent
                   image={image}
-                  onImageClick={null}
+                  onImageClick={handleImageClickMobile}
                   onImageHover={null}
                   sounds={sounds}
                 />
@@ -227,7 +233,8 @@ export function Item({ image, index, onImageClick, sounds }) {
                   "comments",
                   JSON.stringify(updatedComments)
                 );
-              }} />
+              }}
+            />
           </IconButton>
         </Tooltip>
         <IconButton aria-label="share">
