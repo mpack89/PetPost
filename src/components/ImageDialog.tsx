@@ -169,7 +169,17 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
                 />
               ))}
             </List>
+            <div
+                style={{
+                  position: "absolute",
+                  bottom: 20,
+                  width: "100%",
+                  background: "#ffffff",
+                  right: 10
+                }}
+              >
             <AddCommentForm onAddComment={handleAddComment} />
+            </div>
             <IconButton
               style={{
                 position: "fixed",
