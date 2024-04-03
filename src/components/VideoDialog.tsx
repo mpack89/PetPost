@@ -26,6 +26,27 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
   const [comments, setComments] = useState<Comment[]>([]);
   const [filteredComments, setFilteredComments] = useState<Comment[]>([]);
 
+  function useWindowSize() {
+    const [size, setSize] = useState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  
+    useEffect(() => {
+      const resizeListener = () => {
+        setSize({ width: window.innerWidth, height: window.innerHeight });
+      };
+  
+      window.addEventListener("resize", resizeListener);
+  
+      return () => {
+        window.removeEventListener("resize", resizeListener);
+      };
+    }, []);
+  
+    return size;
+  }
+  
   useEffect(() => {
     const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
     setComments(storedComments);
