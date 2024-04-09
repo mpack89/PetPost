@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
-import { Grid, IconButton } from "@mui/material/";
+import { IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
@@ -26,6 +26,27 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
   const [comments, setComments] = useState<Comment[]>([]);
   const [filteredComments, setFilteredComments] = useState<Comment[]>([]);
 
+  function useWindowSize() {
+    const [size, setSize] = useState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
+    useEffect(() => {
+      const resizeListener = () => {
+        setSize({ width: window.innerWidth, height: window.innerHeight });
+      };
+
+      window.addEventListener("resize", resizeListener);
+
+      return () => {
+        window.removeEventListener("resize", resizeListener);
+      };
+    }, []);
+
+    return size;
+  }
+
   useEffect(() => {
     const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
     setComments(storedComments);
@@ -43,6 +64,8 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
 
     setFilteredComments(commentsForImage);
   };
+
+  const { width } = useWindowSize();
 
   const handleUpdateComments = (updatedComments: Comment[]) => {
     setComments(updatedComments);
@@ -72,50 +95,68 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
-    <IconButton
-      edge="end"
-      color="inherit"
-      onClick={onClose}
-      aria-label="close"
-      sx={{
-        position: "absolute",
-        top: "8px",
-        right: "60px",
-        zIndex: 1,
-      }}
-    >
-      <CloseIcon />
-    </IconButton>
-  
-    <DialogContent style={{ height: "800px", overflowY: "auto", display: "flex" }}>
-      <div style={{ width: "50%" }}> 
-        <img
-          src={imageSrc}
-          alt="Selected Image"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
-      </div>
-      <div style={{ width: "50%", overflowY: "auto" }}> 
-        <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}> 
-          {filteredComments.map((comment, index) => (
-            <CommentItem
-              key={index}
-              user_name={comment.user_name}
-              comment_text={comment.comment_text}
-              comment_date={comment.comment_date}
-              likes={comment.likes}
-              comment_id={comment.comment_id}
-              updateComments={handleUpdateComments}
-              sounds={sounds}
+      <IconButton
+        edge="end"
+        color="inherit"
+        onClick={onClose}
+        aria-label="close"
+        sx={{
+          position: "absolute",
+          top: "8px",
+          right: "60px",
+          zIndex: 1,
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+
+      <DialogContent
+        style={{
+          height: "800px",
+          overflowY: "auto",
+          display: "flex",
+          flexDirection: width < 600 ? "column" : "row",
+        }}
+      >
+        {!(width < 600) && (
+          <div style={{ width: "50%" }}>
+            <img
+              src={imageSrc}
+              alt="Selected Image"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
-          ))}
-        </List>
-        <div style={{ position: "absolute", bottom: 2, right: 0, width: "50%", background: "#ffffff" }}> 
-          <AddCommentForm onAddComment={handleAddComment} />
+          </div>
+        )}
+        <div style={{ width: width < 600 ? "100%" : "50%", overflowY: "auto" }}>
+          <List sx={{ width: "100%", maxWidth: 600, marginBottom: 10 }}>
+            {filteredComments.map((comment, index) => (
+              <CommentItem
+                key={index}
+                user_name={comment.user_name}
+                comment_text={comment.comment_text}
+                comment_date={comment.comment_date}
+                likes={comment.likes}
+                comment_id={comment.comment_id}
+                updateComments={handleUpdateComments}
+                sounds={sounds}
+              />
+            ))}
+          </List>
+          <div
+            style={{
+              position: "absolute",
+              bottom: 20,
+              right: 24,
+              width: width < 600 ? "94%" : "48%",
+              background: "#ffffff",
+            
+            }}
+          >
+            <AddCommentForm onAddComment={handleAddComment} />
+          </div>
         </div>
-      </div>
-    </DialogContent>
-  </Dialog>
+      </DialogContent>
+    </Dialog>
   );
 };
 

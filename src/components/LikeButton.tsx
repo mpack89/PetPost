@@ -24,17 +24,26 @@ const LikeButton = ({
 }: Props) => {
   const [status, setStatus] = useState(true);
 
-  const soundPath = "src/sounds/likesound.mp3";
+  const soundPaths = [
+    "src/sounds/cat.mp3",
+    "src/sounds/chicken.mp3",
+    "src/sounds/cow.mp3",
+    "src/sounds/dog.mp3",
+  ];
+  
 
-  const playSound = () => {
-    if (sounds) {
-      const audio = new Audio(soundPath);
-      audio
-        .play()
-        .catch((error) => console.error("Error playing the sound:", error));
-    }
-  };
+let currentSoundIndex = parseInt(localStorage.getItem("currentSoundIndex") || "0");
 
+const playSound = () => {
+  if (sounds) {
+    const audio = new Audio(soundPaths[currentSoundIndex]);
+    audio.play()
+      .catch((error) => console.error("Error playing the sound:", error));
+    currentSoundIndex = (currentSoundIndex + 1) % soundPaths.length;
+    // Store the updated currentSoundIndex in localStorage
+    localStorage.setItem("currentSoundIndex", currentSoundIndex.toString());
+  }
+};
   const toggle = () => {
     setStatus(!status);
   };

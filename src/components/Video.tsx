@@ -1,5 +1,5 @@
 import Carousel from "react-material-ui-carousel";
-import data from "./photodata.json";
+import PhotoData from "./PhotoData";
 import { useState, useEffect } from "react";
 import VideoDialog from "../components/VideoDialog";
 import CardHeader from "@mui/material/CardHeader";
@@ -13,12 +13,39 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
 import Typography from "@mui/material/Typography";
+import { Grid } from "@mui/material";
+import CardComponent from "../CardComponent";
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isMobile;
+}
 
 export function Video({ autoplay, sounds }) {
-  const images = data.photos;
+  const images = PhotoData();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
   const carouselInterval = 10000;
+  const isMobile = useIsMobile();
+
+  const handleImageClickMobile = (image) => {
+    setSelectedImage(image);
+    setDialogOpen(true);
+  };
+
   const handleImageClick = (image) => {
     setSelectedImageIndex(images.indexOf(image));
     setDialogOpen(true);
@@ -29,73 +56,67 @@ export function Video({ autoplay, sounds }) {
   };
 
   return (
-    <div>
-      <img
-        src={
-          images[(selectedImageIndex + images.length - 1) % images.length].url
-        }
-        style={{
-          position: "fixed",
-          left: 0,
-          top: 0,
-          zIndex: -1,
-          width: "50%",
-          height: "100%",
-          objectFit: "cover",
-          borderRadius: "10px",
-        }}
-        alt=""
+    <div className="background-and-carousel">
+      {isMobile ? (
+        <div className="page-container">
+          <Grid container spacing={1} justifyContent={"space-around"}>
+            {images.map((image) => (
+              <Grid item key={image.id}>
+                <CardComponent
+                  image={image}
+                  onImageClick={handleImageClickMobile}
+                  onImageHover={null}
+                  sounds={sounds}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+      ) : (
+        <>
+          <img
+            src={
+              images[(selectedImageIndex + images.length - 1) % images.length]
+                .url
+            }
+            className="background-image left"
+            alt=""
+          />
+          <img
+            src={images[(selectedImageIndex + 1) % images.length].url}
+            className="background-image right"
+            alt=""
+          />
+          <div className="carousel-container">
+            <Carousel
+              autoPlay={autoplay}
+              navButtonsAlwaysVisible={true}
+              animation="slide"
+              index={selectedImageIndex}
+              onChange={(index) => setSelectedImageIndex(index)}
+              IndicatorIcon={false}
+              interval={carouselInterval}
+            >
+              {images.map((image, i) => (
+                <Item
+                  key={i}
+                  index={i}
+                  image={image}
+                  onImageClick={handleImageClick}
+                  sounds={sounds}
+                />
+              ))}
+            </Carousel>
+          </div>
+        </>
+      )}
+
+      <VideoDialog
+        imageSrc={images[selectedImageIndex]?.url}
+        open={dialogOpen}
+        onClose={handleCloseDialog}
+        sounds={sounds}
       />
-      <img
-        src={images[(selectedImageIndex + 1) % images.length].url}
-        style={{
-          position: "fixed",
-          right: 0,
-          top: 0,
-          zIndex: -1,
-          width: "50%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-        alt=""
-      />
-      <div
-        className="carousel-container"
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          overflowY: "hidden",
-          width: 800,
-        }}
-      >
-        <Carousel
-          autoPlay={autoplay}
-          navButtonsAlwaysVisible={true}
-          animation="slide"
-          index={selectedImageIndex}
-          onChange={(index) => setSelectedImageIndex(index)}
-          IndicatorIcon={false}
-          interval={carouselInterval}
-        >
-          {images.map((image, i) => (
-            <Item
-              key={i}
-              index={i}
-              image={image}
-              onImageClick={handleImageClick}
-              sounds={sounds}
-            />
-          ))}
-        </Carousel>
-        <VideoDialog
-          imageSrc={images[selectedImageIndex]?.url}
-          open={dialogOpen}
-          onClose={handleCloseDialog}
-          sounds={sounds}
-        />
-      </div>
     </div>
   );
 }
@@ -136,7 +157,7 @@ export function Item({ image, index, onImageClick, sounds }) {
         width: 480,
         height: 680,
         color: "black",
-        marginLeft: 22,
+        marginLeft: 20,
         position: "relative",
         marginTop: 10,
       }}
@@ -197,7 +218,23 @@ export function Item({ image, index, onImageClick, sounds }) {
         </div>
         <Tooltip title={`${image.likes} likes`} arrow>
           <IconButton aria-label="add to favorites">
-            <LikeButton likesCount={image.likesCount} sounds={sounds} />
+            <LikeButton
+              likesCount={image.likes}
+              sounds={sounds}
+              photoId={image.id}
+              updatePhotos={(updatedPhotos) => {
+                localStorage.setItem(
+                  "PHOTO_DATA",
+                  JSON.stringify(updatedPhotos)
+                );
+              }}
+              updateComments={(updatedComments) => {
+                localStorage.setItem(
+                  "comments",
+                  JSON.stringify(updatedComments)
+                );
+              }}
+            />
           </IconButton>
         </Tooltip>
         <IconButton aria-label="share">
