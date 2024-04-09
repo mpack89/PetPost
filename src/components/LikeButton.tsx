@@ -30,20 +30,22 @@ const LikeButton = ({
     "src/sounds/cow.mp3",
     "src/sounds/dog.mp3",
   ];
-  
 
-let currentSoundIndex = parseInt(localStorage.getItem("currentSoundIndex") || "0");
+  let currentSoundIndex = parseInt(
+    localStorage.getItem("currentSoundIndex") || "0"
+  );
 
-const playSound = () => {
-  if (sounds) {
-    const audio = new Audio(soundPaths[currentSoundIndex]);
-    audio.play()
-      .catch((error) => console.error("Error playing the sound:", error));
-    currentSoundIndex = (currentSoundIndex + 1) % soundPaths.length;
-    // Store the updated currentSoundIndex in localStorage
-    localStorage.setItem("currentSoundIndex", currentSoundIndex.toString());
-  }
-};
+  const playSound = () => {
+    if (sounds) {
+      const audio = new Audio(soundPaths[currentSoundIndex]);
+      audio
+        .play()
+        .catch((error) => console.error("Error playing the sound:", error));
+      currentSoundIndex = (currentSoundIndex + 1) % soundPaths.length;
+
+      localStorage.setItem("currentSoundIndex", currentSoundIndex.toString());
+    }
+  };
   const toggle = () => {
     setStatus(!status);
   };
