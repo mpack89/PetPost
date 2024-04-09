@@ -79,11 +79,6 @@ const CommentItem: React.FC<CommentItemProps> = ({
             >
               {likes} Likes
             </Typography>
-            <Typography
-              style={{ fontWeight: "lighter", fontSize: "12px", color: "grey" }}
-            >
-              Reply
-            </Typography>
             <LikeButton
               likesCount={likes}
               commentId={comment_id}
