@@ -31,6 +31,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
         width: "80%",
         backgroundColor: "#f0f8ff",
         borderRadius: "6px",
+        marginBottom: "4%"
       }}
     >
       <ListItem>
