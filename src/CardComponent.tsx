@@ -7,27 +7,44 @@ import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
 import LikeButton from "./components/LikeButton"; 
+import { useState, useEffect } from "react";
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import { Icon } from "@mui/material";
 
 const CardComponent = ({ image, onImageClick, onImageHover, sounds }) => {
-  const commentData = localStorage.getItem("comments");
-  const commentArray = JSON.parse(commentData);
+  const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const commentsForImage = commentArray.filter(
-    (comment) => comment.photo_id === image.id
-  );
+  useEffect(() => {
+    // Fetch comment data from localStorage
+    const fetchComments = () => {
+      const commentData = localStorage.getItem("comments");
+      if (commentData) {
+        const commentArray = JSON.parse(commentData);
+        const commentsForImage = commentArray.filter(
+          (comment) => comment.photo_id === image.id
+        );
+        setComments(commentsForImage);
+      }
+      setIsLoading(false); // Set loading to false after fetching data
+    };
 
-  const commentCount = commentsForImage.length;
+    fetchComments();
+  }, [image.id]); // Depend on image.id to refetch when it changes
+
+  const commentCount = comments.length;
 
   let firstCommentText = "";
   if (commentCount > 0) {
-    const words = commentsForImage[0].comment_text.split(" ");
-
-    firstCommentText =
-      words.slice(0, 5).join(" ") + (words.length > 5 ? "..." : "");
+    const words = comments[0].comment_text.split(" ");
+    firstCommentText = words.slice(0, 5).join(" ") + (words.length > 5 ? "..." : "");
   }
 
-  const firstCommentUser =
-    commentCount > 0 ? commentsForImage[0].user_name : "";
+  const firstCommentUser = commentCount > 0 ? comments[0].user_name : "";
+
+  if (isLoading) {
+    return <div><Icon><HourglassEmptyIcon/></Icon></div>;
+  }
 
   return (
     <Card

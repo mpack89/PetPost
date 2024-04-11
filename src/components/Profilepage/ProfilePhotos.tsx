@@ -32,11 +32,6 @@ export default function ProfilePhotos() {
           </ImageListItem>
         ))}
       </ImageList>
-      <ImageDialog
-        open={dialogOpen}
-        onClose={handleCloseDialog}
-        imageSrc={selectedImage}
-      />
     </div>
   );
 }
