@@ -177,6 +177,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
                   background: "#ffffff",
                   right: 10,
                   padding: 4
+                  
                 }}
               >
             <AddCommentForm onAddComment={handleAddComment} />
@@ -222,10 +223,12 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
               <div
                 style={{
                   position: "absolute",
-                  bottom: 20,
-                  width: "48%",
+                  bottom: 18,
+                  width: "44%",
                   background: "#ffffff",
-                  right: 24
+                  right: "6%",
+                  padding: 0
+                  
                 }}
               >
                 <AddCommentForm onAddComment={handleAddComment} />
