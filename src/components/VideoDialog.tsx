@@ -145,9 +145,9 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
           <div
             style={{
               position: "absolute",
-              bottom: 20,
-              right: 24,
-              width: width < 600 ? "94%" : "48%",
+              bottom: 18,
+              right: "6%",
+              width: width < 600 ? "94%" : "44%",
               background: "#ffffff",
             
             }}
