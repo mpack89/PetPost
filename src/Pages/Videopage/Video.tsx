@@ -1,20 +1,20 @@
 import Carousel from "react-material-ui-carousel";
-import PhotoData from "./PhotoData";
+import PhotoData from "../../components/PhotoData";
 import { useState, useEffect } from "react";
-import VideoDialog from "../components/VideoDialog";
+import VideoDialog from "./VideoDialog";
 import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
 import Card from "@mui/material/Card";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
-import LikeButton from "../components/LikeButton";
+import LikeButton from "../../components/LikeButton";
 import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
-import CardComponent from "../CardComponent";
+import CardComponent from "../../CardComponent";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);

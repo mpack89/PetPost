@@ -4,11 +4,11 @@ import DialogContent from "@mui/material/DialogContent";
 import List from "@mui/material/List";
 import { IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
-import CommentItem from "./CommentsItem";
-import AddCommentForm from "./AddCommentForm";
-import data from "./photodata.json";
-import Comment from "../types/CommentTypes";
-import Photo from "../types/Phototypes";
+import CommentItem from "../../components/CommentsItem";
+import AddCommentForm from "../../components/AddCommentForm";
+import data from "../../components/photodata.json";
+import Comment from "../../types/CommentTypes";
+import Photo from "../../types/Phototypes";
 
 interface VideoDialogProps {
   imageSrc: string;

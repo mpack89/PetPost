@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
-import Photo from "./components/Photopage/Photo";
-import Profile from "./components/Profilepage/Profile";
-import { Video } from "./components/Video";
+import Photo from "./Pages/Photopage/Photo";
+import Profile from "./Pages/Profilepage/Profile";
+import { Video } from "./Pages/Videopage/Video";
 import { Grid } from "@mui/material";
 import { useEffect } from "react";
-import data from "./components/Profilepage/data.json";
+import data from "./Pages/Profilepage/data.json";
 import photodata from "./components/photodata.json";
 import { useState } from "react";
 
