@@ -6,7 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import ShareIcon from "@mui/icons-material/Share";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
-import LikeButton from "./components/LikeButton"; 
+import LikeButton from "./LikeButton"; 
 import { useState, useEffect } from "react";
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import { Icon } from "@mui/material";

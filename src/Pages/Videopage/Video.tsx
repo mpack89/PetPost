@@ -14,7 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import "./Carousel.css";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
-import CardComponent from "../../CardComponent";
+import CardComponent from "../../components/CardComponent";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
