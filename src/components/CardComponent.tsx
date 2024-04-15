@@ -8,8 +8,9 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Tooltip from "@mui/material/Tooltip";
 import LikeButton from "./LikeButton"; 
 import { useState, useEffect } from "react";
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import { Icon } from "@mui/material";
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const CardComponent = ({ image, onImageClick, onImageHover, sounds }) => {
   const [comments, setComments] = useState([]);
@@ -43,7 +44,19 @@ const CardComponent = ({ image, onImageClick, onImageHover, sounds }) => {
   const firstCommentUser = commentCount > 0 ? comments[0].user_name : "";
 
   if (isLoading) {
-    return <div><Icon><HourglassEmptyIcon/></Icon></div>;
+    return (
+      <Box
+        sx={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+        }}
+      >
+        <CircularProgress disableShrink />
+      </Box>
+    );
   }
 
   return (
