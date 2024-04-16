@@ -71,30 +71,37 @@ export default function BasicTabs() {
 
   return (
     <div>
-      <Grid
-        container
-        sx={{
+     <Grid
+  container
+  sx={{
+    padding: "4%", // Remove padding
+    marginTop: 0,
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh", // Adjust the height to fill the viewport
+  }}
+  direction="row"
+  spacing={2}
+>
+        <Grid
+          item
+          container
+          direction="row"
+          spacing={0}
+          justifyContent="center"
           
-          padding: "4%",
-          marginTop: 0
-          
-         
-        }}
-        alignItems={"center"}
-        direction="column"
-        spacing={2}
-        justifyContent={"center"}
-      >
-        <Grid item container direction="row" spacing={0} justifyContent="center" >
-          <Grid item xs={6} md={6}>
+        >
+          <Grid item xs={6} sm={4} md={4}>
             <Avatar
               alt="Mike Pack"
               src="src/images/casey.jpg"
-              sx={{ width: 140, height: 140}}
+              sx={{ width: 160, height: 160 }}
             />
           </Grid>
-          <Grid item xs={6} md={6}>
-            <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          <Grid item xs={6} sm={4} md={4}>
+            <Box
+              sx={{ display: "flex", flexDirection: "column", width: "100%" }}
+            >
               <Button
                 onClick={handleClickOpen}
                 variant="contained"
@@ -104,8 +111,6 @@ export default function BasicTabs() {
                   padding: 2,
                   textTransform: "none",
                   marginBottom: 2,
-                  
-                  
                 }}
               >
                 Edit Profile
@@ -134,7 +139,9 @@ export default function BasicTabs() {
 
               <>
                 <Typography textAlign={"center"}>Pet:{info?.pet}</Typography>
-                <Typography textAlign={"center"}>Human:{info?.owner}</Typography>
+                <Typography textAlign={"center"}>
+                  Human:{info?.owner}
+                </Typography>
                 <Typography textAlign={"center"}>Bio:{info?.bio}</Typography>
               </>
 
@@ -144,7 +151,18 @@ export default function BasicTabs() {
             </Box>
           </Grid>
         </Grid>
-        <Grid item xs={12} md={2}>
+<Grid
+  container
+  sx={{
+    padding: "4%",
+    marginTop: 0,
+  }}
+  alignItems={"center"}
+  direction="column"
+  spacing={0} 
+  justifyContent={"center"}
+>
+        <Grid item xs={12} sm={12} md={6}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -156,7 +174,7 @@ export default function BasicTabs() {
             <Tab label="Tagged" {...a11yProps(2)} />
           </Tabs>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={10} md={12}>
           <CustomTabPanel value={value} index={0}>
             {ProfilePhotos()}
           </CustomTabPanel>
@@ -166,6 +184,7 @@ export default function BasicTabs() {
           <CustomTabPanel value={value} index={2}>
             Tagged
           </CustomTabPanel>
+          </Grid>
         </Grid>
       </Grid>
     </div>

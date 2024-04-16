@@ -21,8 +21,8 @@ export default function ProfilePhotos() {
   };
 
   return (
-    <div>
-      <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <ImageList  sx={{ width: 450, height: 450   }} cols={3} rowHeight={164}>
         {imagesToRender.map((image) => (
           <ImageListItem
             onClick={() => handleImageClick(image.url)}
