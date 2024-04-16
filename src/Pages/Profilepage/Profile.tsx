@@ -12,10 +12,8 @@ import DialogContent from "@mui/material/DialogContent";
 import ProfileForm from "./ProfileForm";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
 import { getMyProfile } from "../../API/profileAPI";
+import Grid from "@mui/material/Grid";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -56,144 +54,109 @@ function a11yProps(index: number) {
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
+  const [isEditing, setisEditing] = React.useState(false);
+  const info = getMyProfile();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-  const [isEditing, setisEditing] = React.useState(false);
-
   const handleClickOpen = () => {
     setisEditing(true);
   };
+
   const handleClose = () => {
     setisEditing(false);
   };
 
-  const info = getMyProfile();
-
   return (
     <div>
-      <Stack
+      <Grid
+        container
         sx={{
-          position: "absolute",
-          left: "50%",
-          top: "70%",
-          transform: "translate(-50%, -50%)",
           
+          padding: "4%",
+          marginTop: 0
+          
+         
         }}
         alignItems={"center"}
         direction="column"
         spacing={2}
+        justifyContent={"center"}
       >
-        <Stack direction="row" spacing={6}>
-          <Stack direction="column" spacing={4}>
+        <Grid item container direction="row" spacing={0} justifyContent="center" >
+          <Grid item xs={6} md={6}>
             <Avatar
               alt="Mike Pack"
               src="src/images/casey.jpg"
-              sx={{ width: 140, height: 140, alignContent: "center" }}
+              sx={{ width: 140, height: 140}}
             />
-
-            <Stack direction="row" spacing={1}>
-              <IconButton
-                size="large"
-                aria-label="link to facebook"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+              <Button
+                onClick={handleClickOpen}
+                variant="contained"
+                sx={{
+                  background: "lightGrey",
+                  color: "black",
+                  padding: 2,
+                  textTransform: "none",
+                  marginBottom: 2,
+                  
+                  
+                }}
               >
-                <FacebookIcon />
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="link to twitter"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
+                Edit Profile
+              </Button>
+              <Dialog open={isEditing}>
+                <DialogActions>
+                  <IconButton onClick={handleClose}>X</IconButton>
+                </DialogActions>
+                <DialogContent>
+                  <ProfileForm profile={info} setIsEditing={setisEditing} />
+                </DialogContent>
+              </Dialog>
+
+              <Button
+                variant="contained"
+                sx={{
+                  background: "lightGrey",
+                  color: "black",
+                  padding: 2,
+                  textTransform: "none",
+                  marginBottom: 2,
+                }}
               >
-                <TwitterIcon />
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="link to instagram"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-              >
-                <InstagramIcon />
-              </IconButton>
-            </Stack>
-          </Stack>
-          <Stack direction="column" spacing={1}>
-            <Button
-              onClick={handleClickOpen}
-              variant="contained"
-              sx={{
-                background: "lightGrey",
+                Settings
+              </Button>
 
-                color: "black",
-                padding: 2,
-                textTransform: "none",
-                maxHeight: 2,
-              }}
-            >
-              Edit Profile
-            </Button>
-            <Dialog open={isEditing}>
-              <DialogActions>
-                <Button onClick={handleClose}>X</Button>
-              </DialogActions>
-              <DialogContent>
-                <ProfileForm profile={info} setIsEditing={setisEditing} />
-              </DialogContent>
-            </Dialog>
+              <>
+                <Typography textAlign={"center"}>Pet:{info?.pet}</Typography>
+                <Typography textAlign={"center"}>Human:{info?.owner}</Typography>
+                <Typography textAlign={"center"}>Bio:{info?.bio}</Typography>
+              </>
 
-            <Button
-              variant="contained"
-              sx={{
-                background: "lightGrey",
-                color: "black",
-                padding: 2,
-                textTransform: "none",
-                maxHeight: 2,
-              }}
-            >
-              Settings
-            </Button>
-
-            <>
-              <Typography textAlign={"center"}>Pet:{info?.pet}</Typography>
-              <Typography textAlign={"center"}>Human:{info?.owner}</Typography>
-              <Typography textAlign={"center"}>Bio:{info?.bio}</Typography>
-            </>
-
-            <Typography textAlign={"center"}>
-              Posts Followers Following
-            </Typography>
-          </Stack>
-        </Stack>
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
-          <Box
-            sx={{
-              borderBottom: 1,
-              borderColor: "divider",
-            }}
+              <Typography textAlign={"center"}>
+                Posts Followers Following
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="navigation tab"
+            centered
           >
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="navigation tab"
-              centered
-            >
-              <Tab label="Posts" {...a11yProps(0)} />
-              <Tab label="Liked" {...a11yProps(1)} />
-              <Tab label="Tagged" {...a11yProps(2)} />
-            </Tabs>
-          </Box>
+            <Tab label="Posts" {...a11yProps(0)} />
+            <Tab label="Liked" {...a11yProps(1)} />
+            <Tab label="Tagged" {...a11yProps(2)} />
+          </Tabs>
+        </Grid>
+        <Grid item xs={12} md={6}>
           <CustomTabPanel value={value} index={0}>
             {ProfilePhotos()}
           </CustomTabPanel>
@@ -203,8 +166,8 @@ export default function BasicTabs() {
           <CustomTabPanel value={value} index={2}>
             Tagged
           </CustomTabPanel>
-        </Box>
-      </Stack>
+        </Grid>
+      </Grid>
     </div>
   );
 }
