@@ -1,6 +1,5 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -71,36 +70,43 @@ export default function BasicTabs() {
 
   return (
     <div>
-     <Grid
-  container
-  sx={{
-    padding: "4%", // Remove padding
-    marginTop: 0,
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh", // Adjust the height to fill the viewport
-  }}
-  direction="row"
-  spacing={2}
->
+      <Grid
+        container
+        sx={{
+          padding: 2,
+          marginTop: 0,
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          width: "100%",
+        }}
+        direction="row"
+        spacing={2}
+      >
         <Grid
           item
           container
           direction="row"
           spacing={0}
           justifyContent="center"
-          
         >
-          <Grid item xs={6} sm={4} md={4}>
+          <Grid item xs={6} sm={4} md={4} lg={2}>
             <Avatar
               alt="Mike Pack"
               src="src/images/casey.jpg"
               sx={{ width: 160, height: 160 }}
             />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
+          <Grid item xs={6} sm={4} md={4} lg={2}>
             <Box
-              sx={{ display: "flex", flexDirection: "column", width: "100%" }}
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "1fr", // One column taking full width
+                gridGap: 0, // Space between grid rows
+                justifyContent: "center", // Centering content horizontally
+                alignContent: "center", // Centering content vertically in the grid container
+                width: "100%",
+              }}
             >
               <Button
                 onClick={handleClickOpen}
@@ -151,39 +157,39 @@ export default function BasicTabs() {
             </Box>
           </Grid>
         </Grid>
-<Grid
-  container
-  sx={{
-    padding: "4%",
-    marginTop: 0,
-  }}
-  alignItems={"center"}
-  direction="column"
-  spacing={0} 
-  justifyContent={"center"}
->
-        <Grid item xs={12} sm={12} md={6}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="navigation tab"
-            centered
-          >
-            <Tab label="Posts" {...a11yProps(0)} />
-            <Tab label="Liked" {...a11yProps(1)} />
-            <Tab label="Tagged" {...a11yProps(2)} />
-          </Tabs>
-        </Grid>
-        <Grid item xs={12} sm={10} md={12}>
-          <CustomTabPanel value={value} index={0}>
-            {ProfilePhotos()}
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={1}>
-            Liked
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={2}>
-            Tagged
-          </CustomTabPanel>
+        <Grid
+          container
+          sx={{
+            padding: 0,
+            marginTop: 0,
+          }}
+          alignItems={"center"}
+          direction="column"
+          spacing={0}
+          justifyContent={"center"}
+        >
+          <Grid item xs={12} sm={12} md={6} lg={12}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="navigation tab"
+              centered
+            >
+              <Tab label="Posts" {...a11yProps(0)} />
+              <Tab label="Liked" {...a11yProps(1)} />
+              <Tab label="Tagged" {...a11yProps(2)} />
+            </Tabs>
+          </Grid>
+          <Grid item xs={12} sm={10} md={12} lg={12}>
+            <CustomTabPanel value={value} index={0}>
+              {ProfilePhotos()}
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={1}>
+              Liked
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={2}>
+              Tagged
+            </CustomTabPanel>
           </Grid>
         </Grid>
       </Grid>
