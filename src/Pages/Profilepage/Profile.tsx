@@ -77,11 +77,11 @@ export default function BasicTabs() {
           marginTop: 0,
           alignItems: "center",
           justifyContent: "center",
-          height: "100vh",
-          width: "100%",
+          //height: "100vh",
+          //width: "100%",
         }}
         direction="row"
-        spacing={2}
+        //spacing={2}
       >
         <Grid
           item
@@ -89,22 +89,23 @@ export default function BasicTabs() {
           direction="row"
           spacing={0}
           justifyContent="center"
+          xs={12}
         >
-          <Grid item xs={6} sm={4} md={4} lg={2} sx={{p:2}}>
+          <Grid item xs={6} sm={6} md={6} lg={6} sx={{p:2}}>
             <Avatar
               alt="Mike Pack"
               src="src/images/casey.jpg"
-              sx={{ width: 160, height: 160,}}
+              
             />
           </Grid>
-          <Grid item xs={6} sm={4} md={4} lg={2} sx={{p:2}}>
+          <Grid item xs={6} sm={6} md={6} lg={6} sx={{p:2}}>
             <Box
               sx={{
                 display: "grid",
-                gridTemplateColumns: "1fr", // One column taking full width
-                gridGap: 0, // Space between grid rows
-                justifyContent: "center", // Centering content horizontally
-                alignContent: "center", // Centering content vertically in the grid container
+                gridTemplateColumns: "1fr", 
+                gridGap: 0, 
+                justifyContent: "center", 
+                alignContent: "center", 
                 width: "100%",
               }}
             >
