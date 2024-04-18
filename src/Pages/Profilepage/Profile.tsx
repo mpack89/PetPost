@@ -90,14 +90,14 @@ export default function BasicTabs() {
           spacing={0}
           justifyContent="center"
         >
-          <Grid item xs={6} sm={4} md={4} lg={2}>
+          <Grid item xs={6} sm={4} md={4} lg={2} sx={{p:2}}>
             <Avatar
               alt="Mike Pack"
               src="src/images/casey.jpg"
-              sx={{ width: 160, height: 160 }}
+              sx={{ width: 160, height: 160,}}
             />
           </Grid>
-          <Grid item xs={6} sm={4} md={4} lg={2}>
+          <Grid item xs={6} sm={4} md={4} lg={2} sx={{p:2}}>
             <Box
               sx={{
                 display: "grid",
@@ -162,6 +162,7 @@ export default function BasicTabs() {
           sx={{
             padding: 0,
             marginTop: 0,
+           
           }}
           alignItems={"center"}
           direction="column"
