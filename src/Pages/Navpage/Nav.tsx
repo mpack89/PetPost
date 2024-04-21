@@ -12,7 +12,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { NavLink } from "react-router-dom";
 import { PlayCircle, AccountCircle, Home } from "@mui/icons-material";
 import { useState } from "react";
-import Settings from "./Settings";
+import Settings from "../../components/Settings";
 
 function Nav({ setAutoplay, setSounds }) {
   const [auth, setAuth] = React.useState(true);

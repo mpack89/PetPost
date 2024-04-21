@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Nav from "./components/Nav";
+import Nav from "./Pages/Navpage/Nav";
 import Photo from "./Pages/Photopage/Photo";
 import Profile from "./Pages/Profilepage/Profile";
 import { Video } from "./Pages/Videopage/Video";
