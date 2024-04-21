@@ -91,14 +91,15 @@ export default function BasicTabs() {
           justifyContent="center"
           xs={12}
         >
-          <Grid item xs={6} sm={6} md={6} lg={6} sx={{p:2}}>
+            <Grid item xs={6} sm={4} md={4} lg={2} sx={{p:2}}>
             <Avatar
               alt="Mike Pack"
               src="src/images/casey.jpg"
+              sx={{height: 140, width: 140}}
               
             />
           </Grid>
-          <Grid item xs={6} sm={6} md={6} lg={6} sx={{p:2}}>
+          <Grid item xs={6} sm={4} md={4} lg={2} sx={{p:2}}>
             <Box
               sx={{
                 display: "grid",
