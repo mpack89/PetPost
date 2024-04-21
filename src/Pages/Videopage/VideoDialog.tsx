@@ -6,7 +6,7 @@ import { IconButton } from "@mui/material/";
 import CloseIcon from "@mui/icons-material/Close";
 import CommentItem from "../../components/CommentsItem";
 import AddCommentForm from "../../components/AddCommentForm";
-import data from "../../components/photodata.json";
+import data from "../../API/photodata.json";
 import Comment from "../../types/CommentTypes";
 import Photo from "../../types/Phototypes";
 

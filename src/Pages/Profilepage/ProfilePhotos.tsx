@@ -1,6 +1,6 @@
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import PhotoData from "../../components/PhotoData";
+import PhotoData from "../../API/PhotoData";
 import ImageDialog from "../../components/ImageDialog";
 import { useState } from "react";
 

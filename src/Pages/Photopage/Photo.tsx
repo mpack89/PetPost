@@ -2,7 +2,7 @@ import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import CardComponent from "../../components/CardComponent";
 import ImageDialog from "../../components/ImageDialog";
-import PhotoData from "../../components/PhotoData";
+import PhotoData from "../../API/PhotoData";
 import "./styles.css";
 
 export default function WovenImageGrid({sounds}) {

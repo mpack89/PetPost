@@ -7,7 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import CommentIcon from "@mui/icons-material/Comment";
 import CommentItem from "./CommentsItem";
 import AddCommentForm from "./AddCommentForm";
-import data from "./../components/photodata.json";
+import data from "../API/photodata.json";
 import Comment from "../types/CommentTypes";
 import Photo from "../types/Phototypes";
 import getCommentsData from "./getCommentsData";

@@ -7,7 +7,7 @@ import { Video } from "./Pages/Videopage/Video";
 import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import data from "./Pages/Profilepage/data.json";
-import photodata from "./components/photodata.json";
+import photodata from "./API/photodata.json";
 import { useState } from "react";
 
 function App() {

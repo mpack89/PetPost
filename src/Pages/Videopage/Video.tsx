@@ -1,5 +1,5 @@
 import Carousel from "react-material-ui-carousel";
-import PhotoData from "../../components/PhotoData";
+import PhotoData from "../../API/PhotoData";
 import { useState, useEffect } from "react";
 import VideoDialog from "./VideoDialog";
 import CardHeader from "@mui/material/CardHeader";
