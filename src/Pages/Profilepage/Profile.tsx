@@ -91,22 +91,21 @@ export default function BasicTabs() {
           justifyContent="center"
           xs={12}
         >
-            <Grid item xs={6} sm={4} md={4} lg={2} sx={{p:2}}>
+          <Grid item xs={6} sm={4} md={4} lg={2} sx={{ p: 2 }}>
             <Avatar
               alt="Mike Pack"
               src="src/images/casey.jpg"
-              sx={{height: 140, width: 140}}
-              
+              sx={{ height: 140, width: 140 }}
             />
           </Grid>
-          <Grid item xs={6} sm={4} md={4} lg={2} sx={{p:2}}>
+          <Grid item xs={6} sm={4} md={4} lg={2} sx={{ p: 2 }}>
             <Box
               sx={{
                 display: "grid",
-                gridTemplateColumns: "1fr", 
-                gridGap: 0, 
-                justifyContent: "center", 
-                alignContent: "center", 
+                gridTemplateColumns: "1fr",
+                gridGap: 0,
+                justifyContent: "center",
+                alignContent: "center",
                 width: "100%",
               }}
             >
@@ -152,10 +151,6 @@ export default function BasicTabs() {
                 </Typography>
                 <Typography textAlign={"center"}>Bio:{info?.bio}</Typography>
               </>
-
-              <Typography textAlign={"center"}>
-                Posts Followers Following
-              </Typography>
             </Box>
           </Grid>
         </Grid>
@@ -164,7 +159,6 @@ export default function BasicTabs() {
           sx={{
             padding: 0,
             marginTop: 0,
-           
           }}
           alignItems={"center"}
           direction="column"

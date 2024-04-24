@@ -48,7 +48,7 @@ const ProfileForm = (props: any) => {
             </Grid>
             <Grid item xs={4}>
               <label id="label" htmlFor="ownerName">
-                Owner
+                Human
               </label>
               <Field id="owner" name="owner" placeholder="" type="text" />
             </Grid>
@@ -57,12 +57,6 @@ const ProfileForm = (props: any) => {
                 Bio
               </label>
               <Field id="bio" name="bio" placeholder="" type="text" />
-            </Grid>
-            <Grid item xs={4}>
-              <label id="label" htmlFor="links">
-                Links
-              </label>
-              <Field id="links" name="links" placeholder="" />
             </Grid>
             <Grid item xs={4} alignSelf={"center"}>
               <button id="submitbutton" type="submit">
