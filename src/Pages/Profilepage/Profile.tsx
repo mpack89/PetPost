@@ -51,11 +51,12 @@ function a11yProps(index: number) {
   };
 }
 
-export default function BasicTabs() {
+export default function BasicTabs({setAutoplay, setSounds}) {
   const [value, setValue] = React.useState(0);
   const [isEditing, setisEditing] = React.useState(false);
   const info = getMyProfile();
 
+  
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -131,18 +132,7 @@ export default function BasicTabs() {
                 </DialogContent>
               </Dialog>
 
-              <Button
-                variant="contained"
-                sx={{
-                  background: "lightGrey",
-                  color: "black",
-                  padding: 2,
-                  textTransform: "none",
-                  marginBottom: 2,
-                }}
-              >
-                Settings
-              </Button>
+         
 
               <>
                 <Typography textAlign={"center"}>Pet:{info?.pet}</Typography>
