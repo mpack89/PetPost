@@ -51,12 +51,11 @@ function a11yProps(index: number) {
   };
 }
 
-export default function BasicTabs({setAutoplay, setSounds}) {
+export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
   const [isEditing, setisEditing] = React.useState(false);
   const info = getMyProfile();
 
-  
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -131,8 +130,6 @@ export default function BasicTabs({setAutoplay, setSounds}) {
                   <ProfileForm profile={info} setIsEditing={setisEditing} />
                 </DialogContent>
               </Dialog>
-
-         
 
               <>
                 <Typography textAlign={"center"}>Pet:{info?.pet}</Typography>
