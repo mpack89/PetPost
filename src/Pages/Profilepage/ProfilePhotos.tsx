@@ -1,7 +1,7 @@
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import PhotoData from "../../API/PhotoData";
-import ImageDialog from "../../components/ImageDialog";
+import ImageDialog from "../Photopage/ImageDialog";
 import { useState } from "react";
 
 export default function ProfilePhotos() {

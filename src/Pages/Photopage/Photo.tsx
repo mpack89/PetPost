@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import CardComponent from "../../components/CardComponent";
-import ImageDialog from "../../components/ImageDialog";
+import ImageDialog from "./ImageDialog";
 import PhotoData from "../../API/PhotoData";
 import "./styles.css";
 

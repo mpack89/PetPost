@@ -2,7 +2,7 @@ import { useState } from "react";
 import CardComponent from "./CardComponent";
 import data from "../API/photodata.json";
 import Grid from "@mui/material/Grid";
-import ImageDialog from "./ImageDialog";
+import ImageDialog from "../Pages/Photopage/ImageDialog";
 
 const Home = ({sounds}) => {
   const images = data.photos;
