@@ -14,7 +14,7 @@ const ProfileForm = (props: any) => {
   const { profile, setIsEditing } = props;
   const itemData = profile;
   return (
-    <div>
+    <Grid container xs={12}>
       <Typography
         sx={{
           textAlign: "center",
@@ -40,13 +40,13 @@ const ProfileForm = (props: any) => {
       >
         <Form>
           <Grid container direction={"column"} columnSpacing={4} rowSpacing={4}>
-            <Grid item xs={4}>
+            <Grid item xs={4} sm={6}>
               <label id="label" htmlFor="petName">
                 Pet
               </label>
               <Field id="pet" name="pet" />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={4} sm={6}>
               <label id="label" htmlFor="ownerName">
                 Owner
               </label>
@@ -72,7 +72,7 @@ const ProfileForm = (props: any) => {
           </Grid>
         </Form>
       </Formik>
-    </div>
+    </Grid>
   );
 };
 

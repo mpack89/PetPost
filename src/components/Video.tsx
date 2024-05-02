@@ -15,6 +15,7 @@ import "./Carousel.css";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import CardComponent from "../CardComponent";
+import ImageDialog from "./ImageDialog";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -36,6 +37,7 @@ function useIsMobile() {
 export function Video({ autoplay, sounds }) {
   const images = PhotoData();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [imageDialogOpen, setImageDialogOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
   const carouselInterval = 10000;
@@ -43,11 +45,14 @@ export function Video({ autoplay, sounds }) {
 
   const handleImageClickMobile = (image) => {
     setSelectedImage(image);
-    setDialogOpen(true);
+
+    setDialogOpen(false);
+    setImageDialogOpen(true);
   };
 
   const handleImageClick = (image) => {
     setSelectedImageIndex(images.indexOf(image));
+
     setDialogOpen(true);
   };
 
@@ -115,6 +120,13 @@ export function Video({ autoplay, sounds }) {
         imageSrc={images[selectedImageIndex]?.url}
         open={dialogOpen}
         onClose={handleCloseDialog}
+        sounds={sounds}
+      />
+
+      <ImageDialog
+        open={imageDialogOpen}
+        onClose={() => setImageDialogOpen(false)}
+        imageSrc={selectedImage}
         sounds={sounds}
       />
     </div>
