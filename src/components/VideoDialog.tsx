@@ -46,6 +46,7 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
 
     return size;
   }
+  console.log("Not Mobile", open);
 
   useEffect(() => {
     const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
@@ -149,7 +150,6 @@ const VideoDialog: React.FC<VideoDialogProps> = ({
               right: "6%",
               width: width < 600 ? "94%" : "44%",
               background: "#ffffff",
-            
             }}
           >
             <AddCommentForm onAddComment={handleAddComment} />

@@ -19,6 +19,8 @@ interface ImageDialogProps {
   sounds: any;
 }
 
+const smallPX = 600; // 650px is the breakpoint for mobile
+
 function useWindowSize() {
   const [size, setSize] = useState({
     width: window.innerWidth,
@@ -58,6 +60,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
       setFilteredComments(initialComments);
     }
   }, [initialComments]);
+  console.log("Mobile", open, width, showComments);
 
   useEffect(() => {
     const photo = data.photos.find((photo: Photo) => photo.url === imageSrc);
@@ -107,9 +110,10 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
     }
   };
 
+  // these hardcoded 600px are what you want to make a variable
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
-      {!(width < 600 && showComments) && (
+      {!(width < smallPX && showComments) && (
         <IconButton
           edge="end"
           color="inherit"
@@ -134,7 +138,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
           flexDirection: width < 600 ? "column" : "row",
         }}
       >
-        {width < 600 && !showComments ? (
+        {width < smallPX && !showComments ? (
           <>
             <img
               src={imageSrc}
@@ -153,9 +157,16 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
               <CommentIcon fontSize="large" />
             </IconButton>
           </>
-        ) : width < 600 && showComments ? (
+        ) : width < smallPX && showComments ? (
           <>
-            <List sx={{ width: "100%", height: "800px", overflowY: "auto", marginBottom: "14%" }}>
+            <List
+              sx={{
+                width: "100%",
+                height: "800px",
+                overflowY: "auto",
+                marginBottom: "14%",
+              }}
+            >
               {filteredComments.map((comment, index) => (
                 <CommentItem
                   key={index}
@@ -170,17 +181,16 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
               ))}
             </List>
             <div
-                style={{
-                  position: "absolute",
-                  bottom: 10,
-                  width: "100%",
-                  background: "#ffffff",
-                  right: 10,
-                  padding: 4
-                  
-                }}
-              >
-            <AddCommentForm onAddComment={handleAddComment} />
+              style={{
+                position: "absolute",
+                bottom: 10,
+                width: "100%",
+                background: "#ffffff",
+                right: 10,
+                padding: 4,
+              }}
+            >
+              <AddCommentForm onAddComment={handleAddComment} />
             </div>
             <IconButton
               style={{
@@ -227,8 +237,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
                   width: "44%",
                   background: "#ffffff",
                   right: "6%",
-                  padding: 0
-                  
+                  padding: 0,
                 }}
               >
                 <AddCommentForm onAddComment={handleAddComment} />
