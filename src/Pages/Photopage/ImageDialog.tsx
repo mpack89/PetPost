@@ -136,7 +136,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
           flexDirection: width < 600 ? "column" : "row",
         }}
       >
-        {width < 600 && !showComments ? (
+        {width < smallPX && !showComments ? (
           <>
             <img
               src={imageSrc}
@@ -155,7 +155,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
               <CommentIcon fontSize="large" />
             </IconButton>
           </>
-        ) : width < 600 && showComments ? (
+        ) : width < smallPX && showComments ? (
           <>
             <List sx={{ width: "100%", height: "800px", overflowY: "auto", marginBottom: "14%" }}>
               {filteredComments.map((comment, index) => (
