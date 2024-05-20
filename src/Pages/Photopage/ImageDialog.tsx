@@ -19,6 +19,8 @@ interface ImageDialogProps {
   sounds: any;
 }
 
+const smallPX= 600;
+
 function useWindowSize() {
   const [size, setSize] = useState({
     width: window.innerWidth,
@@ -109,7 +111,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
-      {!(width < 600 && showComments) && (
+      {!(width < smallPX && showComments) && (
         <IconButton
           edge="end"
           color="inherit"
